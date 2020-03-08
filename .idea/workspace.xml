@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="" />
+    <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0016_auto_20200308_1437.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/careers/migrations/0002_auto_20200308_1437.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/careers/migrations/0003_auto_20200308_1437.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/careers/migrations/0004_auto_20200308_1458.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0009_auto_20200308_1437.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/career_track/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/career_track/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/careers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/careers/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/careers/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/careers/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +30,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Wvq7g2S5isANWeLhkCiNnsfHJP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +42,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="ServiceViewManager">
@@ -62,9 +83,9 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1581184561533" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1582653449082">
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1583675584579">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1582653449082" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1583675584579" />
   </component>
 </project>
