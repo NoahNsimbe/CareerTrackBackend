@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0016_auto_20200308_1437.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/careers/migrations/0002_auto_20200308_1437.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/careers/migrations/0003_auto_20200308_1437.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/careers/migrations/0004_auto_20200308_1458.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0009_auto_20200308_1437.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/career_track/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/career_track/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/careers/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/careers/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +57,27 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="163" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580040315386">
       <screen x="45" y="27" width="1321" height="741" />
@@ -79,13 +87,17 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="329" y="207" width="424" height="484" key="FileChooserDialogImpl/45.27.1321.741@45.27.1321.741" timestamp="1580040412404" />
-    <state x="194" y="33" key="SettingsEditor" timestamp="1581184561533">
+    <state x="381" y="101" width="639" height="591" key="RollbackChangesDialog" timestamp="1584815656161">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1581184561533" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1583675584579">
+    <state x="381" y="101" width="639" height="591" key="RollbackChangesDialog/45.27.1321.741@45.27.1321.741" timestamp="1584815656161" />
+    <state x="194" y="33" key="SettingsEditor" timestamp="1584815935121">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1583675584579" />
+    <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1584815935121" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1584815417425">
+      <screen x="45" y="27" width="1321" height="741" />
+    </state>
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1584815417425" />
   </component>
 </project>
