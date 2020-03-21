@@ -1,5 +1,8 @@
 from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .models import Careers
 from .serializers import CareersSerializer
 
@@ -10,4 +13,12 @@ def get_careers(request):
         careers = Careers.objects.all()
         serializer = CareersSerializer(careers, many=True).data
         data = {"careersList": [x["name"] for x in serializer]}
-        return JsonResponse(data, safe=False)
+        return Response(data)
+
+
+class CareersClass(APIView):
+    def get(self, request):
+        careers = Careers.objects.all()
+        serializer = CareersSerializer(careers, many=True).data
+        data = {"careersList": [x["name"] for x in serializer]}
+        return Response(data)

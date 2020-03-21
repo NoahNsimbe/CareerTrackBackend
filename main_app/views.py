@@ -1,9 +1,12 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from careers.models import Careers
 from careers.serializers import CareersSerializer, CoursesSerializer
+from django.contrib.auth.models import User
 
 # @api_view(['GET', 'POST'])
 # def post_collection(request):
@@ -21,9 +24,60 @@ from careers.serializers import CareersSerializer, CoursesSerializer
 from .models import Courses, CourseConstraints
 from .serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
 
+from django.contrib.auth.models import User
 
-@api_view('POST')
+
+@api_view(['POST'])
+def signup(request):
+
+    try:
+        username = request.data.get('username')
+        email = request.data.get('email')
+        password = request.data.get('password')
+        last_name = request.data.get('last_name')
+        first_name = request.data.get('first_name')
+
+    except Exception:
+
+        message = {'Message': "Please provide all necessary fields"}
+        return Response(message, status.HTTP_400_BAD_REQUEST)
+
+    if User.objects.filter(username=username).exists():
+        return Response(None, status.HTTP_409_CONFLICT)
+
+    try:
+        user = User.objects.create_user(username, email, password)
+        user.last_name = last_name
+        first_name = user.first_name = first_name
+        user.save()
+
+        message_body = 'Dear ' + first_name + ', Your account has successfully been created'
+        message = {'Message': message_body}
+
+        return Response(message, status.HTTP_201_CREATED)
+
+    except Exception:
+
+        message_body = "An error occurred while registering you"
+        message = {'Message': message_body}
+
+        return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def testing(request):
+
+    message = {'Message': 'Successful'}
+
+    return Response(message, status.HTTP_200_OK)
+
+
+@api_view(['POST'])
 def combination_without_results(request):
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #permission_classes = [IsAuthenticated]
 
     if request.method == 'POST':
         # data = {'career': request.DATA.get('career')}
