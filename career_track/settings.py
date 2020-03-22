@@ -22,7 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
-# SECRET_KEY='h(vjg)o9=z2z&tfrf)jn6#vpec-!r-^3poemq4ug-1mu#h(cpt'
 
 """
 export SECRET_KEY='h(vjg)o9=z2z&tfrf)jn6#vpec-!r-^3poemq4ug-1mu#h(cpt'
@@ -39,7 +38,7 @@ with open('/etc/secret_key.txt') as f:
 pip install django-generate-secret-key
 python manage.py generate_secret_key [--replace] [secretkey.txt]
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 # Use a separate file for the secret key
 with open(os.path.join(BASE_DIR, 'secretkey.txt')) as f:
     SECRET_KEY = f.read().strip()
@@ -67,7 +66,6 @@ INSTALLED_APPS = [
 
     'articles',
     'subjects',
-    'careers',
     'main_app'
 ]
 
@@ -120,8 +118,6 @@ REST_FRAMEWORK = {
 }
 
 ROOT_URLCONF = 'career_track.urls'
-
-
 
 CORS_ORIGIN_ALLOW_ALL = True
 """

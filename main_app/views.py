@@ -4,9 +4,12 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from careers.models import Careers
-from careers.serializers import CareersSerializer, CoursesSerializer
+from .models import Courses, CareerCourses, Careers
+from .serializers import CourseSubjectsSerializer, CourseSerializer, CareerCoursesSerializer, CareersSerializer, \
+    CoursesSerializer
 from django.contrib.auth.models import User
+from rest_framework.views import APIView
+
 
 # @api_view(['GET', 'POST'])
 # def post_collection(request):
@@ -21,23 +24,35 @@ from django.contrib.auth.models import User
 #             serializer.save()
 #             return Response(serializer.data, status=status.HTTP_201_CREATED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-from .models import Courses, CourseConstraints
-from .serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
 
-from django.contrib.auth.models import User
+
+@api_view(['GET'])
+def get_careers(request):
+    if request.method == 'GET':
+        careers = Careers.objects.all()
+        serializer = CareersSerializer(careers, many=True).data
+        data = {"careersList": [x["name"] for x in serializer]}
+        return Response(data)
+
+
+class CareersClass(APIView):
+    def get(self, request):
+        careers = Careers.objects.all()
+        serializer = CareersSerializer(careers, many=True).data
+        data = {"careersList": [x["name"] for x in serializer]}
+        return Response(data)
 
 
 @api_view(['POST'])
 def signup(request):
 
-    try:
-        username = request.data.get('username')
-        email = request.data.get('email')
-        password = request.data.get('password')
-        last_name = request.data.get('last_name')
-        first_name = request.data.get('first_name')
+    username = request.data.get('username')
+    email = request.data.get('email')
+    password = request.data.get('password')
+    last_name = request.data.get('last_name')
+    first_name = request.data.get('first_name')
 
-    except Exception:
+    if all(parameter is None for parameter in [username, email, password, last_name, first_name]):
 
         message = {'Message': "Please provide all necessary fields"}
         return Response(message, status.HTTP_400_BAD_REQUEST)
@@ -145,3 +160,34 @@ def combination_without_results(request):
         #     serializer.save()
         #     return Response(serializer.data, status=status.HTTP_201_CREATED)
         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def course_without_results(request):
+
+    career = request.data.get("career")
+
+    if career is None:
+        return Response({'Message': "Please provide a career"}, status.HTTP_400_BAD_REQUEST)
+
+    career_courses = CareerCoursesSerializer(CareerCourses.objects.filter(career=career), many=True).data
+
+    if career_courses:
+
+        recommended_courses = {}
+        recommended_courses_list = []
+
+        for career_course in career_courses:
+
+            course_details = CourseSerializer(Courses.objects.filter(code=career_course["course"]), many=True).data
+            recommended_courses_list.append(course_details[0])
+
+        recommended_courses['programs'] = recommended_courses_list
+
+        return Response(recommended_courses, status.HTTP_200_OK)
+
+    else:
+        return Response({'Message': 'Currently, the system cannot get recommended courses for this career'},
+                        status.HTTP_204_NO_CONTENT)
+
+
