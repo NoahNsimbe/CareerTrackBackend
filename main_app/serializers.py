@@ -1,17 +1,5 @@
 from rest_framework import serializers
-from .models import Courses, CourseConstraints, CareerCourses, Careers
-
-
-class CourseSubjectsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Courses
-        fields = ['essential', 'relevant', 'desirable', 'description', 'name']
-
-
-class CourseConstraintsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CourseConstraints
-        fields = ['no_of_essential', 'no_of_relevant']
+from .models import Courses, CourseConstraints, CareerCourses, Careers, CourseSubjects
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -20,10 +8,22 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CourseConstraintsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseConstraints
+        fields = '__all__'
+
+
 class CareerCoursesSerializer(serializers.ModelSerializer):
     class Meta:
         model = CareerCourses
         fields = '__all__'
+
+
+class CourseSubjectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseSubjects
+        fields = ['subject']
 
 
 class CareersSerializer(serializers.ModelSerializer):

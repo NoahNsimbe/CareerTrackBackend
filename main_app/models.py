@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from subjects.models import UceSubjects, UaceSubjects
 
 
 class Careers(models.Model):
@@ -25,7 +26,34 @@ class CareerCourses(models.Model):
 
 
 class CourseConstraints(models.Model):
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    essentials = models.IntegerField(default=2, choices=(
+        (1, "One Essential"), (2, "Two Essentials"), (3, "One or two essentials"))
+                                     )
+    relevant = models.IntegerField(default=2)
+    desirable_state = models.IntegerField(default=1, choices=(
+        (1, "Only one mandatory desirable"), (2, "Depends on essential and relevant subjects"))
+                                          )
+
+
+class CourseSubjects(models.Model):
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
+    category = models.CharField(max_length=15, choices=(
+        ("essential", "essential"), ("relevant", "relevant"), ("desirable", "desirable"))
+                                )
+
+
+class ALevelConstraints(models.Model):
     code = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    no_of_essential = models.IntegerField(default=2)
-    no_of_relevant = models.IntegerField(default=1)
+    subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
+    mandatory = models.BooleanField(default=True)
+    minimum_grade = models.IntegerField(default=2)
+
+
+class OLevelConstraints(models.Model):
+    code = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    subject = models.ForeignKey(UceSubjects, on_delete=models.CASCADE)
+    mandatory = models.BooleanField(default=True)
+    maximum_grade = models.IntegerField(default=6)
 

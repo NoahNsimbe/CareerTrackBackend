@@ -8,6 +8,12 @@ class UaceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class UaceOptionalsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UaceSubjects
+        fields = ['name']
+
+
 class UceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UceSubjects
