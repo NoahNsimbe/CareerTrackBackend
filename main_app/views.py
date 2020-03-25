@@ -187,11 +187,12 @@ def course_with_results(request):
     career = request.data.get("career")
     admission_type = request.data.get("admission_type")
     uace_results = json.loads(request.data.get("uace_results"))
+    uce_results = json.loads(request.data.get("uce_results"))
 
     if (career is None) or (admission_type is None) or (uace_results is None):
         return Response({'Message': "Please provide all fields"}, status.HTTP_400_BAD_REQUEST)
 
-    success, results, errors = with_results(career, uace_results, admission_type)
+    success, results, errors = with_results(career, uace_results, uce_results, admission_type)
 
     if success:
         return Response(results, status.HTTP_200_OK)

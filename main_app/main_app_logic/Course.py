@@ -31,7 +31,7 @@ def without_results(career):
         return False, None, errors
 
 
-def with_results(career, uace_results, admission_type):
+def with_results(career, uace_results, uce_results, admission_type):
 
     recommended_codes = []
     non_recommended_codes = []
@@ -62,7 +62,7 @@ def with_results(career, uace_results, admission_type):
             if course_subjects_present:
 
                 try:
-                    secondary_constraint_check = check_course_constraints(course_code, uace_results)
+                    secondary_constraint_check = check_course_constraints(course_code, uace_results, uce_results)
 
                     if secondary_constraint_check:
                         recommended_codes.append(course_code)
@@ -76,14 +76,15 @@ def with_results(career, uace_results, admission_type):
 
                     return False, None, errors
 
+        # compute cut-off points, sort and return recommendations
         recommended_courses, non_recommended_courses = compute_points(recommended_codes, non_recommended_codes,
                                                                       uace_results, admission_type)
 
-        courses = dict()
-        courses["Recommended courses"] = recommended_courses
-        courses["Non Recommended courses"] = non_recommended_courses
+        recommendations = dict()
+        recommendations["Recommended courses"] = recommended_courses
+        recommendations["Non Recommended courses"] = non_recommended_courses
 
-        return True, json.dumps(courses), None
+        return True, json.dumps(recommendations), None
 
     else:
 
