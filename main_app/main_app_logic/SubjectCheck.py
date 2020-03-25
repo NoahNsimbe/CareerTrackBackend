@@ -1,6 +1,6 @@
 from app_logic.AppExceptions import AppError
-from main_app.models import CourseSubjects
-from main_app.serializers import CourseSubjectsSerializer
+from main_app.models import CourseSubjects, CourseConstraints
+from main_app.serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
 from subjects.models import UaceSubjects
 from subjects.serializers import UaceOptionalsSerializer
 from rest_framework.response import Response
@@ -123,3 +123,21 @@ def check_essentials(course, number, results):
         error = "Number of essential subjects is greater than 3 for course code : " + course
         raise AppError(error)
 
+
+def check_course_subjects(course_code, uace_results):
+
+    course_subjects = CourseConstraintsSerializer(CourseConstraints.objects.filter(course=course_code))
+
+    no_of_essentials = course_subjects['essentials']
+    no_of_relevant = course_subjects['relevant']
+    desirable_state = course_subjects['desirable_state']
+
+    essential_check = check_essentials(course_code, no_of_essentials, uace_results)
+    relevant_check = check_relevant(course_code, no_of_essentials, uace_results)
+    desirable_check = check_desirable(course_code, desirable_state, uace_results)
+
+    if essential_check and relevant_check and desirable_check:
+
+        return True
+    else:
+        return False

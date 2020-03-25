@@ -4,17 +4,12 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
-from subjects.models import UaceSubjects
-from subjects.serializers import UaceOptionalsSerializer
 from .main_app_logic.Course import without_results, with_results
-from .main_app_logic.SubjectCheck import check_essentials, check_desirable, check_relevant
-from .models import Courses, CareerCourses, Careers, CourseConstraints, CourseSubjects
-from .serializers import CourseSubjectsSerializer, CourseSerializer, CareerCoursesSerializer, CareersSerializer, \
-    CoursesSerializer, CourseConstraintsSerializer
+from .models import Courses, Careers
+from .serializers import CourseSubjectsSerializer, CareersSerializer, CoursesSerializer
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from json import loads
+from rest_framework.utils import json
 
 
 # @api_view(['GET', 'POST'])
@@ -191,7 +186,7 @@ def course_with_results(request):
 
     career = request.data.get("career")
     admission_type = request.data.get("admission_type")
-    uace_results = loads(request.data.get("uace_results"))
+    uace_results = json.loads(request.data.get("uace_results"))
 
     if (career is None) or (admission_type is None) or (uace_results is None):
         return Response({'Message': "Please provide all fields"}, status.HTTP_400_BAD_REQUEST)
