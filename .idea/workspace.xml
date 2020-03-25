@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="" />
+    <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileColors">
+    <fileColor scope="Open Files" color="6fe92c" />
+    <fileColor scope="Problems" color="d31008" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -30,7 +36,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -88,21 +94,21 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="163" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog/45.27.1321.741@45.27.1321.741" timestamp="1580040315386" />
-    <state x="329" y="207" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580040412404">
+    <state x="329" y="207" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585119181313">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="329" y="207" width="424" height="484" key="FileChooserDialogImpl/45.27.1321.741@45.27.1321.741" timestamp="1580040412404" />
+    <state x="329" y="207" width="424" height="484" key="FileChooserDialogImpl/45.27.1321.741@45.27.1321.741" timestamp="1585119181313" />
     <state x="381" y="101" width="639" height="591" key="RollbackChangesDialog" timestamp="1584815656161">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="381" y="101" width="639" height="591" key="RollbackChangesDialog/45.27.1321.741@45.27.1321.741" timestamp="1584815656161" />
-    <state x="194" y="33" key="SettingsEditor" timestamp="1584815935121">
+    <state x="194" y="33" key="SettingsEditor" timestamp="1585119184612">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1584815935121" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1584893146066">
+    <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1585119184612" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585118996027">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1584893146066" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585118996027" />
   </component>
 </project>
