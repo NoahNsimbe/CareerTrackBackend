@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_track/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/career_track/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.json" beforeDir="false" afterPath="$PROJECT_DIR$/api.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/Course.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/Course.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,10 +112,10 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1585170180535" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585167155850">
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585173892586">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585167155850" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585173892586" />
     <state x="473" y="316" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585123346022">
       <screen x="45" y="27" width="1321" height="741" />
     </state>

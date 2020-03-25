@@ -87,13 +87,9 @@ def check_essentials(course, number, results):
         try:
             subject = CourseSubjectsSerializer(CourseSubjects.objects.filter(category="essential", course=course)).data
 
-        # raise error incase more the once essential is found in database
-
         except AttributeError:
-            return Response(
-                {'Message': "Essential subject expected to be one but found many"},
-                status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+            error = "Found course '{}' with many essential subjects. Expected only one".format(course)
+            raise AppError(error)
 
         return True if subject in results else False, subject
 
@@ -126,11 +122,16 @@ def check_essentials(course, number, results):
 
 def check_course_subjects(course_code, uace_results):
 
-    course_subjects = CourseConstraintsSerializer(CourseConstraints.objects.filter(course=course_code))
+    try:
+        course_subjects = CourseConstraintsSerializer(CourseConstraints.objects.filter(course=course_code))
 
-    no_of_essentials = course_subjects['essentials']
-    no_of_relevant = course_subjects['relevant']
-    desirable_state = course_subjects['desirable_state']
+        no_of_essentials = course_subjects['essentials']
+        no_of_relevant = course_subjects['relevant']
+        desirable_state = course_subjects['desirable_state']
+
+    except (AttributeError, KeyError):
+        error = "course '{}' has errors with or lucks essential, relevant and desirable subjects".format(course_code)
+        raise AppError(error)
 
     essential_check = check_essentials(course_code, no_of_essentials, uace_results)
     relevant_check = check_relevant(course_code, no_of_essentials, uace_results)

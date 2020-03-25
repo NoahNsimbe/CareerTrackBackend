@@ -20,7 +20,7 @@ def check_a_level(course, a_level_results, o_level_results):
                     if not check_o_level(course, o_level_results):
                         return False
 
-        except [KeyError, TypeError] as details:
+        except (AttributeError, KeyError) as details:
             error = """Error while checking A level subject constraints for course '{}'.
              Error Details : '{}'""".format(course, details)
             raise AppError(error)
@@ -42,7 +42,7 @@ def check_o_level(course, results):
                 if results[constraint['subject']] > constraint['maximum_grade'] and constraint['mandatory']:
                     return False
 
-        except [KeyError, TypeError] as details:
+        except (AttributeError, KeyError) as details:
 
             error = """Error while checking O level subject constraints for course '{}'.
              Error Details : '{}'""".format(course, details)

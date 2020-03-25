@@ -14,6 +14,17 @@
         "GP" : 3,
         "sub_comp": 1
     },
+    "uce_results":{
+        "maths": 4,
+        "chemistry": 5,
+        "biology": 6,
+        "comp": 1,
+        "hist": 4,
+        "geog": 5,
+        "eng": 6,
+        "GP" : 3
+    },
+
     "recommended_courses": [],
     "non_recommended_courses": [
         {
@@ -24,7 +35,7 @@
                     "essential_check": false,
                     "desirable_check": false,
                     "gp_check": false,
-                    "course_details": [],
+                    "course_details": [""]
 
 
                 }

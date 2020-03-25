@@ -6,6 +6,9 @@ from .SubjectCheck import check_course_subjects
 from main_app.models import CareerCourses, Courses
 from main_app.serializers import CareerCoursesSerializer, CourseSerializer
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def without_results(career):
 
@@ -22,12 +25,14 @@ def without_results(career):
         recommended_courses = dict()
         recommended_courses['programs'] = recommended_courses_list
 
-        return True, json.dumps(recommended_courses), None
+        # return True, json.dumps(recommended_courses), None
+        return True, recommended_courses, None
 
     else:
-        # log error args informing admins of database incorrect entries
 
         errors = "Sorry, we haven't yet updated our system to cater for '{}'".format(career)
+        logger.error(errors)
+
         return False, None, errors
 
 
@@ -51,7 +56,8 @@ def with_results(career, uace_results, uce_results, admission_type):
                     non_recommended_codes.append(course_code)
 
             except AppError as exception:
-                # log error args informing admins of database incorrect entries
+
+                logger.error("Exception Message : " + exception.message)
 
                 errors = "Sorry, there was an error while processing information for the career '{}'"\
                     .format(career)
@@ -70,7 +76,8 @@ def with_results(career, uace_results, uce_results, admission_type):
                         non_recommended_codes.append(course_code)
 
                 except AppError as exception:
-                    # log error args informing admins of database incorrect entries
+
+                    logger.error("Exception Message : " + exception.message)
                     errors = "Sorry, there was an error while processing information for the career '{}'" \
                         .format(career)
 
@@ -84,9 +91,10 @@ def with_results(career, uace_results, uce_results, admission_type):
         recommendations["Recommended courses"] = recommended_courses
         recommendations["Non Recommended courses"] = non_recommended_courses
 
-        return True, json.dumps(recommendations), None
+        # return True, json.dumps(recommendations), None
+        return True, recommendations, None
 
     else:
-
         errors = "Sorry, we haven't yet updated our system to cater for {}".format(career)
+        logger.error(errors)
         return False, None, errors
