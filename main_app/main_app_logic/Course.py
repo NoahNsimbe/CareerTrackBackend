@@ -1,3 +1,4 @@
+from app_logic.AppExceptions import AppError
 from .SubjectCheck import check_essentials, check_desirable, check_relevant
 from main_app.models import CareerCourses, Courses, CourseConstraints
 from main_app.serializers import CareerCoursesSerializer, CourseSerializer, CourseConstraintsSerializer
@@ -21,8 +22,9 @@ def without_results(career):
         return True, recommended_courses, errors
 
     else:
+        # log error args informing admins of database incorrect entries
 
-        errors = "system does not have courses for career : " + career
+        errors = "Sorry, we haven't yet updated our system to cater for {}".format(career)
 
         return False, recommended_courses, errors
 
@@ -62,20 +64,23 @@ def with_results(career, uace_results, admission_type):
 
                 course_subjects_present = True if desirable_check else False
 
-            except Exception:
+            except AppError as exception:
 
                 # log error args informing admins of database incorrect entries
                 # return Response({'Message': 'There was an error on database'}, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-                system_errors = Exception
-                return False, courses, system_errors
+                errors = "Sorry, there was an error while processing information for the career '{}'"\
+                    .format(career)
+
+                return False, courses, errors
 
             if course_subjects_present:
                 recommended_courses.append(course_code)
 
     else:
-        system_errors = "system does not have courses for career : " + career
-        return False, courses, system_errors
+
+        errors = "Sorry, we haven't yet updated our system to cater for {}".format(career)
+        return False, courses, errors
 
     # if recommended_courses:
     #     pass

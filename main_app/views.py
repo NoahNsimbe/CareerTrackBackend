@@ -182,8 +182,7 @@ def course_without_results(request):
         return Response(results, status.HTTP_200_OK)
 
     else:
-        #log errors through mail sent to administrators
-        response = {'Message': 'Currently, the system cannot get recommended courses for this career'}
+        response = {'Message': errors}
         return Response(response, status.HTTP_204_NO_CONTENT)
 
 
@@ -203,7 +202,6 @@ def course_with_results(request):
         return Response(results, status.HTTP_200_OK)
 
     else:
-        # log errors through mail sent to administrators
-        response = {'Message': 'Currently, the system cannot get recommended courses for this career'}
+        response = {'Message': errors}
         return Response(response, status.HTTP_204_NO_CONTENT)
 

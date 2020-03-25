@@ -1,3 +1,4 @@
+from app_logic.AppExceptions import AppError
 from main_app.models import CourseSubjects
 from main_app.serializers import CourseSubjectsSerializer
 from subjects.models import UaceSubjects
@@ -42,8 +43,8 @@ def check_relevant(course, number, results):
         elif count < 2:
             return False, subjects
         else:
-            # raise an error
-            pass
+            error = "Error while computing relevant subjects for course code : " + course
+            raise AppError(error)
 
     elif number == 2:
         subjects = CourseSubjectsSerializer(
@@ -60,8 +61,8 @@ def check_relevant(course, number, results):
         elif count < 1:
             return False, subjects
         else:
-            # raise an error
-            pass
+            error = "Error while computing relevant subjects for course code : " + course
+            raise AppError(error)
 
     elif number == 3:
         subjects = CourseSubjectsSerializer(
@@ -75,8 +76,8 @@ def check_relevant(course, number, results):
         return False, subjects
 
     else:
-        # raise error in case number of essentials is greater than 3
-        pass
+        error = "Number of relevant subjects is greater than 3 for course code : " + course
+        raise AppError(error)
 
 
 def check_essentials(course, number, results):
@@ -119,5 +120,6 @@ def check_essentials(course, number, results):
         return False, subjects
 
     else:
-        # raise error in case number of essentials is greater than 3
-        pass
+        error = "Number of essential subjects is greater than 3 for course code : " + course
+        raise AppError(error)
+
