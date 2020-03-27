@@ -9,7 +9,6 @@ from .models import Courses, Careers
 from .serializers import CourseSubjectsSerializer, CareersSerializer, CoursesSerializer
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from rest_framework.utils import json
 
 
 # @api_view(['GET', 'POST'])

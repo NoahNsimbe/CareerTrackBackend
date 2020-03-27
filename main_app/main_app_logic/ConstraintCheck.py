@@ -60,4 +60,4 @@ def check_course_constraints(course_code, uace_results, uce_results):
 
             return True
 
-    return False
+    return True

@@ -2,13 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0026_auto_20200326_2014.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0027_auto_20200326_2038.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0011_auto_20200326_2014.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0012_auto_20200326_2038.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0019_auto_20200326_2014.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0020_auto_20200326_2038.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api.json" beforeDir="false" afterPath="$PROJECT_DIR$/api.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_logic/AppExceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_logic/AppExceptions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/Course.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/Course.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjects/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/subjects/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,18 +119,18 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1585170180535" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585173892586">
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585250266061">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585173892586" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585250266061" />
     <state x="473" y="316" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585123346022">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="473" y="316" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/45.27.1321.741@45.27.1321.741" timestamp="1585123346022" />
-    <state width="600" height="424" key="javadoc.popup" timestamp="1585169482559">
+    <state width="600" height="424" key="javadoc.popup" timestamp="1585267566107">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state width="600" height="424" key="javadoc.popup/45.27.1321.741@45.27.1321.741" timestamp="1585169482559" />
+    <state width="600" height="424" key="javadoc.popup/45.27.1321.741@45.27.1321.741" timestamp="1585267566107" />
     <state x="368" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1585157192329">
       <screen x="45" y="27" width="1321" height="741" />
     </state>

@@ -1,4 +1,3 @@
-from rest_framework.utils import json
 from app_logic.AppExceptions import AppError
 from .ComputePoints import compute_points
 from .ConstraintCheck import check_course_constraints
@@ -46,42 +45,28 @@ def with_results(career, uace_results, uce_results, admission_type):
     if career_courses:
 
         for career_course in career_courses:
-            course_code = career_course["course"]
 
-            # check whether user has all required course subjects
             try:
-                course_subjects_present = check_course_subjects(course_code, uace_results)
+                course_code = career_course["course"]
 
-                if not course_subjects_present:
-                    non_recommended_codes.append(course_code)
+                # check whether user has all required course subjects
+                if check_course_subjects(course_code, uace_results):
 
-            except AppError as exception:
-
-                logger.error("Exception Message : " + exception.message)
-
-                errors = "Sorry, there was an error while processing information for the career '{}'"\
-                    .format(career)
-
-                return False, None, errors
-
-            # check whether user meets a and o level constraints on the course
-            if course_subjects_present:
-
-                try:
-                    secondary_constraint_check = check_course_constraints(course_code, uace_results, uce_results)
-
-                    if secondary_constraint_check:
+                    # check whether user meets a and o level constraints on the course
+                    if check_course_constraints(course_code, uace_results, uce_results):
                         recommended_codes.append(course_code)
                     else:
                         non_recommended_codes.append(course_code)
+                else:
+                    non_recommended_codes.append(course_code)
 
-                except AppError as exception:
+            except (AppError, KeyError, AttributeError) as exception:
 
-                    logger.error("Exception Message : " + exception.message)
-                    errors = "Sorry, there was an error while processing information for the career '{}'" \
-                        .format(career)
+                logger.error("Exception Has occurred : \n " + exception.message)
 
-                    return False, None, errors
+                errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
+
+                return False, None, errors
 
         # compute cut-off points, sort and return recommendations
         recommended_courses, non_recommended_courses = compute_points(recommended_codes, non_recommended_codes,

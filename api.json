@@ -8,11 +8,11 @@
     "career": "Doctor",
     "admission_type":"private",
     "uace_results":{
-        "maths": 4,
-        "chemistry": 5,
-        "biology": 6,
-        "GP" : 3,
-        "sub_comp": 1
+        "UACE_MATH": 6,
+        "UACE_CHEM": 6,
+        "UACE_BIO": 6,
+        "UACE_GP" : 1,
+        "UACE_SUB_COMP": 1
     },
     "uce_results":{
         "maths": 4,
