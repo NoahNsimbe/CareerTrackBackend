@@ -15,7 +15,7 @@ def check_desirable(course, state, results):
     if not db_subjects:
         error = """course '{}' has errors with its desirable subjects
                    Error Details : 
-                   Doesnt have desirable subjects""".format(course)
+                   Doesnt have desirable subjects : Table => CourseSubjects""".format(course)
         raise AppError(error)
 
     try:
@@ -31,7 +31,7 @@ def check_desirable(course, state, results):
         if len(subjects) > 1:
             error = """course '{}' has errors with its desirable subjects
                        Error Details : 
-                       Expected one desirable subject, found many""".format(course)
+                       Expected one desirable subject, found many : Table => CourseSubjects""".format(course)
             raise AppError(error)
 
         return True if subjects[0] in results else False
@@ -47,7 +47,8 @@ def check_desirable(course, state, results):
     else:
         error = """course '{}' has errors with its desirable subjects
                    Error Details : 
-                   Invalid value for desirable subject, expects 1 or 2 found {}""".format(course, state)
+                   Invalid value for desirable subject, expects 1 or 2 found {} : Table => CourseSubjects"""\
+            .format(course, state)
         raise AppError(error)
 
 
@@ -68,7 +69,7 @@ def check_relevant(course, number, results):
     except KeyError as exception:
         error = """There was an error while checking subjects
                    Error Details
-                   {}""".format(exception)
+                   {} : Table => CourseSubjects""".format(exception)
         raise AppError(error)
 
     if number == 1:
@@ -86,13 +87,13 @@ def check_relevant(course, number, results):
         if len(subjects) > 2:
             error = """course '{}' has errors with its relevant subjects
                        Error Details : 
-                       Expected two relevant subject, found more""".format(course)
+                       Expected two relevant subject, found more : Table => CourseSubjects""".format(course)
             raise AppError(error)
 
         if len(subjects) < 2:
             error = """course '{}' has errors with its relevant subjects
                        Error Details : 
-                       Expected two relevant subject, found less""".format(course)
+                       Expected two relevant subject, found less : Table => CourseSubjects""".format(course)
             raise AppError(error)
 
         count = 0
@@ -104,10 +105,9 @@ def check_relevant(course, number, results):
         return True if count == 2 else False
 
     else:
-
         error = """course '{}' has errors with its relevant subjects
                    Error Details : 
-                   Number of relevant subjects is greater than 2""".format(course)
+                   Number of relevant subjects is greater than 2 : Table => CourseSubjects""".format(course)
         raise AppError(error)
 
 
@@ -120,7 +120,7 @@ def check_essentials(course, number, results):
     if not db_subjects:
         error = """course '{}' has errors with its essential subjects
                    Error Details : 
-                   Doesnt have essential subjects""".format(course)
+                   Doesnt have essential subjects : Table => CourseSubjects""".format(course)
         raise AppError(error)
 
     try:
@@ -128,7 +128,7 @@ def check_essentials(course, number, results):
     except KeyError as exception:
         error = """There was an error while checking subjects
                    Error Details
-                   {}""".format(exception)
+                   {} : Table => CourseSubjects""".format(exception)
         raise AppError(error)
 
     if number == 1:
@@ -136,7 +136,8 @@ def check_essentials(course, number, results):
         if len(subjects) > 1:
             error = """course '{}' has errors with its essential subjects
                                    Error Details : 
-                                   Expected one essential subject, found many""".format(course)
+                                   Expected one essential subject, found many : Table => CourseSubjects"""\
+                .format(course)
             raise AppError(error)
 
         return True if subjects[0] in results else False
@@ -146,13 +147,15 @@ def check_essentials(course, number, results):
         if len(subjects) > 2:
             error = """course '{}' has errors with its essential subjects
                                    Error Details : 
-                                   Expected two essential subjects, found more than two""".format(course)
+                                   Expected two essential subjects, found more than two : Table => CourseSubjects"""\
+                .format(course)
             raise AppError(error)
 
         if len(subjects) < 2:
             error = """course '{}' has errors with its essential subjects
                                    Error Details : 
-                                   Expected two essential subjects, found less than two""".format(course)
+                                   Expected two essential subjects, found less than two : Table => CourseSubjects"""\
+                .format(course)
             raise AppError(error)
 
         for subject in subjects:
@@ -170,7 +173,8 @@ def check_essentials(course, number, results):
         return False
 
     else:
-        error = "Number of essential subjects is greater than 2 for course code : " + course
+        error = "Number of essential subjects is greater than 2 for course code : {} : Table => CourseSubjects"\
+                .format(course)
         raise AppError(error)
 
 
@@ -189,13 +193,14 @@ def check_course_subjects(course_code, uace_results):
 
             course_subjects = course_subjects[0]
 
-            no_of_essentials = course_subjects['essentials']
-            no_of_relevant = course_subjects['relevant']
-            desirable_state = course_subjects['desirable_state']
+            no_of_essentials = int(course_subjects['essentials'])
+            no_of_relevant = int(course_subjects['relevant'])
+            desirable_state = int(course_subjects['desirable_state'])
+
         else:
             raise DatabaseError("Doesn't have essential, relevant and desirable subjects")
 
-    except (AttributeError, KeyError, TypeError, DatabaseError) as errors:
+    except (AttributeError, KeyError, TypeError, ValueError, DatabaseError) as errors:
         error = """course '{}' has errors with either its essential, relevant or desirable subjects
         Error Details : 
         {}""".format(course_code, errors)
@@ -204,6 +209,7 @@ def check_course_subjects(course_code, uace_results):
 
     essential_check = check_essentials(course_code, no_of_essentials, uace_results)
     relevant_check = check_relevant(course_code, no_of_relevant, uace_results)
+
     desirable_check = check_desirable(course_code, desirable_state, uace_results)
 
     if essential_check:

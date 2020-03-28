@@ -15,9 +15,7 @@ class Courses(models.Model):
     university = models.CharField(max_length=255, default=datetime.now())
     college = models.CharField(max_length=255, default=datetime.now())
     duration = models.CharField(max_length=255, default=datetime.now())
-    essential = models.CharField(max_length=255, default=datetime.now())
-    relevant = models.CharField(max_length=255, default=datetime.now())
-    desirable = models.CharField(max_length=255, default=datetime.now())
+    time = models.CharField(max_length=255, default=datetime.now())
 
 
 class CareerCourses(models.Model):
@@ -26,12 +24,12 @@ class CareerCourses(models.Model):
 
 
 class CourseConstraints(models.Model):
-    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    essentials = models.IntegerField(default=2, choices=(
+    course = models.OneToOneField(Courses, on_delete=models.CASCADE)
+    essentials = models.CharField(max_length=255, default=2, choices=(
         (1, "One Essential"), (2, "Two Essentials"), (3, "One or two essentials"))
                                      )
-    relevant = models.IntegerField(default=2)
-    desirable_state = models.IntegerField(default=1, choices=(
+    relevant = models.CharField(max_length=255, default=2)
+    desirable_state = models.CharField(max_length=255,default=1, choices=(
         (1, "Only one mandatory desirable"), (2, "Depends on essential and relevant subjects"))
                                           )
 
@@ -47,13 +45,13 @@ class CourseSubjects(models.Model):
 class ALevelConstraints(models.Model):
     code = models.ForeignKey(Courses, on_delete=models.CASCADE)
     subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
-    mandatory = models.BooleanField(default=True)
+    mandatory = models.CharField(max_length=255, default="True")
     minimum_grade = models.IntegerField(default=2)
 
 
 class OLevelConstraints(models.Model):
     code = models.ForeignKey(Courses, on_delete=models.CASCADE)
     subject = models.ForeignKey(UceSubjects, on_delete=models.CASCADE)
-    mandatory = models.BooleanField(default=True)
+    mandatory = models.CharField(max_length=255, default="True")
     maximum_grade = models.IntegerField(default=6)
 

@@ -1,49 +1,100 @@
 {
-    "username": "noah",
-    "password":"noah",
-    "email": "nsimbenoah@gmail.com",
-    "first_name":"noah",
-    "last_name": "nsimbe",
-
-    "career": "Doctor",
-    "admission_type":"private",
-    "uace_results":{
-        "UACE_MATH": 6,
-        "UACE_CHEM": 6,
-        "UACE_BIO": 6,
-        "UACE_GP" : 1,
-        "UACE_SUB_COMP": 1
-    },
-    "uce_results":{
-        "maths": 4,
-        "chemistry": 5,
-        "biology": 6,
-        "comp": 1,
-        "hist": 4,
-        "geog": 5,
-        "eng": 6,
-        "GP" : 3
+    "registration": {
+        "username": "noah",
+        "password":"noah",
+        "email": "nsimbenoah@gmail.com",
+        "first_name":"noah",
+        "last_name": "nsimbe"
     },
 
-    "recommended_courses": [],
-    "non_recommended_courses": [
-        {
-            "course_code": [
-                {
-                    "course_name":"",
-                    "relevant_check": false,
-                    "essential_check": false,
-                    "desirable_check": false,
-                    "gp_check": false,
-                    "course_details": [""]
-
-
-                }
-
-
-            ]
+    "without a and o level constraints": {
+        "career": "Doctor",
+        "admission_type":"private",
+        "uace_results":{
+            "UACE_MATH": 6,
+            "UACE_CHEM": 6,
+            "UACE_BIO": 6,
+            "UACE_GP" : 1,
+            "UACE_SUB_COMP": 1
+        },
+        "uce_results":{
+            "maths": 4,
+            "chemistry": 5,
+            "biology": 6,
+            "comp": 1,
+            "hist": 4,
+            "geog": 5,
+            "eng": 6,
+            "GP" : 3
         }
-    ]
+    },
+
+    "with both a and o level constraints": {
+        "career": "Doctor",
+        "admission_type":"private",
+        "uace_results":{
+            "UACE_MATH": 6,
+            "UACE_CHEM": 6,
+            "UACE_BIO": 6,
+            "UACE_GP" : 1,
+            "UACE_SUB_COMP": 1
+        },
+        "uce_results":{
+            "maths": 4,
+            "chemistry": 5,
+            "biology": 6,
+            "comp": 1,
+            "hist": 4,
+            "geog": 5,
+            "eng": 6,
+            "GP" : 3
+        }
+    },
+
+    "with only a level constraints": {
+        "career": "Doctor",
+        "admission_type":"private",
+        "uace_results":{
+            "UACE_MATH": 6,
+            "UACE_CHEM": 6,
+            "UACE_BIO": 6,
+            "UACE_GP" : 1,
+            "UACE_SUB_COMP": 1
+        },
+        "uce_results":{
+            "maths": 4,
+            "chemistry": 5,
+            "biology": 6,
+            "comp": 1,
+            "hist": 4,
+            "geog": 5,
+            "eng": 6,
+            "GP" : 3
+        }
+    },
+
+    "with only o level constraints": {
+        "career": "Doctor",
+        "admission_type":"private",
+        "uace_results":{
+            "UACE_MATH": 6,
+            "UACE_CHEM": 6,
+            "UACE_BIO": 6,
+            "UACE_GP" : 1,
+            "UACE_SUB_COMP": 1
+        },
+        "uce_results":{
+            "maths": 4,
+            "chemistry": 5,
+            "biology": 6,
+            "comp": 1,
+            "hist": 4,
+            "geog": 5,
+            "eng": 6,
+            "GP" : 3
+        }
+    }
+
 }
 
 
