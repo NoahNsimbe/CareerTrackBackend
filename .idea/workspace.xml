@@ -2,89 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0007_auto_20200328_1826.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0008_auto_20200329_1225.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0009_auto_20200329_1225.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0010_auto_20200329_1225.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0011_auto_20200329_1226.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0012_auto_20200329_1227.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api.json" beforeDir="false" afterPath="$PROJECT_DIR$/api.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0002_auto_20200225_0856.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0003_auto_20200225_0901.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0004_auto_20200225_0959.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0005_auto_20200225_1011.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0006_auto_20200225_1015.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0007_auto_20200225_1059.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0008_auto_20200225_1823.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/migrations/0002_auto_20200328_1312.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0009_auto_20200225_1824.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0010_auto_20200225_1913.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0011_auto_20200225_1916.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0012_auto_20200225_1918.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0013_auto_20200225_1938.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0014_auto_20200225_1949.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0015_auto_20200225_1955.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0016_auto_20200308_1437.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0017_auto_20200321_1441.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0018_auto_20200321_1925.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0019_auto_20200322_1723.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0020_auto_20200322_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0021_auto_20200322_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0022_auto_20200322_1840.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0023_auto_20200322_1841.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0024_auto_20200322_1846.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0025_auto_20200322_1943.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0026_auto_20200326_2014.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0027_auto_20200326_2038.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0002_auto_20200308_1437.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0003_auto_20200308_1437.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0004_auto_20200308_1458.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0005_auto_20200321_1441.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0006_auto_20200321_1925.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0007_auto_20200322_1723.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0008_auto_20200322_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0009_auto_20200322_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/0010_auto_20200322_1841.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/careers/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/career_track/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/career_track/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0002_auto_20200321_1441.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0003_auto_20200321_1925.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0004_auto_20200322_1723.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/migrations/0004_auto_20200328_1312.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0005_auto_20200322_1724.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/migrations/0005_auto_20200328_1312.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0006_auto_20200322_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0007_auto_20200322_1840.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0008_auto_20200322_1841.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0009_auto_20200322_1846.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/migrations/0006_auto_20200328_1317.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0010_auto_20200322_1943.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/migrations/0002_auto_20200328_1305.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0011_auto_20200326_2014.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/migrations/0012_auto_20200326_2038.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/migrations/0003_auto_20200328_1311.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/subjects/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0002_auto_20200225_1824.py" beforeDir="false" afterPath="$PROJECT_DIR$/subjects/migrations/0002_auto_20200328_1312.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0003_auto_20200225_1913.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0004_auto_20200225_1916.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0005_auto_20200225_1918.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0006_auto_20200225_1938.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0007_auto_20200225_1949.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0008_auto_20200225_1955.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0009_auto_20200308_1437.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0010_auto_20200321_1441.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0011_auto_20200321_1925.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0012_auto_20200322_1723.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0013_auto_20200322_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0014_auto_20200322_1724.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0015_auto_20200322_1840.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0016_auto_20200322_1841.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0017_auto_20200322_1846.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0018_auto_20200322_1943.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0019_auto_20200326_2014.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/migrations/0020_auto_20200326_2038.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,10 +117,10 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1585170180535" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585402391468">
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585651926618">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585402391468" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585651926618" />
     <state x="473" y="316" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585123346022">
       <screen x="45" y="27" width="1321" height="741" />
     </state>

@@ -32,6 +32,10 @@ class CourseConstraints(models.Model):
     desirable_state = models.CharField(max_length=255,default=1, choices=(
         (1, "Only one mandatory desirable"), (2, "Depends on essential and relevant subjects"))
                                           )
+    subject_constraint = models.CharField(max_length=255, default="False")
+    a_level_constraint = models.CharField(max_length=255, default="False")
+    o_level_constraint = models.CharField(max_length=255, default="False")
+    all_subjects = models.CharField(max_length=255, default="False")
 
 
 class CourseSubjects(models.Model):
@@ -40,12 +44,12 @@ class CourseSubjects(models.Model):
     category = models.CharField(max_length=15, choices=(
         ("essential", "essential"), ("relevant", "relevant"), ("desirable", "desirable"))
                                 )
+    compulsory_state = models.CharField(max_length=255, default="False")
 
 
 class ALevelConstraints(models.Model):
     code = models.ForeignKey(Courses, on_delete=models.CASCADE)
     subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
-    mandatory = models.CharField(max_length=255, default="True")
     minimum_grade = models.IntegerField(default=2)
 
 

@@ -111,7 +111,23 @@ def check_relevant(course, number, results):
         raise AppError(error)
 
 
-def check_essentials(course, number, results):
+def check_essentials(course, number, results, subject_constrained):
+
+    if subject_constrained == 'True':
+        compulsory_subjects = CourseSubjectsSerializer(
+            CourseSubjects.objects.filter(category="essential", compulsory_state=True, course=course), many=True
+        ).data
+
+        if not compulsory_subjects:
+            error = """There was an error while checking course subjects for {}
+                       Error Details
+                       Missing compulsory UACE subjects yet its subject constrained : Table => CourseSubjects"""\
+                .format(course)
+            raise AppError(error)
+
+        for x in compulsory_subjects:
+            if x['subject'] not in results:
+                return False
 
     db_subjects = CourseSubjectsSerializer(
         CourseSubjects.objects.filter(category="essential", course=course), many=True
@@ -140,37 +156,26 @@ def check_essentials(course, number, results):
                 .format(course)
             raise AppError(error)
 
-        return True if subjects[0] in results else False
+        return True
 
     elif number == 2:
 
-        if len(subjects) > 2:
-            error = """course '{}' has errors with its essential subjects
-                                   Error Details : 
-                                   Expected two essential subjects, found more than two : Table => CourseSubjects"""\
-                .format(course)
-            raise AppError(error)
-
         if len(subjects) < 2:
             error = """course '{}' has errors with its essential subjects
-                                   Error Details : 
-                                   Expected two essential subjects, found less than two : Table => CourseSubjects"""\
-                .format(course)
+                       Error Details : 
+                       Expected at least two essential subjects, found less : Table => CourseSubjects""".format(course)
             raise AppError(error)
 
-        for subject in subjects:
-            if subject not in results:
-                return False
+        count = 0
 
+        for subject in results:
+            if subject in subjects:
+                count = count + 1
+
+        return True if count >= 2 else False
+
+    elif number == 3 and subject_constrained:
         return True
-
-    elif number == 3:
-
-        for subject in subjects:
-            if subject in results:
-                return True
-
-        return False
 
     else:
         error = "Number of essential subjects is greater than 2 for course code : {} : Table => CourseSubjects"\
@@ -196,6 +201,9 @@ def check_course_subjects(course_code, uace_results):
             no_of_essentials = int(course_subjects['essentials'])
             no_of_relevant = int(course_subjects['relevant'])
             desirable_state = int(course_subjects['desirable_state'])
+            all_subjects = bool(course_subjects['all_subjects'])
+
+            subject_constraint = course_subjects['subject_constraint']
 
         else:
             raise DatabaseError("Doesn't have essential, relevant and desirable subjects")
@@ -207,10 +215,19 @@ def check_course_subjects(course_code, uace_results):
 
         raise AppError(error)
 
-    essential_check = check_essentials(course_code, no_of_essentials, uace_results)
-    relevant_check = check_relevant(course_code, no_of_relevant, uace_results)
+    # if all_subjects and not subject_constraint:
+    #     error = """course '{}' has errors with either its essential, relevant or desirable subjects
+    #             Error Details :
+    #             It has a UACE subject constraint and accepts all UACE subjects, causing a contradiction"""\
+    #         .format(course_code)
+    #     raise AppError(error)
 
-    desirable_check = check_desirable(course_code, desirable_state, uace_results)
+    if all_subjects and not subject_constraint:
+        essential_check = relevant_check = desirable_check = True
+    else:
+        essential_check = check_essentials(course_code, no_of_essentials, uace_results, subject_constraint)
+        relevant_check = check_relevant(course_code, no_of_relevant, uace_results)
+        desirable_check = check_desirable(course_code, desirable_state, uace_results)
 
     if essential_check:
         logger.error("has essentials")
