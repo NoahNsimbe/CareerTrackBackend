@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0007_auto_20200328_1826.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0008_auto_20200329_1225.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0009_auto_20200329_1225.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0010_auto_20200329_1225.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0011_auto_20200329_1226.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0012_auto_20200329_1227.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.json" beforeDir="false" afterPath="$PROJECT_DIR$/api.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_track/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/career_track/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/ConstraintCheck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/SubjectCheck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/Combination.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/Combination.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +35,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -101,6 +93,10 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="163" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog/45.27.1321.741@45.27.1321.741" timestamp="1580040315386" />
+    <state x="401" y="201" width="598" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585654347073">
+      <screen x="45" y="27" width="1321" height="741" />
+    </state>
+    <state x="401" y="201" width="598" height="390" key="#com.intellij.fileTypes.FileTypeChooser/45.27.1321.741@45.27.1321.741" timestamp="1585654347073" />
     <state x="188" y="225" width="1121" height="543" key="DiffContextDialog" timestamp="1585402537183">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
@@ -113,14 +109,14 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="381" y="101" width="639" height="591" key="RollbackChangesDialog/45.27.1321.741@45.27.1321.741" timestamp="1585402426889" />
-    <state x="194" y="33" key="SettingsEditor" timestamp="1585170180535">
+    <state x="194" y="33" key="SettingsEditor" timestamp="1585667960039">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1585170180535" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585651926618">
+    <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1585667960039" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585652164693">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585651926618" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585652164693" />
     <state x="473" y="316" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585123346022">
       <screen x="45" y="27" width="1321" height="741" />
     </state>

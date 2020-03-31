@@ -4,6 +4,8 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
+from .main_app_logic.Combination import combination_without_results, combination_with_results
 from .main_app_logic.Course import without_results, with_results
 from .models import Courses, Careers
 from .serializers import CourseSubjectsSerializer, CareersSerializer, CoursesSerializer
@@ -90,87 +92,19 @@ def testing(request):
 
 
 @api_view(['POST'])
-def combination_without_results(request):
-    #authentication_classes = [SessionAuthentication, BasicAuthentication]
-    #permission_classes = [IsAuthenticated]
-
-    if request.method == 'POST':
-        # data = {'career': request.DATA.get('career')}
-        # data = get_object_or_404(Careers, name=request.DATA.get('career'))
-        career = get_object_or_404(Careers, name='doctor')
-        # try:
-        #     post = Post.objects.get(pk=pk)
-        # except Post.DoesNotExist:
-        #     return HttpResponse(status=404)
-
-        career_courses = CoursesSerializer(career).data
-        career_courses_codes = career_courses['courses'].split('/')
-
-        recommendations = {}
-
-        for course_code in career_courses_codes:
-
-            course = ""
-
-            try:
-
-                course = get_object_or_404(Courses, code=course_code)
-                course_details = CourseSubjectsSerializer(course).data
-
-                course_name = course_details['name']
-                course_description = course_details['description']
-                essential = course_details['essential']
-                relevant = course_details['relevant']
-                desirable = course_details['desirable']
-
-                recommendations[course_name] = {}
-                recommendations[course_name]['description'] = course_description
-                recommendations[course_name]['essential'] = essential
-                recommendations[course_name]['relevant'] = relevant
-                recommendations[course_name]['desirable'] = desirable
-                recommendations[course_name]['desirable'] = desirable
-                recommendations[course_name]['GP'] = 'General Paper'
-
-
-                # try:
-                #     course_constraints = get_object_or_404(CourseConstraints, code=course_code)
-                #     constraint_details = CourseConstraintsSerializer(course_constraints).data
-                #
-                #     no_of_essential = constraint_details['no_of_essential']
-                #     no_of_relevant = constraint_details['no_of_relevant']
-                #
-                #     essential = course_details['essential']
-                #     relevant = course_details['relevant']
-                #     desirable = course_details['desirable']
-                #
-                #     if no_of_essential == essential:
-                #         recommendations[course_name]['essential'] = essential
-                #
-                #     elif no_of_essential < essential:
-                #
-                # except course_constraints.DoesNotExist:
-                #     pass
-
-            except course.DoesNotExist:
-                pass
-
-        return Response(recommendations, status=status.HTTP_200_OK)
-
-        # if serializer.is_valid():
-        #     serializer.save()
-        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
-        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['POST'])
-def course_without_results(request):
+def uace_combination(request):
 
     career = request.data.get("career")
+    uce_results = request.data.get("uce_results")
 
     if career is None:
         return Response({'Message': "Please provide a career"}, status.HTTP_400_BAD_REQUEST)
 
-    success, results, errors = without_results(career)
+    elif uce_results is None:
+        success, results, errors = combination_without_results(career)
+
+    else:
+        success, results, errors = combination_with_results(career, uce_results)
 
     if success:
         return Response(results, status.HTTP_200_OK)
@@ -181,20 +115,31 @@ def course_without_results(request):
 
 
 @api_view(['POST'])
-def course_with_results(request):
-
+def course_recommendation(request):
     career = request.data.get("career")
     admission_type = request.data.get("admission_type")
     uace_results = request.data.get("uace_results")
     uce_results = request.data.get("uce_results")
 
-    if (career is None) or (admission_type is None) or (uace_results is None) or (uce_results is None):
-        return Response({'Message': "Please provide all fields"}, status.HTTP_400_BAD_REQUEST)
+    if career is None:
+        return Response({'Message': "Please provide a career"}, status.HTTP_400_BAD_REQUEST)
 
-    # uace_results = json.loads(uace_results)
-    # uce_results = json.loads(uce_results)
+    if (admission_type is None) and (uace_results is None) and (uce_results is None):
+        success, results, errors = without_results(career)
 
-    success, results, errors = with_results(career, uace_results, uce_results, admission_type)
+    elif admission_type is None:
+        return Response({
+            'Message': "Please provide an admission type, private or public admission are the available options"
+        }, status.HTTP_400_BAD_REQUEST)
+
+    elif uace_results is None:
+        return Response({'Message': "Please provide your uace results"}, status.HTTP_400_BAD_REQUEST)
+
+    elif uce_results is None:
+        return Response({'Message': "Please provide your uce results"}, status.HTTP_400_BAD_REQUEST)
+
+    else:
+        success, results, errors = with_results(career, uace_results, uce_results, admission_type)
 
     if success:
         return Response(results, status.HTTP_200_OK)
@@ -202,4 +147,3 @@ def course_with_results(request):
     else:
         response = {'Message': errors}
         return Response(response, status.HTTP_204_NO_CONTENT)
-
