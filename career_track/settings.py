@@ -65,9 +65,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
 
-    'articles',
-    'subjects',
-    'main_app'
+    # 'articles',
+    # 'subjects',
+    # 'main_app',
+    'articles.apps.ArticlesConfig',
+    'subjects.apps.SubjectsConfig',
+    'main_app.apps.MainAppConfig',
 ]
 
 

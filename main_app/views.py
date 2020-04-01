@@ -1,31 +1,10 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
 from .main_app_logic.Combination import combination_without_results, combination_with_results
 from .main_app_logic.Course import without_results, with_results
-from .models import Courses, Careers
-from .serializers import CourseSubjectsSerializer, CareersSerializer, CoursesSerializer
-from django.contrib.auth.models import User
-from rest_framework.views import APIView
-
-
-# @api_view(['GET', 'POST'])
-# def post_collection(request):
-#     if request.method == 'GET':
-#         posts = Post.objects.all()
-#         serializer = PostSerializer(posts, many=True)
-#         return Response(serializer.data)
-#     elif request.method == 'POST':
-#         data = {'text': request.DATA.get('the_post'), 'author': request.user.pk}
-#         serializer = PostSerializer(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+from .models import Careers
+from .serializers import CareersSerializer
 
 
 @api_view(['GET'])
@@ -35,60 +14,6 @@ def get_careers(request):
         serializer = CareersSerializer(careers, many=True).data
         data = {"careersList": [x["name"] for x in serializer]}
         return Response(data)
-
-
-class CareersClass(APIView):
-    def get(self, request):
-        careers = Careers.objects.all()
-        serializer = CareersSerializer(careers, many=True).data
-        data = {"careersList": [x["name"] for x in serializer]}
-        return Response(data)
-
-
-@api_view(['POST'])
-def signup(request):
-
-    username = request.data.get('username')
-    email = request.data.get('email')
-    password = request.data.get('password')
-    last_name = request.data.get('last_name')
-    first_name = request.data.get('first_name')
-
-    if all(parameter is None for parameter in [username, email, password, last_name, first_name]):
-
-        message = {'Message': "Please provide all necessary fields"}
-        return Response(message, status.HTTP_400_BAD_REQUEST)
-
-    if User.objects.filter(username=username).exists():
-        return Response(None, status.HTTP_409_CONFLICT)
-
-    try:
-        user = User.objects.create_user(username, email, password)
-        user.last_name = last_name
-        first_name = user.first_name = first_name
-        user.save()
-
-        message_body = 'Dear ' + first_name + ', Your account has successfully been created'
-        message = {'Message': message_body}
-
-        return Response(message, status.HTTP_201_CREATED)
-
-    except Exception:
-
-        message_body = "An error occurred while registering you"
-        message = {'Message': message_body}
-
-        return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-@api_view(['POST'])
-@authentication_classes([SessionAuthentication, BasicAuthentication])
-@permission_classes([IsAuthenticated])
-def testing(request):
-
-    message = {'Message': 'Successful'}
-
-    return Response(message, status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -147,3 +72,70 @@ def course_recommendation(request):
     else:
         response = {'Message': errors}
         return Response(response, status.HTTP_204_NO_CONTENT)
+
+
+# @api_view(['GET', 'POST'])
+# def post_collection(request):
+#     if request.method == 'GET':
+#         posts = Post.objects.all()
+#         serializer = PostSerializer(posts, many=True)
+#         return Response(serializer.data)
+#     elif request.method == 'POST':
+#         data = {'text': request.DATA.get('the_post'), 'author': request.user.pk}
+#         serializer = PostSerializer(data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class CareersClass(APIView):
+#     def get(self, request):
+#         careers = Careers.objects.all()
+#         serializer = CareersSerializer(careers, many=True).data
+#         data = {"careersList": [x["name"] for x in serializer]}
+#         return Response(data)
+#
+#
+# @api_view(['POST'])
+# def signup(request):
+#
+#     username = request.data.get('username')
+#     email = request.data.get('email')
+#     password = request.data.get('password')
+#     last_name = request.data.get('last_name')
+#     first_name = request.data.get('first_name')
+#
+#     if all(parameter is None for parameter in [username, email, password, last_name, first_name]):
+#
+#         message = {'Message': "Please provide all necessary fields"}
+#         return Response(message, status.HTTP_400_BAD_REQUEST)
+#
+#     if User.objects.filter(username=username).exists():
+#         return Response(None, status.HTTP_409_CONFLICT)
+#
+#     try:
+#         user = User.objects.create_user(username, email, password)
+#         user.last_name = last_name
+#         first_name = user.first_name = first_name
+#         user.save()
+#
+#         message_body = 'Dear ' + first_name + ', Your account has successfully been created'
+#         message = {'Message': message_body}
+#
+#         return Response(message, status.HTTP_201_CREATED)
+#
+#     except Exception:
+#
+#         message_body = "An error occurred while registering you"
+#         message = {'Message': message_body}
+#
+#         return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# @api_view(['POST'])
+# @authentication_classes([SessionAuthentication, BasicAuthentication])
+# @permission_classes([IsAuthenticated])
+# def testing(request):
+#
+#     message = {'Message': 'Successful'}
+#
+#     return Response(message, status.HTTP_200_OK)

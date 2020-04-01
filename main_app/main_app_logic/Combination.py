@@ -33,7 +33,9 @@ def combination_without_results(career):
 
                 return False, None, errors
 
-        return True, combinations, None
+        output = make_output(combinations)
+
+        return True, output, None
 
     else:
         errors = "Sorry, we haven't yet updated our system to cater for '{}'".format(career)
@@ -81,8 +83,7 @@ def generate_combination(course):
     if all_subjects == "True":
 
         subjects = UaceSerializer(UaceSubjects.objects.all(), many=True).data
-        recommendation = dict({"All A level subjects": subjects})
-        return recommendation
+        results = dict({"All A level subjects": subjects})
 
     else:
 
@@ -90,10 +91,46 @@ def generate_combination(course):
             comp = [x["subject"] for x in course_subjects
                     if x["category"] == "essential" and x["compulsory_state"] == "True"
                     ]
-            combine_subjects(essentials, relevant, desirable, desirable_state, no_of_essentials, no_of_relevant, comp)
+            results = combine_subjects(
+                essentials, relevant, desirable, desirable_state, no_of_essentials, no_of_relevant, comp)
 
         else:
-            combine_subjects(essentials, relevant, desirable, desirable_state, no_of_essentials, no_of_relevant, [])
+            results = combine_subjects(
+                essentials, relevant, desirable, desirable_state, no_of_essentials, no_of_relevant, [])
+
+    return results
+
+
+def make_output(results):
+
+    recommendation = dict()
+
+    for result in results:
+
+        combination = []
+        abbreviate = str()
+
+        for sub in result:
+            subjects = UaceSerializer(UaceSubjects.objects.filter(code=sub), many=True).data[0]
+
+            if sub == "UACE_SUB_MATH":
+                abbreviate = abbreviate + "/Sub Maths"
+            elif sub == "UACE_SUB_ICT":
+                abbreviate = abbreviate + "/Sub ICT"
+            else:
+                abbreviate = abbreviate + str(sub[0])
+
+            combination.append(subjects["name"])
+
+        abbreviate = abbreviate + " and General Paper"
+        abbreviate = abbreviate.upper()
+
+        if abbreviate not in recommendation:
+            recommendation[abbreviate] = combination
+        else:
+            recommendation[abbreviate.lower()] = combination
+
+    return recommendation
 
 
 def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, essentials_no, relevant_no, initial_es):
@@ -229,7 +266,9 @@ def combination_with_results(career, uce_results):
 
                 return False, None, errors
 
-        return True, combinations, None
+        output = make_output(combinations)
+
+        return True, output, None
 
     else:
         errors = "Sorry, we haven't yet updated our system to cater for {}".format(career)
