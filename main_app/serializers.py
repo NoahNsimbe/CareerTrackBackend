@@ -35,7 +35,7 @@ class OLevelConstraintSerializer(serializers.ModelSerializer):
 class CourseSubjectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseSubjects
-        fields = ['subject']
+        fields = '__all__'
 
 
 class CareersSerializer(serializers.ModelSerializer):

@@ -20,37 +20,39 @@ class CoursesAdmin(admin.ModelAdmin):
 @admin.register(CareerCourses)
 class CareerCoursesAdmin(admin.ModelAdmin):
     list_display = ('career', 'course')
-    # ordering = ['career']
-    # search_fields = ('career', 'course')
+    ordering = ['career']
+    search_fields = ('career__name', 'career__description', 'course__code', 'course__name')
 
 
 @admin.register(CourseConstraints)
 class CourseConstraintsAdmin(admin.ModelAdmin):
     list_display = ('course', 'essentials', 'relevant','desirable_state', 'subject_constraint', 'a_level_constraint',
                     'o_level_constraint', 'all_subjects')
-    # ordering = ['course']
-    # search_fields = ['course']
+    ordering = ['course']
+    search_fields = ['course__code', 'course__name']
 
 
 @admin.register(ALevelConstraints)
 class ALevelConstraintsAdmin(admin.ModelAdmin):
     list_display = ('code', 'subject', 'minimum_grade')
     ordering = ['code']
-    # search_fields = ['code']
+    search_fields = ['code__code', 'code__name', 'subject__code']
 
 
 @admin.register(CourseSubjects)
 class CourseSubjectsAdmin(admin.ModelAdmin):
     list_display = ('course', 'subject', 'category', 'compulsory_state')
-    ordering = ['course']
-    # search_fields = ['course']
+    ordering = ['course', 'category']
+    search_fields = ['course__code', 'course__name']
+    autocomplete_fields = ['course', 'subject']
+    # list_filter = ('course__name')
 
 
 @admin.register(OLevelConstraints)
 class OLevelConstraintsAdmin(admin.ModelAdmin):
     list_display = ('code', 'subject', 'maximum_grade')
     ordering = ['code']
-    # search_fields = ['code']
+    search_fields = ['code__code', 'code__name', 'subject__code']
 
     # def active(self, obj):
     #     return obj.is_active == 1

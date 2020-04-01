@@ -23,7 +23,9 @@ def combination_without_results(career):
 
             try:
 
-                combinations.append(generate_combination(course_code))
+                fn_output = generate_combination(course_code)
+                for x in fn_output:
+                    combinations.append(x)
 
             except (AppError, KeyError, AttributeError) as exception:
 
@@ -45,30 +47,37 @@ def combination_without_results(career):
 
 
 def generate_combination(course):
-    course_subjects = CourseSubjectsSerializer(
-        CourseSubjects.objects.filter(course=course), many=True
-    ).data
-
-    course_constraints = CourseConstraintsSerializer(
-        CourseConstraints.objects.filter(course=course), many=True
-    ).data
 
     try:
+
+        course_subjects = CourseSubjectsSerializer(
+            CourseSubjects.objects.filter(course=course), many=True
+        ).data
+
+        course_constraints = CourseConstraintsSerializer(
+            CourseConstraints.objects.filter(course=course), many=True
+        ).data
 
         if course_subjects and course_constraints:
 
             if len(course_constraints) > 1:
                 raise DatabaseError("has more than on entry for its essential, relevant and desirable subjects")
+            else:
+                course_constraints = course_constraints[0]
 
             no_of_essentials = int(course_constraints['essentials'])
             no_of_relevant = int(course_constraints['relevant'])
             desirable_state = int(course_constraints['desirable_state'])
-            all_subjects = bool(course_constraints['all_subjects'])
+            all_subjects = course_constraints['all_subjects']
             subject_constraint = course_constraints['subject_constraint']
+
+            # logger.error(course_subjects)
 
             essentials = [x["subject"] for x in course_subjects if x["category"] == "essential"]
             relevant = [x["subject"] for x in course_subjects if x["category"] == "relevant"]
             desirable = [x["subject"] for x in course_subjects if x["category"] == "desirable"]
+
+            # logger.error("am here")
 
         else:
             raise DatabaseError("Doesn't have essential, relevant and desirable subjects")
@@ -76,6 +85,7 @@ def generate_combination(course):
     except (AttributeError, KeyError, TypeError, ValueError, DatabaseError) as errors:
         error = """course '{}' has errors with either its essential, relevant or desirable subjects
            Error Details : 
+           Function => generate_combination in Combination.py
            {}""".format(course, errors)
 
         raise AppError(error)
@@ -113,12 +123,10 @@ def make_output(results):
         for sub in result:
             subjects = UaceSerializer(UaceSubjects.objects.filter(code=sub), many=True).data[0]
 
-            if sub == "UACE_SUB_MATH":
-                abbreviate = abbreviate + "/Sub Maths"
-            elif sub == "UACE_SUB_ICT":
-                abbreviate = abbreviate + "/Sub ICT"
-            else:
-                abbreviate = abbreviate + str(sub[0])
+            if subjects["category"] == "Subsidiary":
+                abbreviate = abbreviate + "/"
+
+            abbreviate = abbreviate + str(subjects["abbr"])
 
             combination.append(subjects["name"])
 
@@ -231,7 +239,10 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
                     relevant_output = append_relevant(relevant_subjects, relevant_no, combinations)
 
                     for comb in relevant_output:
-                        output.append(append_desirable(desirable, desirable_state, comb))
+
+                        desirable_output = append_desirable(desirable, desirable_state, comb)
+
+                        output.append(desirable_output)
 
     else:
         # error
@@ -256,7 +267,9 @@ def combination_with_results(career, uce_results):
 
                 if check_o_level(course_code, uce_results, False):
 
-                    combinations.append(generate_combination(course_code))
+                    fn_output = generate_combination(course_code)
+                    for x in fn_output:
+                        combinations.append(x)
 
             except (AppError, KeyError, AttributeError) as exception:
 
@@ -266,6 +279,8 @@ def combination_with_results(career, uce_results):
 
                 return False, None, errors
 
+        # logger.error("combinations")
+        # logger.error(combinations)
         output = make_output(combinations)
 
         return True, output, None
