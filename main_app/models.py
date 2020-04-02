@@ -42,18 +42,41 @@ class CareerCourses(models.Model):
 
 
 class CourseConstraints(models.Model):
+    ONE_ESSENTIAL = 1
+    TWO_ESSENTIALS = 2
+    ONE_OR_TWO_ESSENTIALS = 3
+
+    ONE_DESIRABLE = 1
+    TWO_DESIRABLE = 2
+
+    COURSE_ESSENTIALS_CHOICES = [
+        (ONE_ESSENTIAL, "One"),
+        (TWO_ESSENTIALS, "Two"),
+        (ONE_OR_TWO_ESSENTIALS, "One or Two"),
+    ]
+
+    COURSE_DESIRABLE_CHOICES = [
+        (ONE_DESIRABLE, "One Mandatory"),
+        (TWO_DESIRABLE, "Depends"),
+    ]
+
     course = models.OneToOneField(Courses, on_delete=models.CASCADE)
-    essentials = models.CharField(max_length=255, default=2, choices=(
-        (1, "One Essential"), (2, "Two Essentials"), (3, "One or two essentials"))
-                                     )
+
+    essentials = models.IntegerField(
+        choices=COURSE_ESSENTIALS_CHOICES,
+        default=TWO_ESSENTIALS,
+    )
     relevant = models.CharField(max_length=255, default=2)
-    desirable_state = models.CharField(max_length=255, default=1, choices=(
-        (1, "Only one mandatory desirable"), (2, "Depends on essential and relevant subjects"))
-                                          )
+    desirable_state = models.IntegerField(
+        choices=COURSE_DESIRABLE_CHOICES,
+        default=ONE_DESIRABLE,
+    )
     subject_constraint = models.BooleanField(default=False)
     a_level_constraint = models.BooleanField(default=False)
     o_level_constraint = models.BooleanField(default=False)
     all_subjects = models.BooleanField(default=False)
+
+
 
     class Meta:
         verbose_name = verbose_name_plural = 'Course constraints'
@@ -65,10 +88,22 @@ class CourseConstraints(models.Model):
 class CourseSubjects(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
     subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
-    category = models.CharField(max_length=15, choices=(
-        ("essential", "essential"), ("relevant", "relevant"), ("desirable", "desirable"))
-                                )
     compulsory_state = models.BooleanField(default=False)
+
+    ESSENTIAL = 'essential'
+    RELEVANT = 'relevant'
+    DESIRABLE = 'desirable'
+
+    COURSE_CATEGORY_CHOICES = [
+        (ESSENTIAL, 'essential'),
+        (RELEVANT, 'relevant'),
+        (DESIRABLE, 'desirable'),
+    ]
+    category = models.CharField(
+        max_length=15,
+        choices=COURSE_CATEGORY_CHOICES,
+        default=ESSENTIAL,
+    )
 
     class Meta:
         verbose_name = verbose_name_plural = 'Course subjects'

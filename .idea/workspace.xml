@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0007_auto_20200402_1204.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0008_auto_20200402_1206.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0009_auto_20200402_1226.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0010_auto_20200402_1234.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0017_auto_20200402_1204.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0018_auto_20200402_1206.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0019_auto_20200402_1226.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0020_auto_20200402_1234.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0007_auto_20200402_1204.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0008_auto_20200402_1206.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0009_auto_20200402_1226.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0010_auto_20200402_1234.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0011_auto_20200402_1302.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0012_auto_20200402_1308.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0013_auto_20200402_1310.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0014_auto_20200402_1313.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0021_auto_20200402_1302.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0022_auto_20200402_1308.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0023_auto_20200402_1310.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0024_auto_20200402_1313.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0011_auto_20200402_1302.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0012_auto_20200402_1308.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0013_auto_20200402_1310.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0014_auto_20200402_1313.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
