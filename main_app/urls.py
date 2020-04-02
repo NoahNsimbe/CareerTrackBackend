@@ -4,7 +4,7 @@ from .views import course_recommendation, uace_combination, get_careers
 urlpatterns = [
     path("careers/", get_careers, name="careers_list"),
     path("course_recommendation/", course_recommendation, name="course recommendation"),
-    path("uace_combination/", uace_combination, name="uace recommendation")
+    path("combination/", uace_combination, name="uace recommendation")
 ]
 
 

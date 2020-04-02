@@ -130,12 +130,11 @@ def make_output(results):
 
             combination.append(subjects["name"])
 
-        abbreviate = abbreviate + " and General Paper"
-        abbreviate = abbreviate.upper()
-
         if abbreviate not in recommendation:
+            abbreviate = abbreviate + " and General Paper"
             recommendation[abbreviate] = combination
         else:
+            abbreviate = abbreviate + " & General Paper"
             recommendation[abbreviate.lower()] = combination
 
     return recommendation

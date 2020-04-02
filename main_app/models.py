@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime
 from subjects.models import UceSubjects, UaceSubjects
 
 
@@ -76,8 +75,6 @@ class CourseConstraints(models.Model):
     o_level_constraint = models.BooleanField(default=False)
     all_subjects = models.BooleanField(default=False)
 
-
-
     class Meta:
         verbose_name = verbose_name_plural = 'Course constraints'
 
@@ -86,10 +83,6 @@ class CourseConstraints(models.Model):
 
 
 class CourseSubjects(models.Model):
-    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
-    compulsory_state = models.BooleanField(default=False)
-
     ESSENTIAL = 'essential'
     RELEVANT = 'relevant'
     DESIRABLE = 'desirable'
@@ -99,6 +92,10 @@ class CourseSubjects(models.Model):
         (RELEVANT, 'relevant'),
         (DESIRABLE, 'desirable'),
     ]
+
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
+    compulsory_state = models.BooleanField(default=False)
     category = models.CharField(
         max_length=15,
         choices=COURSE_CATEGORY_CHOICES,

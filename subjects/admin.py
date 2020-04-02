@@ -6,7 +6,7 @@ from .models import UaceSubjects, UceSubjects
 
 @admin.register(UaceSubjects)
 class UaceSubjectsAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'category', 'language_subject',)
     ordering = ['name']
     search_fields = ['code', 'name']
 
