@@ -2,24 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f411d136-78f2-4d08-af37-17a31a01593e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0003_auto_20200401_1439.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0004_auto_20200401_1440.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0005_auto_20200401_1449.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0006_auto_20200401_1449.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0013_auto_20200401_1439.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0014_auto_20200401_1440.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0015_auto_20200401_1449.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_app/migrations/0016_auto_20200401_1449.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0003_auto_20200401_1439.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0004_auto_20200401_1440.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0005_auto_20200401_1449.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subjects/migrations/0006_auto_20200401_1449.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0007_auto_20200402_1204.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0008_auto_20200402_1206.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0009_auto_20200402_1226.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0010_auto_20200402_1234.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0017_auto_20200402_1204.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0018_auto_20200402_1206.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0019_auto_20200402_1226.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_app/migrations/0020_auto_20200402_1234.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0007_auto_20200402_1204.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0008_auto_20200402_1206.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0009_auto_20200402_1226.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subjects/migrations/0010_auto_20200402_1234.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/main_app_logic/Combination.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/main_app_logic/Combination.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/subjects/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subjects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/subjects/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,10 +123,10 @@
       <screen x="45" y="27" width="1321" height="741" />
     </state>
     <state x="194" y="33" key="SettingsEditor/45.27.1321.741@45.27.1321.741" timestamp="1585667960039" />
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585745642738">
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585830581786">
       <screen x="45" y="27" width="1321" height="741" />
     </state>
-    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585745642738" />
+    <state x="361" y="225" key="com.intellij.ide.util.TipDialog/45.27.1321.741@45.27.1321.741" timestamp="1585830581786" />
     <state x="473" y="316" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585123346022">
       <screen x="45" y="27" width="1321" height="741" />
     </state>

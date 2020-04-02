@@ -4,8 +4,8 @@ from subjects.models import UceSubjects, UaceSubjects
 
 
 class Careers(models.Model):
-    name = models.CharField(max_length=255, primary_key=True, default=datetime.now())
-    description = models.CharField(max_length=255, default=datetime.now())
+    name = models.CharField(max_length=255, primary_key=True, default="Provide career name")
+    description = models.CharField(max_length=255, default="Provide career description")
 
     def __str__(self):
         return self.name
@@ -15,13 +15,13 @@ class Careers(models.Model):
 
 
 class Courses(models.Model):
-    code = models.CharField(max_length=255, primary_key=True, default=datetime.now())
-    name = models.CharField(max_length=255, default=datetime.now())
-    description = models.CharField(max_length=255, default=datetime.now())
-    university = models.CharField(max_length=255, default=datetime.now())
-    college = models.CharField(max_length=255, default=datetime.now())
-    duration = models.CharField(max_length=255, default=datetime.now())
-    time = models.CharField(max_length=255, default=datetime.now())
+    code = models.CharField(max_length=255, primary_key=True, default="Provide course code")
+    name = models.CharField(max_length=255, default="Provide course name")
+    description = models.CharField(max_length=255, default="Provide course description")
+    university = models.CharField(max_length=255, default="Provide university")
+    college = models.CharField(max_length=255, default="Provide college")
+    duration = models.IntegerField(default=3)
+    time = models.CharField(max_length=255, default="Day")
 
     def __str__(self):
         return self.name
@@ -50,10 +50,10 @@ class CourseConstraints(models.Model):
     desirable_state = models.CharField(max_length=255, default=1, choices=(
         (1, "Only one mandatory desirable"), (2, "Depends on essential and relevant subjects"))
                                           )
-    subject_constraint = models.CharField(max_length=255, default="False")
-    a_level_constraint = models.CharField(max_length=255, default="False")
-    o_level_constraint = models.CharField(max_length=255, default="False")
-    all_subjects = models.CharField(max_length=255, default="False")
+    subject_constraint = models.BooleanField(default=False)
+    a_level_constraint = models.BooleanField(default=False)
+    o_level_constraint = models.BooleanField(default=False)
+    all_subjects = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = verbose_name_plural = 'Course constraints'
@@ -68,7 +68,7 @@ class CourseSubjects(models.Model):
     category = models.CharField(max_length=15, choices=(
         ("essential", "essential"), ("relevant", "relevant"), ("desirable", "desirable"))
                                 )
-    compulsory_state = models.CharField(max_length=255, default="False")
+    compulsory_state = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = verbose_name_plural = 'Course subjects'
@@ -86,7 +86,7 @@ class ALevelConstraints(models.Model):
 class OLevelConstraints(models.Model):
     code = models.ForeignKey(Courses, on_delete=models.CASCADE)
     subject = models.ForeignKey(UceSubjects, on_delete=models.CASCADE)
-    mandatory = models.CharField(max_length=255, default="True")
+    mandatory = models.BooleanField(default=True)
     maximum_grade = models.IntegerField(default=6)
 
     class Meta:
