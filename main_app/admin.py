@@ -22,6 +22,7 @@ class CareerCoursesAdmin(admin.ModelAdmin):
     list_display = ('career', 'course')
     ordering = ['career']
     search_fields = ('career__name', 'career__description', 'course__code', 'course__name')
+    autocomplete_fields = ['course', 'career']
 
 
 @admin.register(CourseConstraints)
@@ -29,6 +30,7 @@ class CourseConstraintsAdmin(admin.ModelAdmin):
     list_display = ('course', 'essentials', 'relevant', 'desirable_state', 'subject_constraint', 'all_subjects')
     ordering = ['course']
     search_fields = ['course__code', 'course__name']
+    autocomplete_fields = ['course']
 
 
 @admin.register(ALevelConstraints)

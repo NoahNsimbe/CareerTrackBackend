@@ -90,14 +90,14 @@ def generate_combination(course):
 
         raise AppError(error)
 
-    if all_subjects == "True":
+    if all_subjects:
 
         subjects = UaceSerializer(UaceSubjects.objects.all(), many=True).data
         results = dict({"All A level subjects": subjects})
 
     else:
 
-        if subject_constraint == "True":
+        if subject_constraint:
             comp = [x["subject"] for x in course_subjects
                     if x["category"] == "essential" and x["compulsory_state"] == "True"
                     ]
@@ -112,7 +112,7 @@ def generate_combination(course):
 
 
 def make_output(results):
-
+    logger.error(results)
     recommendation = dict()
 
     for result in results:
@@ -140,57 +140,59 @@ def make_output(results):
     return recommendation
 
 
-def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, essentials_no, relevant_no, initial_es):
+def append_relevant(relevant_subjects, no_relevant, init_list):
+    results = []
+    combination = []
 
-    def append_relevant(relevantsubjects, no_relevant, init_list):
-        results = []
-        combination = init_list
+    if no_relevant == 1:
 
-        if no_relevant == 1:
+        for subject in relevant_subjects:
 
-            for subject in relevantsubjects:
+            if subject not in init_list:
+                combination = init_list[:]
                 combination.append(subject)
                 results.append(combination)
-                combination = init_list
 
-        elif no_relevant == 2:
+    elif no_relevant == 2:
 
-            for index_subject in range(0, len(relevantsubjects) - 1):
+        for index_subject in range(0, len(relevant_subjects) - 1):
 
-                mid = combination.append(relevantsubjects[index_subject])
+            mid = combination.append(relevant_subjects[index_subject])
 
-                for index_subject2 in range(index_subject + 1, len(relevantsubjects)):
+            for index_subject2 in range(index_subject + 1, len(relevant_subjects)):
+                combination.append(relevant_subjects[index_subject2])
+                results.append(combination)
+                combination = mid[:]
 
-                    combination.append(relevantsubjects[index_subject2])
-                    results.append(combination)
-                    combination = mid
+            combination = init_list[:]
+    else:
+        # error, number of relevant is more than 2
+        pass
 
-                combination = init_list
-        else:
-            # error, number of relevant is more than 2
-            pass
+    return results
+
+
+def append_desirable(desires, no_desires, init_list):
+
+    if no_desires == 10 and (len(desires) != 0):
+        init_list.append(desires[0])
+        return init_list
+
+    else:
+        results = []
+        combination = init_list[:]
+        for d in desires:
+            if (d == "UACE_SUB_MATH") and ("UACE_MATH" in init_list):
+                continue
+
+            combination.append(d)
+            results.append(combination)
+            combination = init_list[:]
 
         return results
 
-    def append_desirable(desires, no_desires, init_list):
 
-        results = []
-        combination = init_list
-
-        if no_desires == 1:
-            init_list.append(desires[0])
-            return init_list
-
-        else:
-            for d in desires:
-                if d == "UACE_SUB_MATH" and "UACE_MATH" in init_list:
-                    continue
-
-                combination.append(d)
-                results.append(combination)
-                combination = init_list
-
-            return results
+def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, essentials_no, relevant_no, initial_es):
 
     output = []
 
@@ -229,11 +231,11 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
 
             for index in range(0, len(essentials)-1):
 
-                combinations = [essentials[index]]
+                first_sub = essentials[index]
 
                 for second_index in range(index+1, len(essentials)):
 
-                    combinations.append(essentials[second_index])
+                    combinations = [first_sub, essentials[second_index]]
 
                     relevant_output = append_relevant(relevant_subjects, relevant_no, combinations)
 
@@ -241,7 +243,8 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
 
                         desirable_output = append_desirable(desirable, desirable_state, comb)
 
-                        output.append(desirable_output)
+                        for x in desirable_output:
+                            output.append(x)
 
     else:
         # error

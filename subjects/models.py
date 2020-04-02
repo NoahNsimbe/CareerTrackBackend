@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime
 
 
 class UaceSubjects(models.Model):
@@ -13,7 +12,7 @@ class UaceSubjects(models.Model):
         (SUBSIDIARY, 'Subsidiary Subject'),
     ]
 
-    code = models.CharField(max_length=255, primary_key=True,  default=datetime.now())
+    code = models.CharField(max_length=255, primary_key=True,  default="Subject code begin with UACE_")
     name = models.CharField(max_length=255)
     category = models.CharField(
         max_length=15,
@@ -31,7 +30,7 @@ class UaceSubjects(models.Model):
 
 
 class UceSubjects(models.Model):
-    code = models.CharField(max_length=255, primary_key=True, default=datetime.now())
+    code = models.CharField(max_length=255, primary_key=True, default="Subject code begin with UCE_")
     name = models.CharField(max_length=255)
 
     def __str__(self):

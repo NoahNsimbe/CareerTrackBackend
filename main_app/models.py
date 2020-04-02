@@ -48,6 +48,9 @@ class CourseConstraints(models.Model):
     ONE_DESIRABLE = 1
     TWO_DESIRABLE = 2
 
+    ONE_RELEVANT = 1
+    TWO_RELEVANT = 2
+
     COURSE_ESSENTIALS_CHOICES = [
         (ONE_ESSENTIAL, "One"),
         (TWO_ESSENTIALS, "Two"),
@@ -59,13 +62,21 @@ class CourseConstraints(models.Model):
         (TWO_DESIRABLE, "Depends"),
     ]
 
+    COURSE_RELEVANT_CHOICES = [
+        (ONE_RELEVANT, "One"),
+        (TWO_RELEVANT, "Two"),
+    ]
+
     course = models.OneToOneField(Courses, on_delete=models.CASCADE)
 
     essentials = models.IntegerField(
         choices=COURSE_ESSENTIALS_CHOICES,
         default=TWO_ESSENTIALS,
     )
-    relevant = models.CharField(max_length=255, default=2)
+    relevant = models.IntegerField(
+        choices=COURSE_RELEVANT_CHOICES,
+        default=ONE_RELEVANT,
+    )
     desirable_state = models.IntegerField(
         choices=COURSE_DESIRABLE_CHOICES,
         default=ONE_DESIRABLE,
@@ -74,6 +85,7 @@ class CourseConstraints(models.Model):
     a_level_constraint = models.BooleanField(default=False)
     o_level_constraint = models.BooleanField(default=False)
     all_subjects = models.BooleanField(default=False)
+    testing = models.deletion
 
     class Meta:
         verbose_name = verbose_name_plural = 'Course constraints'
