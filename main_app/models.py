@@ -85,7 +85,6 @@ class CourseConstraints(models.Model):
     a_level_constraint = models.BooleanField(default=False)
     o_level_constraint = models.BooleanField(default=False)
     all_subjects = models.BooleanField(default=False)
-    testing = models.deletion
 
     class Meta:
         verbose_name = verbose_name_plural = 'Course constraints'

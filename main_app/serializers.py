@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Courses, CourseConstraints, CareerCourses, Careers, CourseSubjects, ALevelConstraints
+from .models import Courses, CourseConstraints, CareerCourses, Careers, CourseSubjects, ALevelConstraints, \
+    OLevelConstraints
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -28,7 +29,7 @@ class ALevelConstraintSerializer(serializers.ModelSerializer):
 
 class OLevelConstraintSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ALevelConstraints
+        model = OLevelConstraints
         fields = '__all__'
 
 

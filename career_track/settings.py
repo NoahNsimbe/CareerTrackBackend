@@ -38,7 +38,7 @@ SECRET_KEY = settings["secret-key"]
 DEBUG = settings["debug"]
 ALLOWED_HOSTS = [settings["host"].split(':')[0]]
 ADMINS = settings.get("admins", [])
-SITE_ID = settings["site id"]
+# SITE_ID = settings["site id"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

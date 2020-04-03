@@ -99,7 +99,7 @@ def generate_combination(course):
 
         if subject_constraint:
             comp = [x["subject"] for x in course_subjects
-                    if x["category"] == "essential" and x["compulsory_state"] == "True"
+                    if (x["category"] == "essential") and x["compulsory_state"]
                     ]
             results = combine_subjects(
                 essentials, relevant, desirable, desirable_state, no_of_essentials, no_of_relevant, comp)
@@ -112,13 +112,14 @@ def generate_combination(course):
 
 
 def make_output(results):
-    logger.error(results)
+
     recommendation = dict()
 
     for result in results:
 
         combination = []
         abbreviate = str()
+        logger.error(result)
 
         for sub in result:
             subjects = UaceSerializer(UaceSubjects.objects.filter(code=sub), many=True).data[0]
@@ -130,12 +131,13 @@ def make_output(results):
 
             combination.append(subjects["name"])
 
-        if abbreviate not in recommendation:
-            abbreviate = abbreviate + " and General Paper"
-            recommendation[abbreviate] = combination
+        subjects_abbr = abbreviate + " and General Paper"
+
+        if subjects_abbr not in recommendation.keys():
+            recommendation[subjects_abbr] = combination
         else:
-            abbreviate = abbreviate + " & General Paper"
-            recommendation[abbreviate.lower()] = combination
+            subjects_abbr = abbreviate + " & General Paper"
+            recommendation[subjects_abbr] = combination
 
     return recommendation
 
@@ -174,7 +176,7 @@ def append_relevant(relevant_subjects, no_relevant, init_list):
 
 def append_desirable(desires, no_desires, init_list):
 
-    if no_desires == 10 and (len(desires) != 0):
+    if no_desires == 1 and (len(desires) != 0):
         init_list.append(desires[0])
         return init_list
 
@@ -222,6 +224,7 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
                     output.append(append_desirable(desirable, desirable_state, comb))
 
         elif len(initial_es) == 2:
+
             relevant_output = append_relevant(relevant_subjects, relevant_no, initial_es)
 
             for comb in relevant_output:
@@ -267,10 +270,12 @@ def combination_with_results(career, uce_results):
 
             try:
 
-                if check_o_level(course_code, uce_results, False):
+                if check_o_level(course_code, uce_results):
 
-                    fn_output = generate_combination(course_code)
-                    for x in fn_output:
+                    combination = generate_combination(course_code)
+
+                    for x in combination:
+
                         combinations.append(x)
 
             except (AppError, KeyError, AttributeError) as exception:
@@ -281,8 +286,6 @@ def combination_with_results(career, uce_results):
 
                 return False, None, errors
 
-        # logger.error("combinations")
-        # logger.error(combinations)
         output = make_output(combinations)
 
         return True, output, None
