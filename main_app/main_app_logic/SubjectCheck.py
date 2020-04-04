@@ -201,9 +201,8 @@ def check_course_subjects(course_code, uace_results):
             no_of_essentials = int(course_subjects['essentials'])
             no_of_relevant = int(course_subjects['relevant'])
             desirable_state = int(course_subjects['desirable_state'])
-            all_subjects = bool(course_subjects['all_subjects'])
-
-            subject_constraint = course_subjects['subject_constraint']
+            all_subjects = course_subjects['all_subjects']
+            a_level_constraint = course_subjects['a_level_constraint']
 
         else:
             raise DatabaseError("Doesn't have essential, relevant and desirable subjects")
@@ -215,17 +214,13 @@ def check_course_subjects(course_code, uace_results):
 
         raise AppError(error)
 
-    # if all_subjects and not subject_constraint:
-    #     error = """course '{}' has errors with either its essential, relevant or desirable subjects
-    #             Error Details :
-    #             It has a UACE subject constraint and accepts all UACE subjects, causing a contradiction"""\
-    #         .format(course_code)
-    #     raise AppError(error)
-
-    if all_subjects and not subject_constraint:
-        essential_check = relevant_check = desirable_check = True
+    if all_subjects:
+        if a_level_constraint:
+            essential_check = relevant_check = desirable_check = True
+        else:
+            essential_check = relevant_check = desirable_check = True
     else:
-        essential_check = check_essentials(course_code, no_of_essentials, uace_results, subject_constraint)
+        essential_check = check_essentials(course_code, no_of_essentials, uace_results, a_level_constraint)
         relevant_check = check_relevant(course_code, no_of_relevant, uace_results)
         desirable_check = check_desirable(course_code, desirable_state, uace_results)
 

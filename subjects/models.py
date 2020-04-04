@@ -5,11 +5,13 @@ class UaceSubjects(models.Model):
     SCIENCE = 'Science'
     ART = 'Art'
     SUBSIDIARY = 'Subsidiary'
+    NONE = 'Category'
 
     SUBJECT_CATEGORIES = [
         (SCIENCE, 'Science Subject'),
         (ART, 'Art Subject'),
         (SUBSIDIARY, 'Subsidiary Subject'),
+        (NONE, 'Category placeholder'),
     ]
 
     code = models.CharField(max_length=255, primary_key=True,  default="Subject code begin with UACE_")

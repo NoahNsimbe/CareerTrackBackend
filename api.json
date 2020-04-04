@@ -141,8 +141,40 @@
 
     "career": "Doctor",
 
-    "uce": {
+    "uce one constraint": {
         "career": "Agriculture Engineer",
+         "uce_results":{
+            "UCE_MATH": 4,
+            "UCE_CHEM": 5,
+            "UCE_BIO": 6,
+            "UCE_GEOG": 1,
+            "UCE_HIST": 4,
+            "UCE_ENG": 5,
+            "UCE_LIT": 6,
+            "UCE_IRE" : 3,
+            "UCE_FEN": 6,
+            "UCE_CRE" : 3
+        }
+    },
+
+     "uce two constraints": {
+        "career": "Nutritionist",
+         "uce_results":{
+            "UCE_MATH": 4,
+            "UCE_CHEM": 5,
+            "UCE_BIO": 6,
+            "UCE_GEOG": 1,
+            "UCE_HIST": 4,
+            "UCE_ENG": 5,
+            "UCE_LIT": 6,
+            "UCE_IRE" : 3,
+            "UCE_FEN": 6,
+            "UCE_CRE" : 3
+        }
+    },
+
+    "uce all subjects": {
+        "career": "Education in Arts",
          "uce_results":{
             "UCE_MATH": 4,
             "UCE_CHEM": 5,
