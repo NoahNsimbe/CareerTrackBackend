@@ -50,6 +50,7 @@ class CourseConstraints(models.Model):
 
     ONE_RELEVANT = 1
     TWO_RELEVANT = 2
+    ONE_OR_TWO_RELEVANT = 3
 
     COURSE_ESSENTIALS_CHOICES = [
         (ONE_ESSENTIAL, "One"),
@@ -65,6 +66,7 @@ class CourseConstraints(models.Model):
     COURSE_RELEVANT_CHOICES = [
         (ONE_RELEVANT, "One"),
         (TWO_RELEVANT, "Two"),
+        (ONE_OR_TWO_RELEVANT, "One or Two"),
     ]
 
     course = models.OneToOneField(Courses, on_delete=models.CASCADE)

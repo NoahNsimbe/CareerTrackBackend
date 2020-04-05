@@ -27,7 +27,7 @@ class CareerCoursesAdmin(admin.ModelAdmin):
 
 @admin.register(CourseConstraints)
 class CourseConstraintsAdmin(admin.ModelAdmin):
-    list_display = ('course', 'essentials', 'relevant', 'desirable_state', 'subject_constraint', 'all_subjects')
+    list_display = ('course', 'essentials', 'relevant', 'desirable_state', 'a_level_constraint', 'all_subjects')
     ordering = ['course']
     search_fields = ['course__code', 'course__name']
     autocomplete_fields = ['course']

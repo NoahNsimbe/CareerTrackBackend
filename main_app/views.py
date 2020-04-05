@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .main_app_logic.Combination import combination_without_results, combination_with_results
+from .main_app_logic.Combination import get_combination
 from .main_app_logic.Course import without_results, with_results
 from .models import Careers
 from .serializers import CareersSerializer
@@ -26,10 +26,10 @@ def uace_combination(request):
         return Response({'Message': "Please provide a career"}, status.HTTP_400_BAD_REQUEST)
 
     elif uce_results is None:
-        success, results, errors = combination_without_results(career)
+        success, results, errors = get_combination(career, [])
 
     else:
-        success, results, errors = combination_with_results(career, uce_results)
+        success, results, errors = get_combination(career, uce_results)
 
     if success:
         return Response(results, status.HTTP_200_OK)

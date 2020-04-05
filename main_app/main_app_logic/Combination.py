@@ -5,14 +5,14 @@ from .ConstraintCheck import check_o_level
 from main_app.models import CareerCourses, CourseConstraints, CourseSubjects
 from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer
 import itertools
-
+from .Combine import combine_subjects
 import logging
 logger = logging.getLogger(__name__)
 
 
-def combination_without_results(career):
+def get_combination(career, uce_results):
 
-    career_courses = CareerCoursesSerializer(CareerCourses.objects.filter(career=career), many=True).data
+    career_courses = CareerCoursesSerializer(CareerCourses.objects.filter(career=str(career).strip()), many=True).data
 
     if career_courses:
 
@@ -24,13 +24,21 @@ def combination_without_results(career):
 
             try:
 
-                fn_output = generate_combination(course_code)
-                for x in fn_output:
-                    combinations.append(x)
+                if len(uce_results) == 0:
+                    fn_output = generate_combination(course_code)
+                    for x in fn_output:
+                        combinations.append(x)
+                else:
+                    if check_o_level(course_code, uce_results):
+
+                        combination = generate_combination(course_code)
+
+                        for x in combination:
+                            combinations.append(x)
 
             except (AppError, KeyError, AttributeError) as exception:
 
-                logger.error("Exception Has occurred : \n " + exception.message)
+                logger.error("Exception Has occurred : \n{} ".format(exception))
 
                 errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
 
@@ -198,12 +206,14 @@ def generate_combination(course):
                             comp.append(x["subject"])
                             if x["subject"] in essentials:
                                 essentials.remove(x["subject"])
+                    if len(essentials) == 0:
+                        essentials = comp[:]
 
             relevant = list(set(relevant))
             essentials = list(set(essentials))
 
             if len(relevant) == 0 or len(essentials) == 0 or len(desirable) == 0:
-                raise DatabaseError("Doesn't have either essential, relevant or desirable subjects or lucks all")
+                raise DatabaseError("Doesn't have either essential, relevant or desirable subjects or lucks all.")
 
         else:
             raise DatabaseError("Doesn't have either essential, relevant or desirable subjects or lucks all")
@@ -252,134 +262,9 @@ def make_output(results):
             recommendation[subjects_abbr] = combination
         else:
             subjects_abbr = abbreviate + " & General Paper"
-            recommendation[subjects_abbr] = combination
+            recommendation[subjects_abbr] = combination[:]
 
     return recommendation
-
-
-def append_relevant(relevant_subjects, no_relevant, init_list):
-    results = []
-    combination = []
-
-    if no_relevant == 1:
-
-        for subject in relevant_subjects:
-
-            if subject not in init_list:
-                combination = init_list[:]
-                combination.append(subject)
-                results.append(combination)
-
-    elif no_relevant == 2:
-
-        for index_subject in range(0, len(relevant_subjects) - 1):
-
-            mid = combination.append(relevant_subjects[index_subject])
-
-            for index_subject2 in range(index_subject + 1, len(relevant_subjects)):
-                combination.append(relevant_subjects[index_subject2])
-                results.append(combination)
-                combination = mid[:]
-
-            combination = init_list[:]
-    else:
-        # error, number of relevant is more than 2
-        pass
-
-    return results
-
-
-def append_desirable(desires, no_desires, init_list):
-
-    if no_desires == 1:
-
-        if len(desires) != 0:
-            #error
-            return init_list
-
-        init_list.append(desires[0])
-        return init_list
-
-    else:
-        results = []
-        combination = init_list[:]
-        for d in desires:
-            if ((d == "UACE_SUB_MATH") and ("UACE_MATH" in init_list)) \
-                    or ((d == "UACE_SUB_COMP") and ("UACE_MATH" not in init_list)):
-                continue
-
-            combination.append(d)
-            results.append(combination)
-            combination = init_list[:]
-
-        if len(results) == 1:
-            results = results[0]
-
-        return results
-
-
-def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, essentials_no, relevant_no, initial_es):
-
-    output = []
-
-    if essentials_no == 1:
-
-        relevant_output = append_relevant(relevant_subjects, relevant_no, essentials)
-
-        for comb in relevant_output:
-
-            output.append(append_desirable(desirable, desirable_state, comb))
-
-    elif essentials_no == 2:
-        if relevant_no != 1:
-            # an error
-            return
-
-        if len(initial_es) == 1:
-
-            initial = initial_es[:]
-
-            for essential in essentials:
-                initial_es = initial[:]
-
-                initial_es.append(essential)
-
-                relevant_output = append_relevant(relevant_subjects, relevant_no, initial_es)
-
-                for comb in relevant_output:
-                    output.append(append_desirable(desirable, desirable_state, comb))
-
-        elif len(initial_es) == 2:
-
-            relevant_output = append_relevant(relevant_subjects, relevant_no, initial_es)
-
-            for comb in relevant_output:
-                output.append(append_desirable(desirable, desirable_state, comb))
-
-        elif len(initial_es) == 0:
-
-            for index in range(0, len(essentials)-1):
-
-                first_sub = essentials[index]
-
-                for second_index in range(index+1, len(essentials)):
-
-                    combinations = [first_sub, essentials[second_index]]
-
-                    relevant_output = append_relevant(relevant_subjects, relevant_no, combinations)
-
-                    for comb in relevant_output:
-
-                        desirable_output = append_desirable(desirable, desirable_state, comb)
-
-                        for x in desirable_output:
-                            output.append(x)
-
-    else:
-        # error
-        pass
-
-    return output
 
 
 def combination_with_results(career, uce_results):
