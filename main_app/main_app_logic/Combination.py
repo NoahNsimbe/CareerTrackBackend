@@ -47,6 +47,113 @@ def combination_without_results(career):
         return False, None, errors
 
 
+def get_subjects(essentials, relevant):
+
+    if essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL_SCIENCES":
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Sciences"), many=True
+        ).data
+        relevant = essentials = [x["code"] for x in subjects]
+
+    elif essentials[0] == "UACE_ALL_ARTS" and relevant[0] == "UACE_ALL_ARTS":
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Arts"), many=True
+        ).data
+        relevant = essentials = [x["code"] for x in subjects]
+
+    elif essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL_ARTS":
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Sciences"), many=True
+        ).data
+        essentials = [x["code"] for x in subjects]
+
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Arts"), many=True
+        ).data
+        relevant = [x["code"] for x in subjects]
+
+    elif essentials[0] == "UACE_ALL_ARTS" and relevant[0] == "UACE_ALL_SCIENCES":
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Arts"), many=True
+        ).data
+        essentials = [x["code"] for x in subjects]
+
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Sciences"), many=True
+        ).data
+        relevant = [x["code"] for x in subjects]
+
+    elif essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL":
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Arts"), many=True
+        ).data
+        essentials = [x["code"] for x in subjects]
+
+        subjects = UaceSerializer(
+            UaceSubjects.objects.all().exclude(category="Category").exclude(category="Subsidiary"),
+            many=True
+        ).data
+        relevant = [x["code"] for x in subjects]
+
+    elif essentials[0] == "UACE_ALL_ARTS" and relevant[0] == "UACE_ALL":
+        subjects = UaceSerializer(
+            UaceSubjects.objects.filter(category="Arts"), many=True
+        ).data
+        essentials = [x["code"] for x in subjects]
+
+        subjects = UaceSerializer(
+            UaceSubjects.objects.all().exclude(category="Category").exclude(category="Subsidiary"),
+            many=True
+        ).data
+        relevant = [x["code"] for x in subjects]
+
+    else:
+        subjects = UaceSerializer(
+            UaceSubjects.objects.all().exclude(category="Category").exclude(category="Subsidiary"),
+            many=True
+        ).data
+
+        relevant = essentials = [x["code"] for x in subjects]
+
+    return essentials, relevant
+
+
+def get_all(category):
+
+    check_all = category[:]
+
+    for code in check_all:
+        if str(code) == "UACE_ALL_LANG":
+            subject_codes = UaceSerializer(
+                UaceSubjects.objects.filter(language_subject=True), many=True
+            ).data
+        elif str(code) == "UACE_ALL_SCIENCES":
+            subject_codes = UaceSerializer(
+                UaceSubjects.objects.filter(category="Sciences"), many=True
+            ).data
+        elif str(code) == "UACE_ALL":
+            subject_codes = UaceSerializer(
+                UaceSubjects.objects.all().exclude(category="Category").exclude(category="Subsidiary"),
+                many=True
+            ).data
+        elif str(code) == "UACE_ALL_ARTS":
+            subject_codes = UaceSerializer(
+                UaceSubjects.objects.filter(category="Arts"), many=True
+            ).data
+        else:
+            subject_codes = []
+
+        if len(subject_codes) != 0:
+
+            if code in category:
+                category.remove(code)
+
+            for subject_code in subject_codes:
+                category.append(subject_code["code"])
+
+    return category
+
+
 def generate_combination(course):
 
     try:
@@ -78,80 +185,25 @@ def generate_combination(course):
             comp = []
 
             if all_subjects:
+                essentials, relevant = get_subjects(essentials, relevant)
 
-                if essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL_SCIENCES":
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Sciences"), many=True
-                    ).data
-                    relevant = essentials = [x["code"] for x in subjects]
-
-                elif essentials[0] == "UACE_ALL_ARTS" and relevant[0] == "UACE_ALL_ARTS":
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Arts"), many=True
-                    ).data
-                    relevant = essentials = [x["code"] for x in subjects]
-
-                elif essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL_ARTS":
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Sciences"), many=True
-                    ).data
-                    essentials = [x["code"] for x in subjects]
-
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Arts"), many=True
-                    ).data
-                    relevant = [x["code"] for x in subjects]
-
-                elif essentials[0] == "UACE_ALL_ARTS" and relevant[0] == "UACE_ALL_SCIENCES":
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Arts"), many=True
-                    ).data
-                    essentials = [x["code"] for x in subjects]
-
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Sciences"), many=True
-                    ).data
-                    relevant = [x["code"] for x in subjects]
-
-                elif essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL":
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Arts"), many=True
-                    ).data
-                    essentials = [x["code"] for x in subjects]
-
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.all().exclude(category="Category").exclude(category="Subsidiary"),
-                        many=True
-                    ).data
-                    relevant = [x["code"] for x in subjects]
-
-                elif essentials[0] == "UACE_ALL_ARTS" and relevant[0] == "UACE_ALL":
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.filter(category="Arts"), many=True
-                    ).data
-                    essentials = [x["code"] for x in subjects]
-
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.all().exclude(category="Category").exclude(category="Subsidiary"),
-                        many=True
-                    ).data
-                    relevant = [x["code"] for x in subjects]
-
-                else:
-                    subjects = UaceSerializer(
-                        UaceSubjects.objects.all().exclude(category="Category").exclude(category="Subsidiary"),
-                        many=True
-                    ).data
-
-                    relevant = essentials = [x["code"] for x in subjects]
             else:
+
                 relevant = get_all(relevant)
                 essentials = get_all(essentials)
 
                 if a_level_constraint:
-                    comp = [x["subject"] for x in course_subjects
-                            if (x["category"] == "essential") and x["compulsory_state"]
-                            ]
+                    for x in course_subjects:
+                        if (x["category"] == "essential") and x["compulsory_state"]:
+                            comp.append(x["subject"])
+                            if x["subject"] in essentials:
+                                essentials.remove(x["subject"])
+
+            relevant = list(set(relevant))
+            essentials = list(set(essentials))
+
+            if len(relevant) == 0 or len(essentials) == 0 or len(desirable) == 0:
+                raise DatabaseError("Doesn't have either essential, relevant or desirable subjects or lucks all")
 
         else:
             raise DatabaseError("Doesn't have either essential, relevant or desirable subjects or lucks all")
@@ -164,9 +216,6 @@ def generate_combination(course):
 
         raise AppError(error)
 
-    relevant = list(set(relevant))
-    essentials = list(set(essentials))
-
     results = combine_subjects(
         essentials, relevant, desirable, desirable_state, no_of_essentials, no_of_relevant, comp)
 
@@ -174,6 +223,8 @@ def generate_combination(course):
 
 
 def make_output(results):
+
+    # add error handling
 
     recommendation = dict()
 
@@ -204,37 +255,6 @@ def make_output(results):
             recommendation[subjects_abbr] = combination
 
     return recommendation
-
-
-def get_all(category):
-
-    check_all = category[:]
-
-    for code in check_all:
-        if str(code) == "UACE_ALL_LANG":
-            subject_codes = UaceSerializer(
-                UaceSubjects.objects.filter(language_subject=True), many=True
-            ).data
-        elif str(code) == "UACE_ALL_SCIENCES":
-            subject_codes = UaceSerializer(
-                UaceSubjects.objects.filter(category="Sciences"), many=True
-            ).data
-        elif str(code) == "UACE_ALL_ARTS":
-            subject_codes = UaceSerializer(
-                UaceSubjects.objects.filter(category="Arts"), many=True
-            ).data
-        else:
-            subject_codes = []
-
-        if len(subject_codes) != 0:
-
-            if code in category:
-                category.remove(code)
-
-            for subject_code in subject_codes:
-                category.append(subject_code["code"])
-
-    return category
 
 
 def append_relevant(relevant_subjects, no_relevant, init_list):
@@ -271,7 +291,12 @@ def append_relevant(relevant_subjects, no_relevant, init_list):
 
 def append_desirable(desires, no_desires, init_list):
 
-    if no_desires == 1 and (len(desires) != 0):
+    if no_desires == 1:
+
+        if len(desires) != 0:
+            #error
+            return init_list
+
         init_list.append(desires[0])
         return init_list
 
@@ -287,6 +312,9 @@ def append_desirable(desires, no_desires, init_list):
             results.append(combination)
             combination = init_list[:]
 
+        if len(results) == 1:
+            results = results[0]
+
         return results
 
 
@@ -295,9 +323,6 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
     output = []
 
     if essentials_no == 1:
-        if relevant_no != 2:
-            # an error
-            return
 
         relevant_output = append_relevant(relevant_subjects, relevant_no, essentials)
 
@@ -312,9 +337,14 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
 
         if len(initial_es) == 1:
 
+            initial = initial_es[:]
+
             for essential in essentials:
+                initial_es = initial[:]
+
                 initial_es.append(essential)
-                relevant_output = append_relevant(relevant_subjects, relevant_no, essential)
+
+                relevant_output = append_relevant(relevant_subjects, relevant_no, initial_es)
 
                 for comb in relevant_output:
                     output.append(append_desirable(desirable, desirable_state, comb))
@@ -376,7 +406,7 @@ def combination_with_results(career, uce_results):
 
             except (AppError, KeyError, AttributeError) as exception:
 
-                logger.error("Exception Has occurred : \n " + exception.message)
+                logger.error("Exception Has occurred : \n {}".format(exception))
 
                 errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
 
