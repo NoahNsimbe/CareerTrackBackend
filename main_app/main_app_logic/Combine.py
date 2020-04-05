@@ -38,17 +38,18 @@ def append_relevant(relevant_subjects, no_relevant, init_list):
 
 def append_desirable(desires, no_desires, init_list):
 
+    results = []
     if no_desires == 1:
 
-        if len(desires) != 0:
+        if len(desires) != 1:
             # error
-            return init_list
+            pass
 
         init_list.append(desires[0])
-        return init_list
+        results.append(init_list)
 
     else:
-        results = []
+
         combination = init_list[:]
         for d in desires:
             if ((d == "UACE_SUB_MATH") and ("UACE_MATH" in init_list)) \
@@ -59,10 +60,7 @@ def append_desirable(desires, no_desires, init_list):
             results.append(combination)
             combination = init_list[:]
 
-        if len(results) == 1:
-            results = results[0]
-
-        return results
+    return results
 
 
 def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, essentials_no, relevant_no, initial_es):
@@ -87,11 +85,8 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
         for x in relevant_out:
             desirable_output = append_desirable(desirable, desirable_state, x)
 
-            if type(desirable_output[0]) is list:
-                for y in desirable_output:
-                    output.append(y)
-            else:
-                output.append(desirable_output)
+            for y in desirable_output:
+                output.append(y)
 
         for y in essentials:
             if y in relevant_subjects:
@@ -100,7 +95,7 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
         essentials_no = 2
         relevant_no = 1
 
-    if essentials_no == 1:
+    if essentials_no == 1 or (len(initial_es) == 2 and essentials_no == 2):
 
         relevant_output = append_relevant(relevant_subjects, relevant_no, essentials)
 
@@ -108,16 +103,10 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
 
             desirable_output = append_desirable(desirable, desirable_state, comb)
 
-            if type(desirable_output[0]) is list:
-                for x in desirable_output:
-                    output.append(x)
-            else:
-                output.append(desirable_output)
+            for x in desirable_output:
+                output.append(x)
 
     elif essentials_no == 2:
-        if relevant_no != 1:
-            # an error
-            return
 
         if len(initial_es) == 1:
 
@@ -129,20 +118,19 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
                 relevant_output = append_relevant(relevant_subjects, relevant_no, initial_es)
 
                 for comb in relevant_output:
-                    output.append(append_desirable(desirable, desirable_state, comb))
-
-        elif len(initial_es) == 2:
-
-            relevant_output = append_relevant(relevant_subjects, relevant_no, initial_es)
-
-            for comb in relevant_output:
-                desirable_output = append_desirable(desirable, desirable_state, comb)
-
-                if type(desirable_output[0]) is list:
+                    desirable_output = append_desirable(desirable, desirable_state, comb)
                     for x in desirable_output:
                         output.append(x)
-                else:
-                    output.append(desirable_output)
+
+        # elif len(initial_es) == 2:
+        #
+        #     relevant_output = append_relevant(relevant_subjects, relevant_no, initial_es)
+        #
+        #     for comb in relevant_output:
+        #         desirable_output = append_desirable(desirable, desirable_state, comb)
+        #
+        #         for x in desirable_output:
+        #             output.append(x)
 
         elif len(initial_es) == 0:
 
@@ -160,20 +148,15 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
 
                         desirable_output = append_desirable(desirable, desirable_state, comb)
 
-                        if type(desirable_output[0]) is list:
-                            for x in desirable_output:
-                                output.append(x)
-                        else:
-                            output.append(desirable_output)
+                        for x in desirable_output:
+                            output.append(x)
 
         elif len(initial_es) == 3:
+            # error
             desirable_output = append_desirable(desirable, desirable_state, initial_es)
 
-            if type(desirable_output[0]) is list:
-                for x in desirable_output:
-                    output.append(x)
-            else:
-                output.append(desirable_output)
+            for x in desirable_output:
+                output.append(x)
 
         else:
             # error
