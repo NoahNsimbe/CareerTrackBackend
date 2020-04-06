@@ -45,6 +45,7 @@ def course_recommendation(request):
     admission_type = request.data.get("admission_type")
     uace_results = request.data.get("uace_results")
     uce_results = request.data.get("uce_results")
+    gender = request.data.get("gender")
 
     if career is None:
         return Response({'Message': "Please provide a career"}, status.HTTP_400_BAD_REQUEST)
@@ -66,7 +67,7 @@ def course_recommendation(request):
         return Response({'Message': "Please provide your uce results"}, status.HTTP_400_BAD_REQUEST)
 
     else:
-        success, results, errors = with_results(career, uace_results, uce_results, admission_type)
+        success, results, errors = with_results(career, uace_results, uce_results, admission_type, gender)
 
     if success:
         return Response(results, status.HTTP_200_OK)

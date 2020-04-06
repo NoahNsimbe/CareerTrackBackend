@@ -6,25 +6,25 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def check_desirable(course, state, results):
+def check_desirable(course, state, subjects, results):
 
-    db_subjects = CourseSubjectsSerializer(
-        CourseSubjects.objects.filter(category="desirable", course=course), many=True
-    ).data
-
-    if not db_subjects:
-        error = """course '{}' has errors with its desirable subjects
-                   Error Details : 
-                   Doesnt have desirable subjects : Table => CourseSubjects""".format(course)
-        raise AppError(error)
-
-    try:
-        subjects = [x['subject'] for x in db_subjects]
-    except KeyError as exception:
-        error = """There was an error while checking subjects
-                   Error Details
-                   {}""".format(exception)
-        raise AppError(error)
+    # db_subjects = CourseSubjectsSerializer(
+    #     CourseSubjects.objects.filter(category="desirable", course=course), many=True
+    # ).data
+    #
+    # if not db_subjects:
+    #     error = """course '{}' has errors with its desirable subjects
+    #                Error Details :
+    #                Doesnt have desirable subjects : Table => CourseSubjects""".format(course)
+    #     raise AppError(error)
+    #
+    # try:
+    #     subjects = [x['subject'] for x in db_subjects]
+    # except KeyError as exception:
+    #     error = """There was an error while checking subjects
+    #                Error Details
+    #                {}""".format(exception)
+    #     raise AppError(error)
 
     if state == 1:
 
@@ -52,28 +52,28 @@ def check_desirable(course, state, results):
         raise AppError(error)
 
 
-def check_relevant(course, number, results):
+def check_relevant(course, number, subjects, results, essentials):
 
-    db_subjects = CourseSubjectsSerializer(
-        CourseSubjects.objects.filter(category="relevant", course=course), many=True
-    ).data
-
-    if not db_subjects:
-        error = """course '{}' has errors with its relevant subjects
-                   Error Details : 
-                   Doesnt have relevant subjects""".format(course)
-        raise AppError(error)
-
-    try:
-        subjects = [x['subject'] for x in db_subjects]
-    except KeyError as exception:
-        error = """There was an error while checking subjects
-                   Error Details
-                   {} : Table => CourseSubjects""".format(exception)
-        raise AppError(error)
+    # db_subjects = CourseSubjectsSerializer(
+    #     CourseSubjects.objects.filter(category="relevant", course=course), many=True
+    # ).data
+    #
+    # if not db_subjects:
+    #     error = """course '{}' has errors with its relevant subjects
+    #                Error Details :
+    #                Doesnt have relevant subjects""".format(course)
+    #     raise AppError(error)
+    #
+    # try:
+    #     subjects = [x['subject'] for x in db_subjects]
+    # except KeyError as exception:
+    #     error = """There was an error while checking subjects
+    #                Error Details
+    #                {} : Table => CourseSubjects""".format(exception)
+    #     raise AppError(error)
 
     if number == 3:
-        if check_essentials(course, 2, results, False):
+        if check_essentials(course, 2, essentials, results, False):
             number = 1
         else:
             number = 2
@@ -123,7 +123,7 @@ def check_relevant(course, number, results):
         raise AppError(error)
 
 
-def check_essentials(course, number, results, subject_constrained):
+def check_essentials(course, number, subjects, results, subject_constrained):
 
     if subject_constrained:
         compulsory_subjects = CourseSubjectsSerializer(
@@ -141,23 +141,23 @@ def check_essentials(course, number, results, subject_constrained):
             if x['subject'] not in results:
                 return False
 
-    db_subjects = CourseSubjectsSerializer(
-        CourseSubjects.objects.filter(category="essential", course=course), many=True
-    ).data
-
-    if not db_subjects:
-        error = """course '{}' has errors with its essential subjects
-                   Error Details : 
-                   Doesnt have essential subjects : Table => CourseSubjects""".format(course)
-        raise AppError(error)
-
-    try:
-        subjects = [x['subject'] for x in db_subjects]
-    except KeyError as exception:
-        error = """There was an error while checking subjects
-                   Error Details
-                   {} : Table => CourseSubjects""".format(exception)
-        raise AppError(error)
+    # db_subjects = CourseSubjectsSerializer(
+    #     CourseSubjects.objects.filter(category="essential", course=course), many=True
+    # ).data
+    #
+    # if not db_subjects:
+    #     error = """course '{}' has errors with its essential subjects
+    #                Error Details :
+    #                Doesnt have essential subjects : Table => CourseSubjects""".format(course)
+    #     raise AppError(error)
+    #
+    # try:
+    #     subjects = [x['subject'] for x in db_subjects]
+    # except KeyError as exception:
+    #     error = """There was an error while checking subjects
+    #                Error Details
+    #                {} : Table => CourseSubjects""".format(exception)
+    #     raise AppError(error)
 
     if number == 1 or number == 3:
 
@@ -196,32 +196,65 @@ def check_essentials(course, number, results, subject_constrained):
         raise AppError(error)
 
 
-def check_course_subjects(course_code, uace_results):
+def check_subject(course_code, uace_results):
 
-    course_subjects = CourseConstraintsSerializer(
+    course_constraints = CourseConstraintsSerializer(
         CourseConstraints.objects.filter(course=course_code), many=True
+    ).data
+
+    course_subjects = CourseSubjectsSerializer(
+        CourseSubjects.objects.filter(course=course_code), many=True
     ).data
 
     try:
 
-        if course_subjects:
+        if course_constraints:
 
-            if len(course_subjects) > 1:
-                raise DatabaseError("has more than on entry for its essential, relevant and desirable subjects")
+            if len(course_constraints) > 1:
+                raise DatabaseError("has more than one entry for its essential, relevant and desirable subjects")
+            else:
+                course_constraints = course_constraints[0]
 
-            course_subjects = course_subjects[0]
+            if not course_subjects:
+                raise DatabaseError("Does not have course subjects")
 
-            no_of_essentials = int(course_subjects['essentials'])
-            no_of_relevant = int(course_subjects['relevant'])
-            desirable_state = int(course_subjects['desirable_state'])
-            all_subjects = course_subjects['all_subjects']
-            a_level_constraint = course_subjects['a_level_constraint']
+            essential = list()
+            relevant = list()
+            desirable = list()
+            all_desirable = list()
+
+            for subject in course_subjects:
+
+                if str(subject["category"]).upper() == "ESSENTIAL":
+                    essential.append(subject['subject'])
+
+                elif str(subject["category"]).upper() == "RELEVANT":
+                    relevant.append(subject['subject'])
+
+                elif str(subject["category"]).upper() == "DESIRABLE" and not subject["general_subject"]:
+                    if not subject["general_subject"]:
+                        desirable.append(subject['subject'])
+
+                    all_desirable.append(subject['subject'])
+
+                else:
+                    pass
+
+            if not(any(relevant) and any(essential) and any(desirable)):
+                raise DatabaseError("Does not have either essential, relevant or desirable subjects")
+
+            no_of_essentials = course_constraints['essentials']
+            no_of_relevant = course_constraints['relevant']
+            desirable_state = course_constraints['desirable_state']
+            all_subjects = course_constraints['all_subjects']
+            a_level_constraint = course_constraints['a_level_constraint']
 
         else:
-            raise DatabaseError("Doesn't have essential, relevant and desirable subjects")
+            raise DatabaseError("Doesn't have constraints")
 
     except (AttributeError, KeyError, TypeError, ValueError, DatabaseError) as errors:
-        error = """course '{}' has errors with either its essential, relevant or desirable subjects
+        error = """
+        course '{}' has errors with either its essential, relevant or desirable subjects
         Error Details : 
         {}""".format(course_code, errors)
 
@@ -233,9 +266,9 @@ def check_course_subjects(course_code, uace_results):
         else:
             essential_check = relevant_check = desirable_check = True
     else:
-        essential_check = check_essentials(course_code, no_of_essentials, uace_results, a_level_constraint)
-        relevant_check = check_relevant(course_code, no_of_relevant, uace_results)
-        desirable_check = check_desirable(course_code, desirable_state, uace_results)
+        essential_check = check_essentials(course_code, no_of_essentials, essential, uace_results, a_level_constraint)
+        relevant_check = check_relevant(course_code, no_of_relevant, relevant, uace_results, essential)
+        desirable_check = check_desirable(course_code, desirable_state, desirable, uace_results)
 
     if essential_check:
         logger.error("has essentials")
@@ -244,7 +277,9 @@ def check_course_subjects(course_code, uace_results):
     if desirable_check:
         logger.error("has desirable")
 
+    db_subjects = dict({"essential": essential, "relevant": relevant, "desirable": all_desirable})
+
     if essential_check and relevant_check and desirable_check:
-        return True
+        return True, db_subjects
     else:
-        return False
+        return False, db_subjects

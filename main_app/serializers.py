@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Courses, CourseConstraints, CareerCourses, Careers, CourseSubjects, ALevelConstraints, \
-    OLevelConstraints
+    OLevelConstraints, CutOffPoints
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -36,6 +36,12 @@ class OLevelConstraintSerializer(serializers.ModelSerializer):
 class CourseSubjectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseSubjects
+        fields = '__all__'
+
+
+class CutOffPointsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CutOffPoints
         fields = '__all__'
 
 

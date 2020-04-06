@@ -14,14 +14,11 @@ class UaceSubjects(models.Model):
         (NONE, 'Category placeholder'),
     ]
 
-    code = models.CharField(max_length=255, primary_key=True,  default="Subject code begin with UACE_")
+    code = models.CharField(max_length=255, primary_key=True, default="Subject code begins with 'UACE_'")
     name = models.CharField(max_length=255)
-    category = models.CharField(
-        max_length=15,
-        choices=SUBJECT_CATEGORIES,
-        default=ART,
-    )
+    category = models.CharField(max_length=15, choices=SUBJECT_CATEGORIES, default=ART)
     language_subject = models.BooleanField(default=False)
+    general_subject = models.BooleanField(default=False)
     abbr = models.CharField(max_length=255, default='XX')
 
     def __str__(self):

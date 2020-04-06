@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from subjects.models import UceSubjects, UaceSubjects
 
@@ -109,11 +111,7 @@ class CourseSubjects(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
     subject = models.ForeignKey(UaceSubjects, on_delete=models.CASCADE)
     compulsory_state = models.BooleanField(default=False)
-    category = models.CharField(
-        max_length=15,
-        choices=COURSE_CATEGORY_CHOICES,
-        default=ESSENTIAL,
-    )
+    category = models.CharField(max_length=15, choices=COURSE_CATEGORY_CHOICES, default=ESSENTIAL,)
 
     class Meta:
         verbose_name = verbose_name_plural = 'Course subjects'
@@ -137,3 +135,14 @@ class OLevelConstraints(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = 'O level constraints'
 
+
+class CutOffPoints(models.Model):
+    PRIVATE = "Private"
+    GOVT = "Government"
+
+    ADMISSION_TYPE = [(PRIVATE, "Private"), (GOVT, "Government")]
+
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    year = models.PositiveSmallIntegerField(default=datetime.now().year - 1)
+    points = models.FloatField(default=0.0)
+    type = models.CharField(max_length=15, choices=ADMISSION_TYPE, default=PRIVATE)
