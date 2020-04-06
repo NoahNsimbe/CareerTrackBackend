@@ -49,6 +49,8 @@ def course_recommendation(request):
     if career is None:
         return Response({'Message': "Please provide a career"}, status.HTTP_400_BAD_REQUEST)
 
+    career = str(career).strip()
+
     if (admission_type is None) and (uace_results is None) and (uce_results is None):
         success, results, errors = without_results(career)
 

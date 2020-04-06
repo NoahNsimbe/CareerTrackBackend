@@ -128,14 +128,16 @@
             "UACE_SUB_COMP": 1
         },
         "uce_results":{
-            "maths": 4,
-            "chemistry": 5,
-            "biology": 6,
-            "comp": 1,
-            "hist": 4,
-            "geog": 5,
-            "eng": 6,
-            "GP" : 3
+            "UCE_MATH": 4,
+            "UCE_CHEM": 5,
+            "UCE_BIO": 6,
+            "UCE_GEOG": 1,
+            "UCE_HIST": 4,
+            "UCE_ENG": 5,
+            "UCE_LIT": 6,
+            "UCE_IRE" : 3,
+            "UCE_FEN": 6,
+            "UCE_CRE" : 3
         }
     },
 

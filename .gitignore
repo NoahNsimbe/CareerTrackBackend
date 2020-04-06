@@ -18,8 +18,6 @@
 *.log
 *.pot
 *.pyc
-main_app/__pycache__/
-subjects/__pycache__/
 db.sqlite3
 media
 

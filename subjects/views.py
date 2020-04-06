@@ -10,7 +10,7 @@ from rest_framework.response import Response
 
 
 @api_view(['GET'])
-def get_uce_subjects(request):
+def get_uce(request):
     if request.method == 'GET':
         subjects = UceSubjects.objects.all()
         # subjects = get_object_or_404(UceSubjects)
@@ -21,7 +21,7 @@ def get_uce_subjects(request):
 
 
 @api_view(['GET'])
-def get_uace_subjects(request):
+def get_uace(request):
     if request.method == 'GET':
         subjects = UaceSubjects.objects.all()
         serializer = UaceSerializer(subjects, many=True).data

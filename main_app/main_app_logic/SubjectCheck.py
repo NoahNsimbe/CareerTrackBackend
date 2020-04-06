@@ -72,23 +72,35 @@ def check_relevant(course, number, results):
                    {} : Table => CourseSubjects""".format(exception)
         raise AppError(error)
 
+    if number == 3:
+        if check_essentials(course, 2, results, False):
+            number = 1
+        else:
+            number = 2
+
     if number == 1:
 
-        if len(subjects) > 1:
-            error = """course '{}' has errors with its relevant subjects
-                       Error Details : 
-                       Expected one relevant subject, found more""".format(course)
-            raise AppError(error)
+        # if len(subjects) > 1:
+        #     error = """course '{}' has errors with its relevant subjects
+        #                Error Details :
+        #                Expected one relevant subject, found more""".format(course)
+        #     raise AppError(error)
 
-        return True if subjects[0] in results else False
+        for subject in subjects:
+            if subject in results:
+                return True
+
+        return False
+
+        # return True if subjects[0] in results else False
 
     elif number == 2:
 
-        if len(subjects) > 2:
-            error = """course '{}' has errors with its relevant subjects
-                       Error Details : 
-                       Expected two relevant subject, found more : Table => CourseSubjects""".format(course)
-            raise AppError(error)
+        # if len(subjects) > 2:
+        #     error = """course '{}' has errors with its relevant subjects
+        #                Error Details :
+        #                Expected two relevant subject, found more : Table => CourseSubjects""".format(course)
+        #     raise AppError(error)
 
         if len(subjects) < 2:
             error = """course '{}' has errors with its relevant subjects
@@ -113,7 +125,7 @@ def check_relevant(course, number, results):
 
 def check_essentials(course, number, results, subject_constrained):
 
-    if subject_constrained == 'True':
+    if subject_constrained:
         compulsory_subjects = CourseSubjectsSerializer(
             CourseSubjects.objects.filter(category="essential", compulsory_state=True, course=course), many=True
         ).data
@@ -147,16 +159,20 @@ def check_essentials(course, number, results, subject_constrained):
                    {} : Table => CourseSubjects""".format(exception)
         raise AppError(error)
 
-    if number == 1:
+    if number == 1 or number == 3:
 
-        if len(subjects) > 1:
-            error = """course '{}' has errors with its essential subjects
-                                   Error Details : 
-                                   Expected one essential subject, found many : Table => CourseSubjects"""\
-                .format(course)
-            raise AppError(error)
+        # if len(subjects) > 1:
+        #     error = """course '{}' has errors with its essential subjects
+        #                Error Details :
+        #                Expected one essential subject, found many : Table => CourseSubjects"""\
+        #         .format(course)
+        #     raise AppError(error)
 
-        return True
+        for subject in subjects:
+            if subject in results:
+                return True
+
+        return False
 
     elif number == 2:
 
@@ -173,9 +189,6 @@ def check_essentials(course, number, results, subject_constrained):
                 count = count + 1
 
         return True if count >= 2 else False
-
-    elif number == 3 and subject_constrained:
-        return True
 
     else:
         error = "Number of essential subjects is greater than 2 for course code : {} : Table => CourseSubjects"\

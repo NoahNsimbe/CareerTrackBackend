@@ -2,8 +2,8 @@ from django.urls import path
 from .views import course_recommendation, uace_combination, get_careers
 
 urlpatterns = [
-    path("careers/", get_careers, name="careers_list"),
-    path("course_recommendation/", course_recommendation, name="course recommendation"),
+    path("careers/", get_careers, name="careers"),
+    path("course/", course_recommendation, name="course recommendation"),
     path("combination/", uace_combination, name="uace recommendation")
 ]
 
