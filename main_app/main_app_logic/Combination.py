@@ -190,7 +190,7 @@ def generate_combination(course):
             essentials = [x["subject"] for x in course_subjects if x["category"] == "essential"]
             relevant = [x["subject"] for x in course_subjects if x["category"] == "relevant"]
             desirable = [x["subject"] for x in course_subjects
-                         if x["category"] == "desirable" and not x["general_subject"]]
+                         if x["category"] == "desirable"]
             comp = []
 
             if all_subjects:

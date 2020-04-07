@@ -36,7 +36,7 @@ def uace_combination(request):
 
     else:
         response = {'Message': errors}
-        return Response(response, status.HTTP_204_NO_CONTENT)
+        return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])
@@ -77,7 +77,7 @@ def course_recommendation(request):
 
     else:
         response = {'Message': errors}
-        return Response(response, status.HTTP_204_NO_CONTENT)
+        return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 # @api_view(['GET', 'POST'])

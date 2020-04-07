@@ -22,14 +22,16 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView
 )
 
-admin.site.site_header = 'Course Recommendation'
-admin.site.site_title = 'Course Recommendation System'
-admin.site.index_title = 'Course Recommendation System'
-admin.empty_value_display = '**Empty**'
+admin.AdminSite.name = 'Course Recommendation'
+admin.AdminSite.site_header = 'Course Recommendation'
+admin.AdminSite.index_title = 'Course Recommendation'
+admin.AdminSite.site_title = 'Course Recommendation'
+
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
+    path('admin/login/', auth_views.LoginView.as_view(), name='admin_login'),
     path('admin/password_reset/', auth_views.PasswordResetView.as_view(), name='admin_password_reset'),
     path('admin/password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),

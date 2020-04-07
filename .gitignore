@@ -21,6 +21,7 @@
 db.sqlite3
 media
 
+
 # Environments
 .env
 .venv
@@ -32,3 +33,5 @@ venv.bak/
 
 # Settings
 career_track/settings.json
+fixtures/
+fixtures/dump.json
