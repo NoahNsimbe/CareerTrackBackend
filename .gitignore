@@ -33,5 +33,3 @@ venv.bak/
 
 # Settings
 career_track/settings.json
-fixtures/
-fixtures/dump.json
