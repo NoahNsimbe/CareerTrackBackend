@@ -36,7 +36,7 @@ def get_combination(career, uce_results):
                         for x in combination:
                             combinations.append(x)
 
-            except (AppError, KeyError, AttributeError) as exception:
+            except AppError as exception:
 
                 logger.error("Exception Has occurred : \n{} ".format(exception))
 
@@ -219,7 +219,7 @@ def generate_combination(course):
         else:
             raise DatabaseError("Doesn't have either essential, relevant or desirable subjects or lucks all")
 
-    except (AttributeError, KeyError, TypeError, ValueError, DatabaseError) as errors:
+    except Exception as errors:
         error = """course '{}' has errors with either its essential, relevant or desirable subjects
            Error Details : 
            Function => generate_combination in Combination.py
@@ -239,31 +239,42 @@ def make_output(results):
 
     recommendation = dict()
 
-    results.sort()
-    cleaned_results = list(results for results, _ in itertools.groupby(results))
+    try:
 
-    for result in cleaned_results:
+        results.sort()
+        cleaned_results = list(results for results, _ in itertools.groupby(results))
 
-        combination = []
-        abbreviate = str()
+        for result in cleaned_results:
 
-        for sub in result:
-            subjects = UaceSerializer(UaceSubjects.objects.filter(code=sub), many=True).data[0]
+            combination = []
+            abbreviate = str()
 
-            if subjects["category"] == "Subsidiary":
-                abbreviate = abbreviate + "/"
+            for sub in result:
+                subjects = UaceSerializer(UaceSubjects.objects.filter(code=sub), many=True).data[0]
 
-            abbreviate = abbreviate + str(subjects["abbr"])
+                if subjects["category"] == "Subsidiary":
+                    abbreviate = abbreviate + "/"
 
-            combination.append(subjects["name"])
+                abbreviate = abbreviate + str(subjects["abbr"])
 
-        subjects_abbr = abbreviate + " and General Paper"
+                combination.append(subjects["name"])
 
-        if subjects_abbr not in recommendation.keys():
-            recommendation[subjects_abbr] = combination
-        else:
-            subjects_abbr = abbreviate + " & General Paper"
-            recommendation[subjects_abbr] = combination[:]
+            subjects_abbr = abbreviate + " and General Paper"
+
+            if subjects_abbr not in recommendation.keys():
+                recommendation[subjects_abbr] = combination
+            else:
+                subjects_abbr = abbreviate + " & General Paper"
+                recommendation[subjects_abbr] = combination[:]
+
+    except Exception as errors:
+
+        error = """Error occurred while making output for {}
+           Error Details : 
+           Function => make_output in Combination.py
+           {}""".format(results, errors)
+
+        raise AppError(error)
 
     return recommendation
 

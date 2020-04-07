@@ -8,12 +8,12 @@ logger = logging.getLogger(__name__)
 
 def check_a_level(course, a_level_results, o_level_results, principals):
 
-    principal_pass = 2
+    principal_pass = ["A", "B", "C", "D", "E"]
     count = 0
 
     for subject in principals:
         if subject in a_level_results:
-            if a_level_results[subject] >= principal_pass:
+            if a_level_results[subject] in principal_pass:
                 count = count + 1
 
     if count < 2:
@@ -31,7 +31,7 @@ def check_a_level(course, a_level_results, o_level_results, principals):
                     if not check_o_level(course, o_level_results, True):
                         return False
 
-        except (AttributeError, KeyError) as details:
+        except Exception as details:
             error = """Error while checking A level subject constraints for course '{}'.
              Error Details : '{}'""".format(course, details)
             raise AppError(error)
@@ -45,7 +45,7 @@ def check_o_level(course, results, from_a_level=False):
     count = 0
 
     for grade in results.values():
-        if grade >= pass_grade:
+        if grade <= pass_grade:
             count = count + 1
 
     if count < 5:
@@ -72,7 +72,7 @@ def check_o_level(course, results, from_a_level=False):
                 else:
                     pass
 
-        except (AttributeError, KeyError) as details:
+        except Exception as details:
 
             error = """Error while checking O level subject constraints for course '{}'.
              Error Details : '{}'""".format(course, details)
@@ -87,7 +87,10 @@ def check_constraints(course_code, uace_results, uce_results, subjects):
 
     if check_a_level(course_code, uace_results, uce_results, principals):
 
+        logger.error("A level check passed")
+
         if check_o_level(course_code, uce_results):
+            logger.error("O level check passed")
 
             return True
 

@@ -9,7 +9,7 @@ class AppError(Exception):
     def __str__(self):
 
         if self.message:
-            return 'Logical Error :\n {0} '.format(self.message)
+            return 'Logical Error :{0} '.format(self.message)
         else:
             return 'A logical error has occurred\n'
 

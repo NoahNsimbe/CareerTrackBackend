@@ -51,9 +51,6 @@ class CareersSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
-
 class CoursesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Careers

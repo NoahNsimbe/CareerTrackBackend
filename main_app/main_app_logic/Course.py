@@ -64,7 +64,7 @@ def with_results(career, uace_results, uce_results, admission_type, gender):
                     # check whether user meets a and o level constraints on the course
                     if check_constraints(course_code, uace_results, uce_results, subjects):
 
-                        if check_points(course_code, uace_results,uce_results,uace_results, admission_type, gender):
+                        if check_points(course_code, uace_results, uce_results, subjects, admission_type, gender):
                             recommended_codes.append(course_code)
                         else:
                             non_recommended_codes.append({course_code: "Your computed points are less the the "
@@ -77,9 +77,9 @@ def with_results(career, uace_results, uce_results, admission_type, gender):
                     non_recommended_codes.append({course_code: "You are missing an essential, relevant "
                                                                "or desirable subject required for the course"})
 
-            except Exception as exception:
+            except AppError as exception:
 
-                logger.error("Exception Has occurred : \n {}".format(exception))
+                logger.error("Exception Has occurred: \n {}".format(exception))
 
                 errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
 

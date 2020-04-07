@@ -137,10 +137,10 @@ class OLevelConstraints(models.Model):
 
 
 class CutOffPoints(models.Model):
-    PRIVATE = "Private"
-    GOVT = "Government"
+    PRIVATE = "PRIVATE"
+    GOVT = "PUBLIC"
 
-    ADMISSION_TYPE = [(PRIVATE, "Private"), (GOVT, "Government")]
+    ADMISSION_TYPE = [(PRIVATE, "Private"), (GOVT, "Public")]
 
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
     year = models.PositiveSmallIntegerField(default=datetime.now().year - 1)

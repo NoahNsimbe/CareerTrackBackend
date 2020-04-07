@@ -221,7 +221,6 @@ def check_subject(course_code, uace_results):
             essential = list()
             relevant = list()
             desirable = list()
-            all_desirable = list()
 
             for subject in course_subjects:
 
@@ -231,11 +230,8 @@ def check_subject(course_code, uace_results):
                 elif str(subject["category"]).upper() == "RELEVANT":
                     relevant.append(subject['subject'])
 
-                elif str(subject["category"]).upper() == "DESIRABLE" and not subject["general_subject"]:
-                    if not subject["general_subject"]:
-                        desirable.append(subject['subject'])
-
-                    all_desirable.append(subject['subject'])
+                elif str(subject["category"]).upper() == "DESIRABLE":
+                    desirable.append(subject['subject'])
 
                 else:
                     pass
@@ -252,7 +248,7 @@ def check_subject(course_code, uace_results):
         else:
             raise DatabaseError("Doesn't have constraints")
 
-    except (AttributeError, KeyError, TypeError, ValueError, DatabaseError) as errors:
+    except Exception as errors:
         error = """
         course '{}' has errors with either its essential, relevant or desirable subjects
         Error Details : 
@@ -277,7 +273,7 @@ def check_subject(course_code, uace_results):
     if desirable_check:
         logger.error("has desirable")
 
-    db_subjects = dict({"essential": essential, "relevant": relevant, "desirable": all_desirable})
+    db_subjects = dict({"essential": essential, "relevant": relevant, "desirable": desirable})
 
     if essential_check and relevant_check and desirable_check:
         return True, db_subjects

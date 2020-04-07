@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Careers, Courses, CareerCourses, CourseConstraints, ALevelConstraints, CourseSubjects, \
-    OLevelConstraints
+    OLevelConstraints, CutOffPoints
 
 
 @admin.register(Careers)
@@ -8,6 +8,14 @@ class CareersAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     ordering = ['name']
     search_fields = ('name', 'description')
+
+
+@admin.register(CutOffPoints)
+class CutOffPointsAdmin(admin.ModelAdmin):
+    list_display = ('course', 'year', 'type', 'points')
+    ordering = ['year']
+    search_fields = ('course', 'year')
+    autocomplete_fields = ['course']
 
 
 @admin.register(Courses)

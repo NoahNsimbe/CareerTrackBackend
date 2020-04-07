@@ -52,13 +52,16 @@ def course_recommendation(request):
 
     career = str(career).strip()
 
-    if (admission_type is None) and (uace_results is None) and (uce_results is None):
+    if (admission_type is None) and (uace_results is None) and (uce_results is None) and (gender is None):
         success, results, errors = without_results(career)
 
     elif admission_type is None:
         return Response({
-            'Message': "Please provide an admission type, private or public admission are the available options"
+            'Message': "Please provide an admission type, private and public admission are the available options"
         }, status.HTTP_400_BAD_REQUEST)
+
+    elif gender is None:
+        return Response({'Message': "Please specify your gender"}, status.HTTP_400_BAD_REQUEST)
 
     elif uace_results is None:
         return Response({'Message': "Please provide your uace results"}, status.HTTP_400_BAD_REQUEST)
