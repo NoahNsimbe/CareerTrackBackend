@@ -1,17 +1,6 @@
 from rest_framework import serializers
-from .models import Courses, CourseConstraints, CareerCourses, Careers
-
-
-class CourseSubjectsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Courses
-        fields = ['essential', 'relevant', 'desirable', 'description', 'name']
-
-
-class CourseConstraintsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CourseConstraints
-        fields = ['no_of_essential', 'no_of_relevant']
+from .models import Courses, CourseConstraints, CareerCourses, Careers, CourseSubjects, ALevelConstraints, \
+    OLevelConstraints, CutOffPoints
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -20,9 +9,39 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CourseConstraintsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseConstraints
+        fields = '__all__'
+
+
 class CareerCoursesSerializer(serializers.ModelSerializer):
     class Meta:
         model = CareerCourses
+        fields = '__all__'
+
+
+class ALevelConstraintSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ALevelConstraints
+        fields = '__all__'
+
+
+class OLevelConstraintSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OLevelConstraints
+        fields = '__all__'
+
+
+class CourseSubjectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseSubjects
+        fields = '__all__'
+
+
+class CutOffPointsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CutOffPoints
         fields = '__all__'
 
 

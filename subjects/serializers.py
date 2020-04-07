@@ -12,6 +12,3 @@ class UceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UceSubjects
         fields = '__all__'
-
-
-
