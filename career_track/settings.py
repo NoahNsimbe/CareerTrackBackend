@@ -21,13 +21,67 @@ def settings_path(file):
     return os.path.join(BASE_DIR, app_name, file)
 
 
+def make_secret_key():
+    from django.utils.crypto import get_random_string
+    return get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
+
+
 if os.path.exists(os.path.join(BASE_DIR, app_name, "settings.json")):
     settings = json.load(open(settings_path("settings.json")))
 else:
-    raise Exception("Settings not configured")
-    # def make_secret_key():
-    #     from django.utils.crypto import get_random_string
-    #     return get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
+    # raise Exception("Settings not configured")
+
+    settings = {
+            "secret-key": make_secret_key(),
+
+            "debug": True,
+
+            "host": "127.0.0.1:8000",
+
+            "https": False,
+
+            "admins": [],
+
+            "email": {
+                "backend": "django.core.mail.backends.smtp.EmailBackend",
+                "host": "",
+                "port": 587,
+                "user": "",
+                "password": "",
+                "tls": True
+            },
+
+
+            "site id": 1,
+
+            "main_db": {
+                "engine": "django.db.backends.postgresql",
+                "name": "",
+                "host": "",
+                "port": "",
+                "user": "",
+                "password": ""
+            },
+
+            "cors": {
+                "origin_allow_all": True,
+                "origin_whitelist": [],
+                "allow_methods": [],
+                "allow_headers": []
+            },
+
+            "installed_apps": ["main_app.apps.MainAppConfig", "corsheaders", "rest_framework"],
+
+            "jwt_settings": {
+                "access_token_lifetime": 5,
+                "refresh_token_lifetime": 1,
+                "sliding_token_lifetime": 5,
+                "sliding_refresh_token_lifetime": 1,
+                "rotate_refresh_tokens": False,
+                "blacklist_after_rotation": True
+
+            }
+    }
 
 
 # Quick-start development settings - unsuitable for production
