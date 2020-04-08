@@ -1,9 +1,10 @@
 from app_logic.AppExceptions import AppError, DatabaseError
-from subjects.models import UaceSubjects
-from subjects.serializers import UaceSerializer
+# from .models import UaceSubjects
+# from subjects.serializers import UaceSerializer
 from .ConstraintCheck import check_o_level
-from main_app.models import CareerCourses, CourseConstraints, CourseSubjects
-from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer
+from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
+from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer\
+    , UaceSerializer
 import itertools
 from .Combine import combine_subjects
 import logging
