@@ -55,7 +55,7 @@ else:
             "site id": 1,
 
             "main_db": {
-                "engine": "django.db.backends.postgresql",
+                "engine": "",
                 "name": "",
                 "host": "",
                 "port": "",
@@ -187,13 +187,18 @@ if settings.get("email"):
 
 
 DATABASES = {
+#     'default': {
+#         'ENGINE': settings['main_db']['engine'],
+#         'NAME': settings['main_db']['name'],
+#         'HOST': settings['main_db']['host'],
+#         'PORT': settings['main_db']['port'],
+#         'USER': settings['main_db']['user'],
+#         'PASSWORD': settings['main_db']['password'],
+#     }
+    
     'default': {
-        'ENGINE': settings['main_db']['engine'],
-        'NAME': settings['main_db']['name'],
-        'HOST': settings['main_db']['host'],
-        'PORT': settings['main_db']['port'],
-        'USER': settings['main_db']['user'],
-        'PASSWORD': settings['main_db']['password'],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
