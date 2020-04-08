@@ -56,11 +56,11 @@ else:
 
             "main_db": {
                 "engine": "django.db.backends.postgresql",
-                "name": "",
-                "host": "",
-                "port": "",
-                "user": "",
-                "password": ""
+                "name": "career_track",
+                "host": "127.0.0.1",
+                "port": "5432",
+                "user": "career_track",
+                "password": "CareerTrack"
             },
 
             "cors": {
