@@ -21,6 +21,7 @@
 db.sqlite3
 media
 
+
 # Environments
 .env
 .venv

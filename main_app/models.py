@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.db import models
-from subjects.models import UceSubjects, UaceSubjects
+# from subjects.models import UceSubjects, UaceSubjects
 
 
 class Careers(models.Model):
@@ -29,6 +29,44 @@ class Courses(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = 'Courses and their details'
+
+
+class UaceSubjects(models.Model):
+    SCIENCE = 'Science'
+    ART = 'Art'
+    SUBSIDIARY = 'Subsidiary'
+    NONE = 'Category'
+
+    SUBJECT_CATEGORIES = [
+        (SCIENCE, 'Science Subject'),
+        (ART, 'Art Subject'),
+        (SUBSIDIARY, 'Subsidiary Subject'),
+        (NONE, 'Category placeholder'),
+    ]
+
+    code = models.CharField(max_length=255, primary_key=True, default="Subject code begins with 'UACE_'")
+    name = models.CharField(max_length=255)
+    category = models.CharField(max_length=15, choices=SUBJECT_CATEGORIES, default=ART)
+    language_subject = models.BooleanField(default=False)
+    general_subject = models.BooleanField(default=False)
+    abbr = models.CharField(max_length=255, default='XX')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'Uace Subjects'
+
+
+class UceSubjects(models.Model):
+    code = models.CharField(max_length=255, primary_key=True, default="Subject code begin with UCE_")
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'Uce Subjects'
 
 
 class CareerCourses(models.Model):
@@ -85,7 +123,7 @@ class CourseConstraints(models.Model):
         choices=COURSE_DESIRABLE_CHOICES,
         default=ONE_DESIRABLE,
     )
-    subject_constraint = models.BooleanField(default=False)
+    # subject_constraint = models.BooleanField(default=False)
     a_level_constraint = models.BooleanField(default=False)
     o_level_constraint = models.BooleanField(default=False)
     all_subjects = models.BooleanField(default=False)
@@ -146,3 +184,6 @@ class CutOffPoints(models.Model):
     year = models.PositiveSmallIntegerField(default=datetime.now().year - 1)
     points = models.FloatField(default=0.0)
     type = models.CharField(max_length=15, choices=ADMISSION_TYPE, default=PRIVATE)
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'Cut-off points'

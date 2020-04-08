@@ -55,8 +55,6 @@ def check_points(course, uace_results, uce_results, subjects, admission_type, ge
                 points = points + (uace_results[subject] * 1)
                 del uace_results[subject]
 
-    logger.error("Subsidiary : {}".format(points))
-
     for subject in essentials:
         if subject in uace_results:
             if str(uace_results[subject]).upper() in principal_pass:
@@ -65,15 +63,11 @@ def check_points(course, uace_results, uce_results, subjects, admission_type, ge
                     if count >= 3 else points + (grade_mappings[uace_results[subject]] * 3)
                 del uace_results[subject]
 
-    logger.error("Essential : {}".format(points))
-
     for subject in relevant:
         if subject in uace_results:
             if str(uace_results[subject]).upper() in principal_pass:
                 points = points + (grade_mappings[uace_results[subject]] * 2)
                 del uace_results[subject]
-
-    logger.error("Relevant : {}".format(points))
 
     for grade in uce_results.values():
         if grade in range(1, 3):
@@ -85,21 +79,16 @@ def check_points(course, uace_results, uce_results, subjects, admission_type, ge
         else:
             pass
 
-    logger.error("Uce : {}".format(points))
-
     if str(gender).upper() == "FEMALE":
         points = points + 1.5
 
     points = round(points, 1)
 
     if str(admission_type).upper() == "PRIVATE":
-        logger.error("Points check passed")
         return True if points >= private_points else False
     elif str(admission_type).upper() == "GOVERNMENT" or str(admission_type).upper() == "PUBLIC":
-        logger.error("Points check passed")
         return True if points >= govt_points else False
     else:
-        logger.error("Points check passed")
         return True
 
 
