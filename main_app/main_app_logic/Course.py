@@ -85,10 +85,6 @@ def with_results(career, uace_results, uce_results, admission_type, gender):
 
                 return False, None, errors
 
-        # compute cut-off points, sort and return recommendations
-        # recommended_courses, non_recommended_courses = check_points(recommended_codes, non_recommended_codes,
-        #                                                             uace_results, admission_type)
-
         recommended_courses, non_recommended_courses = format_output(recommended_codes, non_recommended_codes)
 
         recommendations = dict()

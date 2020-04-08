@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Careers, Courses, CareerCourses, CourseConstraints, ALevelConstraints, CourseSubjects, \
-    OLevelConstraints, CutOffPoints
+    OLevelConstraints, CutOffPoints, UaceSubjects, UceSubjects
 
 
 @admin.register(Careers)
@@ -68,6 +68,19 @@ class OLevelConstraintsAdmin(admin.ModelAdmin):
     #
     # active.boolean = True
 
+
+@admin.register(UaceSubjects)
+class UaceSubjectsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'abbr', 'language_subject')
+    ordering = ['name']
+    search_fields = ['code', 'name']
+
+
+@admin.register(UceSubjects)
+class UceSubjectsAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    ordering = ['name']
+    search_fields = ['code', 'name']
 
 # models = [Courses, CareerCourses, CourseConstraints, CourseSubjects, ALevelConstraints, OLevelConstraints]
 # admin.site.register(models)

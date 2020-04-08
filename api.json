@@ -1,197 +1,558 @@
 {
-    "registration": {
-        "username": "noah",
-        "password":"noah",
-        "email": "nsimbenoah@gmail.com",
-        "first_name":"noah",
-        "last_name": "nsimbe"
-    },
-
-    "with many a level compulsory subjects": {
-        "career": "Doctor",
-        "admission_type":"private",
-        "uace_results":{
-            "UACE_MATH": 6,
-            "UACE_CHEM": 6,
-            "UACE_BIO": 6,
-            "UACE_GP" : 1,
-            "UACE_SUB_COMP": 1
+    "combination": {
+        "without": {
+            "no_career": {"jj": "Doctor"},
+            "available": {"career": "Doctor"},
+            "unavailable": {"career": "XX"},
+            "empty": {"career": ""}
         },
-        "uce_results":{
-            "maths": 4,
-            "chemistry": 5,
-            "biology": 6,
-            "comp": 1,
-            "hist": 4,
-            "geog": 5,
-            "eng": 6,
-            "GP" : 3
+
+        "with": {
+            "o_level_fail": {
+                "career": "Lawyer",
+                "uce_results":{
+                "UCE_MATH": 1,
+                "UCE_CHEM": 1,
+                "UCE_BIO": 1,
+                "UCE_GEOG": 1,
+                "UCE_HIST": 9,
+                "UCE_ENG": 9,
+                "UCE_LIT": 9,
+                "UCE_IRE" : 9,
+                "UCE_FEN": 9,
+                "UCE_CRE" : 9
+                }
+            },
+            "o_level_pass": {
+                "career": "Lawyer",
+                "uce_results":{
+                "UCE_MATH": 1,
+                "UCE_CHEM": 1,
+                "UCE_BIO": 1,
+                "UCE_GEOG": 1,
+                "UCE_HIST": 1,
+                "UCE_ENG": 9,
+                "UCE_LIT": 9,
+                "UCE_IRE" : 9,
+                "UCE_FEN": 9,
+                "UCE_CRE" : 9
+                }
+            },
+
+            "one_mandatory_pass": {
+                "career": "Food Scientist",
+                "uce_results":{
+                "UCE_MATH": 1,
+                "UCE_CHEM": 1,
+                "UCE_BIO": 1,
+                "UCE_GEOG": 1,
+                "UCE_HIST": 1,
+                "UCE_ENG": 9,
+                "UCE_LIT": 9,
+                "UCE_IRE" : 9,
+                "UCE_FEN": 9,
+                "UCE_CRE" : 9
+                }
+            },
+            "one_mandatory_fail": {
+                "career": "Food Scientist",
+                "uce_results":{
+                "UCE_MATH": 9,
+                "UCE_CHEM": 1,
+                "UCE_BIO": 1,
+                "UCE_GEOG": 1,
+                "UCE_HIST": 1,
+                "UCE_ENG": 1,
+                "UCE_LIT": 1,
+                "UCE_IRE" : 1,
+                "UCE_FEN": 1,
+                "UCE_CRE" : 1
+                }
+            },
+
+            "two_mandatory_pass": {
+                "career": "Human Nutritionist",
+                "uce_results":{
+                "UCE_MATH": 8,
+                "UCE_CHEM": 1,
+                "UCE_BIO": 1,
+                "UCE_GEOG": 1,
+                "UCE_HIST": 1,
+                "UCE_ENG": 8,
+                "UCE_LIT": 1,
+                "UCE_IRE" : 1,
+                "UCE_FEN": 1,
+                "UCE_CRE" : 1
+                }
+            },
+            "two_mandatory_fail": {
+                "career": "Human Nutritionist",
+                "uce_results":{
+                "UCE_MATH": 9,
+                "UCE_CHEM": 1,
+                "UCE_BIO": 1,
+                "UCE_GEOG": 1,
+                "UCE_HIST": 9,
+                "UCE_ENG": 8,
+                "UCE_LIT": 1,
+                "UCE_IRE" : 1,
+                "UCE_FEN": 1,
+                "UCE_CRE" : 1
+                }
+            }
         }
     },
 
-    "with both a and o level minimum grades": {
-        "career": "Doctor",
-        "admission_type":"private",
-        "uace_results":{
-            "UACE_MATH": 6,
-            "UACE_CHEM": 6,
-            "UACE_BIO": 6,
-            "UACE_GP" : 1,
-            "UACE_SUB_COMP": 1
+    "course": {
+        "without": {
+            "no_career": {"jj": "Doctor"},
+            "available": {"career": "Doctor"},
+            "unavailable": {"career": "XX"},
+            "empty": {"career": ""}
         },
-        "uce_results":{
-            "maths": 4,
-            "chemistry": 5,
-            "biology": 6,
-            "comp": 1,
-            "hist": 4,
-            "geog": 5,
-            "eng": 6,
-            "GP" : 3
-        }
-    },
+        "with": {
+            "a_level_pass": {
+                "career": "Doctor",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "a_level_fail": {
+                "career": "Doctor",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "F",
+                    "UACE_BIO": "O",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-    "with only two a level compulsory subjects": {
-        "career": "Doctor",
-        "admission_type":"private",
-        "uace_results":{
-            "UACE_MATH": 6,
-            "UACE_CHEM": 6,
-            "UACE_BIO": 6,
-            "UACE_GP" : 1,
-            "UACE_SUB_COMP": 1
-        },
-        "uce_results":{
-            "maths": 4,
-            "chemistry": 5,
-            "biology": 6,
-            "comp": 1,
-            "hist": 4,
-            "geog": 5,
-            "eng": 6,
-            "GP" : 3
-        }
-    },
+            "one_mandatory_pass": {
+                "career": "Statistician",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_ECON": "A",
+                    "UACE_PHY": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "one_mandatory_fail": {
+                "career": "Statistician",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_PHY": "A",
+                    "UACE_ECON": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-    "with only one a level compulsory subject": {
-        "career": "Doctor",
-        "admission_type":"private",
-        "uace_results":{
-            "UACE_MATH": 6,
-            "UACE_CHEM": 6,
-            "UACE_BIO": 6,
-            "UACE_GP" : 1,
-            "UACE_SUB_COMP": 1
-        },
-        "uce_results":{
-            "maths": 4,
-            "chemistry": 5,
-            "biology": 6,
-            "comp": 1,
-            "hist": 4,
-            "geog": 5,
-            "eng": 6,
-            "GP" : 3
-        }
-    },
+            "two_mandatory_pass": {
+                "career": "Agricultural Engineer",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_PHY": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "two_mandatory_fail": {
+                "career": "Agricultural Engineer",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-    "accepts all a level subjects": {
-        "career": "Doctor",
-        "admission_type":"private",
-        "uace_results":{
-            "UACE_MATH": 6,
-            "UACE_CHEM": 6,
-            "UACE_BIO": 6,
-            "UACE_GP" : 1,
-            "UACE_SUB_COMP": 1
-        },
-        "uce_results":{
-            "maths": 4,
-            "chemistry": 5,
-            "biology": 6,
-            "comp": 1,
-            "hist": 4,
-            "geog": 5,
-            "eng": 6,
-            "GP" : 3
-        }
-    },
+            "one_or_two_pass": {
+                "career": "Business Administrator",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_ECON": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "one_or_two_fail": {
+                "career": "Business Administrator",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_PHY": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-    "with only o level maximum": {
-        "career": "Doctor",
-        "gender": "Female",
-        "admission_type":"private",
-        "uace_results":{
-            "UACE_MATH": "A",
-            "UACE_CHEM": "A",
-            "UACE_BIO": "A",
-            "UACE_GP" : 1,
-            "UACE_SUB_COMP": 1
-        },
-        "uce_results":{
-            "UCE_MATH": 1,
-            "UCE_CHEM": 2,
-            "UCE_BIO": 2,
-            "UCE_GEOG": 1,
-            "UCE_HIST": 1,
-            "UCE_ENG": 1,
-            "UCE_LIT": 1,
-            "UCE_IRE" : 1,
-            "UCE_FEN": 2,
-            "UCE_CRE" : 1
-        }
-    },
+            "a_level_constraint_pass": {
+                "career": "Development Economist",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_ECON": "A",
+                    "UACE_MATH": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "a_level_constraint_fail": {
+                "career": "Development Economist",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_ECON": "A",
+                    "UACE_MATH": "O",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 7,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-    "career": "Doctor",
+            "desirable_pass": {
+                "career": " Statistician",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "desirable_fail": {
+                "career": "Statistician",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_MATH": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-    "uce one constraint": {
-        "career": "Agriculture Engineer",
-         "uce_results":{
-            "UCE_MATH": 4,
-            "UCE_CHEM": 5,
-            "UCE_BIO": 6,
-            "UCE_GEOG": 1,
-            "UCE_HIST": 4,
-            "UCE_ENG": 5,
-            "UCE_LIT": 6,
-            "UCE_IRE" : 3,
-            "UCE_FEN": 6,
-            "UCE_CRE" : 3
-        }
-    },
+            "languages_pass": {
+                "career": "Education in Arts",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_FRE": "A",
+                    "UACE_SPA": "A",
+                    "UACE_GER": "A",
+                    "UACE_GP" : 1,
+                    "UACE_MATH": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "languages_fail": {
+                "career": "Education in Arts",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-     "uce two constraints": {
-        "career": "Nutritionist",
-         "uce_results":{
-            "UCE_MATH": 4,
-            "UCE_CHEM": 5,
-            "UCE_BIO": 6,
-            "UCE_GEOG": 1,
-            "UCE_HIST": 4,
-            "UCE_ENG": 5,
-            "UCE_LIT": 6,
-            "UCE_IRE" : 3,
-            "UCE_FEN": 6,
-            "UCE_CRE" : 3
-        }
-    },
+            "mandatory_many_pass": {
+                "career": "Medical Radiographer",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "mandatory_many_fail": {
+                "career": "Medical Radiographer",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_HIST": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_MATH": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
 
-    "uce all subjects": {
-        "career": "Doctor",
-         "uce_results":{
-            "UCE_MATH": 4,
-            "UCE_CHEM": 5,
-            "UCE_BIO": 6,
-            "UCE_GEOG": 1,
-            "UCE_HIST": 4,
-            "UCE_ENG": 5,
-            "UCE_LIT": 6,
-            "UCE_IRE" : 3,
-            "UCE_FEN": 6,
-            "UCE_CRE" : 3
+            "all_pass": {
+                "career": "Librarian",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            },
+            "all_fail": {
+                "career": "Librarian",
+                "gender": "Female",
+                "admission_type":"private",
+                "uace_results":{
+                    "UACE_MATH": "A",
+                    "UACE_CHEM": "A",
+                    "UACE_BIO": "A",
+                    "UACE_GP" : 1,
+                    "UACE_SUB_COMP": 1
+                },
+                "uce_results":{
+                    "UCE_MATH": 1,
+                    "UCE_CHEM": 2,
+                    "UCE_BIO": 2,
+                    "UCE_GEOG": 1,
+                    "UCE_HIST": 1,
+                    "UCE_ENG": 1,
+                    "UCE_LIT": 1,
+                    "UCE_IRE" : 1,
+                    "UCE_FEN": 2,
+                    "UCE_CRE" : 1
+                }
+            }
         }
     }
-
 }
 
 

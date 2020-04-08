@@ -77,7 +77,10 @@ MIDDLEWARE = [
 ]
 
 
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
+
 REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],

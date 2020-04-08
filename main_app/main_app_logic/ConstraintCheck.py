@@ -87,10 +87,7 @@ def check_constraints(course_code, uace_results, uce_results, subjects):
 
     if check_a_level(course_code, uace_results, uce_results, principals):
 
-        logger.error("A level check passed")
-
         if check_o_level(course_code, uce_results):
-            logger.error("O level check passed")
 
             return True
 
