@@ -184,3 +184,6 @@ class CutOffPoints(models.Model):
     year = models.PositiveSmallIntegerField(default=datetime.now().year - 1)
     points = models.FloatField(default=0.0)
     type = models.CharField(max_length=15, choices=ADMISSION_TYPE, default=PRIVATE)
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'Cut-off points'

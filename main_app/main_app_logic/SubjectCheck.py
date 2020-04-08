@@ -1,4 +1,5 @@
 from app_logic.AppExceptions import AppError, DatabaseError
+from main_app.main_app_logic.Combination import get_all
 from main_app.models import CourseSubjects, CourseConstraints
 from main_app.serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
 
@@ -54,24 +55,6 @@ def check_desirable(course, state, subjects, results):
 
 def check_relevant(course, number, subjects, results, essentials):
 
-    # db_subjects = CourseSubjectsSerializer(
-    #     CourseSubjects.objects.filter(category="relevant", course=course), many=True
-    # ).data
-    #
-    # if not db_subjects:
-    #     error = """course '{}' has errors with its relevant subjects
-    #                Error Details :
-    #                Doesnt have relevant subjects""".format(course)
-    #     raise AppError(error)
-    #
-    # try:
-    #     subjects = [x['subject'] for x in db_subjects]
-    # except KeyError as exception:
-    #     error = """There was an error while checking subjects
-    #                Error Details
-    #                {} : Table => CourseSubjects""".format(exception)
-    #     raise AppError(error)
-
     if number == 3:
         if check_essentials(course, 2, essentials, results, False):
             number = 1
@@ -80,27 +63,13 @@ def check_relevant(course, number, subjects, results, essentials):
 
     if number == 1:
 
-        # if len(subjects) > 1:
-        #     error = """course '{}' has errors with its relevant subjects
-        #                Error Details :
-        #                Expected one relevant subject, found more""".format(course)
-        #     raise AppError(error)
-
         for subject in subjects:
             if subject in results:
                 return True
 
         return False
 
-        # return True if subjects[0] in results else False
-
     elif number == 2:
-
-        # if len(subjects) > 2:
-        #     error = """course '{}' has errors with its relevant subjects
-        #                Error Details :
-        #                Expected two relevant subject, found more : Table => CourseSubjects""".format(course)
-        #     raise AppError(error)
 
         if len(subjects) < 2:
             error = """course '{}' has errors with its relevant subjects
@@ -262,16 +231,12 @@ def check_subject(course_code, uace_results):
         else:
             essential_check = relevant_check = desirable_check = True
     else:
+        relevant = get_all(relevant)
+        essential = get_all(essential)
+
         essential_check = check_essentials(course_code, no_of_essentials, essential, uace_results, a_level_constraint)
         relevant_check = check_relevant(course_code, no_of_relevant, relevant, uace_results, essential)
         desirable_check = check_desirable(course_code, desirable_state, desirable, uace_results)
-
-    if essential_check:
-        logger.error("has essentials")
-    if relevant_check:
-        logger.error("has relevant")
-    if desirable_check:
-        logger.error("has desirable")
 
     db_subjects = dict({"essential": essential, "relevant": relevant, "desirable": desirable})
 

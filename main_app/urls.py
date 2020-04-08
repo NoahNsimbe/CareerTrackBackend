@@ -8,9 +8,3 @@ urlpatterns = [
     path("uace_subjects/", uace_subjects, name="uace"),
     path("uce_subjects/", uce_subjects, name="uce"),
 ]
-
-
-
-#     path("careers/", CareersClass.as_view(), name="CareersClass"),
-# path("signup/", signup, name="signup"),
-# path("testing/", testing, name="testing"),

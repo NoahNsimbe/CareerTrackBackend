@@ -1,10 +1,8 @@
 from app_logic.AppExceptions import AppError, DatabaseError
-# from .models import UaceSubjects
-# from subjects.serializers import UaceSerializer
 from .ConstraintCheck import check_o_level
 from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
-from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer\
-    , UaceSerializer
+from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer,\
+    UaceSerializer
 import itertools
 from .Combine import combine_subjects
 import logging
@@ -278,43 +276,3 @@ def make_output(results):
         raise AppError(error)
 
     return recommendation
-
-
-# def combination_with_results(career, uce_results):
-#
-#     career_courses = CareerCoursesSerializer(CareerCourses.objects.filter(career=career), many=True).data
-#
-#     if career_courses:
-#
-#         combinations = []
-#
-#         course_list = [x["course"] for x in career_courses]
-#
-#         for course_code in course_list:
-#
-#             try:
-#
-#                 if check_o_level(course_code, uce_results):
-#
-#                     combination = generate_combination(course_code)
-#
-#                     for x in combination:
-#
-#                         combinations.append(x)
-#
-#             except (AppError, KeyError, AttributeError) as exception:
-#
-#                 logger.error("Exception Has occurred : \n {}".format(exception))
-#
-#                 errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
-#
-#                 return False, None, errors
-#
-#         output = make_output(combinations)
-#
-#         return True, output, None
-#
-#     else:
-#         errors = "Sorry, we haven't yet updated our system to cater for {}".format(career)
-#         logger.error(errors)
-#         return False, None, errors
