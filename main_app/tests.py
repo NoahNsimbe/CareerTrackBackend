@@ -78,8 +78,8 @@ class CourseTestCase(APITestCase):
         one_or_two_pass = self.client.post(self.url, self.with_data["one_or_two_pass"], format='json')
         one_or_two_fail = self.client.post(self.url, self.with_data["one_or_two_fail"], format='json')
 
-        a_level_constraint_pass = self.client.post(self.url, self.with_data["a_level_constraint_pass"], format='json')
-        a_level_constraint_fail = self.client.post(self.url, self.with_data["a_level_constraint_fail"], format='json')
+#         a_level_constraint_pass = self.client.post(self.url, self.with_data["a_level_constraint_pass"], format='json')
+#         a_level_constraint_fail = self.client.post(self.url, self.with_data["a_level_constraint_fail"], format='json')
         desirable_pass = self.client.post(self.url, self.with_data["desirable_pass"], format='json')
         desirable_fail = self.client.post(self.url, self.with_data["desirable_fail"], format='json')
         languages_pass = self.client.post(self.url, self.with_data["languages_pass"], format='json')
@@ -101,8 +101,8 @@ class CourseTestCase(APITestCase):
         self.assertEqual(one_or_two_pass.status_code, status.HTTP_200_OK)
         self.assertEqual(one_or_two_fail.status_code, status.HTTP_200_OK)
 
-        self.assertEqual(a_level_constraint_pass.status_code, status.HTTP_200_OK)
-        self.assertEqual(a_level_constraint_fail.status_code, status.HTTP_200_OK)
+#         self.assertEqual(a_level_constraint_pass.status_code, status.HTTP_200_OK)
+#         self.assertEqual(a_level_constraint_fail.status_code, status.HTTP_200_OK)
 
         self.assertEqual(desirable_pass.status_code, status.HTTP_200_OK)
         self.assertEqual(desirable_fail.status_code, status.HTTP_200_OK)
