@@ -8,91 +8,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import json
 import os
-from datetime import timedelta
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 app_name = os.path.basename(os.path.dirname(__file__))
+load_dotenv()
 
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-def settings_path(file):
-    return os.path.join(BASE_DIR, app_name, file)
+DEBUG = True
+ALLOWED_HOSTS = [os.getenv("HOST").split(':')[0]]
+ADMINS = os.getenv("ADMINS")
+# SITE_ID = os.getenv("SITE_ID")
 
-
-def make_secret_key():
-    from django.utils.crypto import get_random_string
-    return get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
-
-
-if os.path.exists(os.path.join(BASE_DIR, app_name, "settings.json")):
-    settings = json.load(open(settings_path("settings.json")))
-else:
-    # raise Exception("Settings not configured")
-
-    settings = {
-            "secret-key": make_secret_key(),
-
-            "debug": True,
-
-            "host": "127.0.0.1:8000",
-
-            "https": False,
-
-            "admins": [],
-
-            "email": {
-                "backend": "django.core.mail.backends.smtp.EmailBackend",
-                "host": "",
-                "port": 587,
-                "user": "",
-                "password": "",
-                "tls": True
-            },
-
-
-            "site id": 1,
-
-            "main_db": {
-                "engine": "",
-                "name": "",
-                "host": "",
-                "port": "",
-                "user": "",
-                "password": ""
-            },
-
-            "cors": {
-                "origin_allow_all": True,
-                "origin_whitelist": [],
-                "allow_methods": [],
-                "allow_headers": []
-            },
-
-            "installed_apps": ["main_app.apps.MainAppConfig", "corsheaders", "rest_framework"],
-
-            "jwt_settings": {
-                "access_token_lifetime": 5,
-                "refresh_token_lifetime": 1,
-                "sliding_token_lifetime": 5,
-                "sliding_refresh_token_lifetime": 1,
-                "rotate_refresh_tokens": False,
-                "blacklist_after_rotation": True
-
-            }
-    }
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-SECRET_KEY = settings["secret-key"]
-
-DEBUG = settings["debug"]
-ALLOWED_HOSTS = [settings["host"].split(':')[0]]
-ADMINS = settings.get("admins", [])
-# SITE_ID = settings["site id"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -101,22 +31,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'corsheaders',
+
+    'rest_framework',
+
+    'main_app.apps.MainAppConfig'
 ]
-
-
-for app in settings["installed_apps"]:
-    INSTALLED_APPS.append(app)
-
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=settings["jwt_settings"]["access_token_lifetime"]),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=settings["jwt_settings"]["refresh_token_lifetime"]),
-    'ROTATE_REFRESH_TOKENS': settings["jwt_settings"]["rotate_refresh_tokens"],
-    'BLACKLIST_AFTER_ROTATION': settings["jwt_settings"]["blacklist_after_rotation"],
-    'SIGNING_KEY': settings["secret-key"],
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=settings["jwt_settings"]["sliding_token_lifetime"]),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=settings["jwt_settings"]["sliding_refresh_token_lifetime"]),
-}
 
 
 MIDDLEWARE = [
@@ -133,6 +54,7 @@ MIDDLEWARE = [
 
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 
+
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -142,12 +64,6 @@ REST_FRAMEWORK = {
 
 
 ROOT_URLCONF = app_name + '.urls'
-
-
-CORS_ORIGIN_ALLOW_ALL = settings["cors"]["origin_allow_all"]
-CORS_ORIGIN_WHITELIST = settings["cors"]["origin_whitelist"]
-CORS_ALLOW_METHODS = settings["cors"]["allow_methods"]
-CORS_ALLOW_HEADERS = settings["cors"]["allow_headers"]
 
 
 TEMPLATES = [
@@ -169,37 +85,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = app_name + '.wsgi.application'
 
-
-if settings["https"]:
-    SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_SECURE = True
-
-
-if settings.get("email"):
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = settings["email"]["host"]
-    EMAIL_PORT = settings["email"]["port"]
-    EMAIL_HOST_USER = settings["email"]["user"]
-    EMAIL_HOST_PASSWORD = settings["email"]["password"]
-    EMAIL_USE_TLS = settings["email"]["tls"]
-
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
 
 DATABASES = {
-#     'default': {
-#         'ENGINE': settings['main_db']['engine'],
-#         'NAME': settings['main_db']['name'],
-#         'HOST': settings['main_db']['host'],
-#         'PORT': settings['main_db']['port'],
-#         'USER': settings['main_db']['user'],
-#         'PASSWORD': settings['main_db']['password'],
-#     }
-    
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.getenv("DB_ENGINE"),
+        'NAME': os.getenv("DB_NAME"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }
 
 

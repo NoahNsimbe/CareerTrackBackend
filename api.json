@@ -2,9 +2,12 @@
     "combination": {
         "without": {
             "no_career": {"jj": "Doctor"},
+            "no_career_ans": {"Message": "Please provide a career"},
             "available": {"career": "Doctor"},
             "unavailable": {"career": "XX"},
-            "empty": {"career": ""}
+            "unavailable_ans": {"Message": "Sorry, we haven't yet updated our system to cater for 'XX'"},
+            "empty": {"career": ""},
+            "empty_ans": {"Message": "Please provide a career"}
         },
 
         "with": {
@@ -23,6 +26,7 @@
                 "UCE_CRE" : 9
                 }
             },
+            "o_level_fail_ans": {},
             "o_level_pass": {
                 "career": "Lawyer",
                 "uce_results":{
@@ -38,7 +42,7 @@
                 "UCE_CRE" : 9
                 }
             },
-
+            "o_level_pass_ans":{},
             "one_mandatory_pass": {
                 "career": "Food Scientist",
                 "uce_results":{
@@ -53,6 +57,32 @@
                 "UCE_FEN": 9,
                 "UCE_CRE" : 9
                 }
+            },
+            "one_mandatory_pass_ans": {
+                "CBA/Sub Math and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Agriculture",
+                    "Subsidiary Mathematics"
+                ],
+                "CBF/Sub Math and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Food and Nutrition",
+                    "Subsidiary Mathematics"
+                ],
+                "CBM/Sub ICT and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Principal Mathematics",
+                    "Subsidiary ICT"
+                ],
+                "CBP/Sub Math and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Physics",
+                    "Subsidiary Mathematics"
+                ]
             },
             "one_mandatory_fail": {
                 "career": "Food Scientist",
@@ -69,7 +99,7 @@
                 "UCE_CRE" : 1
                 }
             },
-
+            "one_mandatory_fail_ans":{},
             "two_mandatory_pass": {
                 "career": "Human Nutritionist",
                 "uce_results":{
@@ -85,6 +115,38 @@
                 "UCE_CRE" : 1
                 }
             },
+            "two_mandatory_pass_ans": {
+                "CBA/Sub Math and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Agriculture",
+                    "Subsidiary Mathematics"
+                ],
+                "CBE/Sub Math and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Economics",
+                    "Subsidiary Mathematics"
+                ],
+                "CBF/Sub Math and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Food and Nutrition",
+                    "Subsidiary Mathematics"
+                ],
+                "CBM/Sub ICT and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Principal Mathematics",
+                    "Subsidiary ICT"
+                ],
+                "CBP/Sub Math and General Paper": [
+                    "Chemistry",
+                    "Biology",
+                    "Physics",
+                    "Subsidiary Mathematics"
+                ]
+            },
             "two_mandatory_fail": {
                 "career": "Human Nutritionist",
                 "uce_results":{
@@ -99,16 +161,20 @@
                 "UCE_FEN": 1,
                 "UCE_CRE" : 1
                 }
-            }
+            },
+            "two_mandatory_fail_ans": {}
         }
     },
 
     "course": {
         "without": {
             "no_career": {"jj": "Doctor"},
+            "no_career_ans": {"Message": "Please provide a career"},
             "available": {"career": "Doctor"},
             "unavailable": {"career": "XX"},
-            "empty": {"career": ""}
+            "unavailable_ans": {"Message": "Sorry, we haven't yet updated our system to cater for 'XX'"},
+            "empty": {"career": ""},
+            "empty_ans": {"Message": "Please provide a career"}
         },
         "with": {
             "a_level_pass": {
@@ -135,6 +201,7 @@
                     "UCE_CRE" : 1
                 }
             },
+
             "a_level_fail": {
                 "career": "Doctor",
                 "gender": "Female",
