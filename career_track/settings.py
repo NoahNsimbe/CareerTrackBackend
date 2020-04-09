@@ -18,10 +18,13 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [os.getenv("HOST").split(':')[0]]
-ADMINS = os.getenv("ADMINS")
-# SITE_ID = os.getenv("SITE_ID")
+# ADMINS = os.getenv("ADMINS")
+# MANAGERS = os.getenv("MANAGERS")
+ADMINS = [("noah","nsimbenoah@gmail.com")]
+MANAGERS = [("noah","nsimbenoah@gmail.com")]
+SITE_ID = os.getenv("SITE_ID")
 
 
 INSTALLED_APPS = [
@@ -49,7 +52,74 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware'
 ]
+
+
+def _require_debug_false(request):
+    from django.conf import settings
+    return not settings.DEBUG
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': _require_debug_false
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            # 'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': {
+                'require_debug_false': {
+                    '()': 'django.utils.log.CallbackFilter',
+                    'callback': _require_debug_false
+                }
+            }
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'myproject.custom': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+            'filters': {
+                'require_debug_false': {
+                    '()': 'django.utils.log.CallbackFilter',
+                    'callback': _require_debug_false
+                }
+            }
+        }
+    }
+}
 
 
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
