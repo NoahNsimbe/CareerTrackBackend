@@ -6,14 +6,14 @@ from .main_app_logic.Combination import get_combination
 from .main_app_logic.Course import without_results, with_results
 from .models import Careers, UceSubjects, UaceSubjects
 from .serializers import CareersSerializer, UceSerializer, UaceSerializer
-
+import json
 
 @api_view(['GET'])
-def get_careers(request):
+def careers(request):
     if request.method == 'GET':
         careers = Careers.objects.all()
         serializer = CareersSerializer(careers, many=True).data
-        data = {"careersList": [x["name"] for x in serializer]}
+        data = json.dumps(dict({"careers": [x["name"] for x in serializer]}))
         return Response(data)
 
 
@@ -21,11 +21,9 @@ def get_careers(request):
 def uce_subjects(request):
     if request.method == 'GET':
         subjects = UceSubjects.objects.all()
-        # subjects = get_object_or_404(UceSubjects)
         serializer = UceSerializer(subjects, many=True).data
-        data = {"subjects": [x["name"] for x in serializer]}
-        # return Response(serializer.data)
-        return JsonResponse(data, safe=False)
+        subjects = json.dumps(dict({"uce_subjects": [dict({x["code"]: x["name"]}) for x in serializer ] }))
+        return Response(subjects)
 
 
 @api_view(['GET'])
@@ -33,10 +31,11 @@ def uace_subjects(request):
     if request.method == 'GET':
         subjects = UaceSubjects.objects.all()
         serializer = UaceSerializer(subjects, many=True).data
-        data = {"compulsory": [x["name"] for x in serializer if x["category"] == "compulsory"],
-                "subsidiaries": [x["name"] for x in serializer if x["category"] == "subsidiaries"],
-                "optionals": [x["name"] for x in serializer if x["category"] == "optionals"]}
-        return JsonResponse(data, safe=False)
+        data = {"Science Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Science"],
+                "Art Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Art"],
+                "Subsidiary Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Subsidiary"]}
+        subjects = json.dumps(dict({"uace_subjects": data}))
+        return Response(subjects)
 
 
 @api_view(['POST'])
@@ -52,6 +51,7 @@ def uace_combination(request):
         success, results, errors = get_combination(career, [])
 
     else:
+        career = str(career).strip()
         success, results, errors = get_combination(career, uce_results)
 
     if success:

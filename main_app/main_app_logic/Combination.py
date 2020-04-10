@@ -5,6 +5,7 @@ from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSeria
     UaceSerializer
 import itertools
 from .Combine import combine_subjects
+import json
 import logging
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,8 @@ def get_combination(career, uce_results):
 
         output = make_output(combinations)
 
-        return True, output, None
+
+        return True, json.dumps(output), None
 
     else:
         errors = "Sorry, we haven't yet updated our system to cater for '{}'".format(career)
@@ -220,7 +222,7 @@ def generate_combination(course):
 
     except Exception as errors:
         error = """course '{}' has errors with either its essential, relevant or desirable subjects
-           Error Details : 
+           Error Details :
            Function => generate_combination in Combination.py
            {}""".format(course, errors)
 
@@ -269,7 +271,7 @@ def make_output(results):
     except Exception as errors:
 
         error = """Error occurred while making output for {}
-           Error Details : 
+           Error Details :
            Function => make_output in Combination.py
            {}""".format(results, errors)
 
