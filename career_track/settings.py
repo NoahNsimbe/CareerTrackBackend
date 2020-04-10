@@ -18,7 +18,7 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [os.getenv("HOST").split(':')[0]]
 # ADMINS = os.getenv("ADMINS")
 # MANAGERS = os.getenv("MANAGERS")
@@ -55,6 +55,33 @@ MIDDLEWARE = [
     'django.middleware.common.BrokenLinkEmailsMiddleware'
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'mail_admins'],
+            'propagate': True,
+        },
+    }
+}
 
 # def _require_debug_false(request):
 #     from django.conf import settings
@@ -204,6 +231,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
