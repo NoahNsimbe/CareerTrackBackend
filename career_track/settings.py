@@ -19,7 +19,8 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = False
-ALLOWED_HOSTS = [os.getenv("HOST").split(':')[0]]
+# ALLOWED_HOSTS = [os.getenv("HOST").split(':')[0]]
+ALLOWED_HOSTS = ['*']
 # ADMINS = os.getenv("ADMINS")
 # MANAGERS = os.getenv("MANAGERS")
 ADMINS = [("noah","nsimbenoah@gmail.com")]
