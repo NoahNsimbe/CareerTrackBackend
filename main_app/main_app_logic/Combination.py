@@ -44,10 +44,10 @@ def get_combination(career, uce_results):
 
                 return False, None, errors
 
-        output = make_output(combinations)
+        output = dict({"combinations" : make_output(combinations) })
 
 
-        return True, json.dumps(output), None
+        return True, output, None
 
     else:
         errors = "Sorry, we haven't yet updated our system to cater for '{}'".format(career)
