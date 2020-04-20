@@ -25,9 +25,12 @@ ALLOWED_HOSTS = ['*']
 # MANAGERS = os.getenv("MANAGERS")
 ADMINS = [("noah","nsimbenoah@gmail.com")]
 MANAGERS = [("noah","nsimbenoah@gmail.com")]
-SITE_ID = os.getenv("SITE_ID")
+# SITE_ID = os.getenv("SITE_ID")
 
-
+CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_WHITELIST = (
+#    'http://localhost:8000',
+#)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +45,6 @@ INSTALLED_APPS = [
 
     'main_app.apps.MainAppConfig'
 ]
-
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

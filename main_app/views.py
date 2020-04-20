@@ -8,12 +8,14 @@ from .models import Careers, UceSubjects, UaceSubjects
 from .serializers import CareersSerializer, UceSerializer, UaceSerializer
 import json
 
+
 @api_view(['GET'])
 def careers(request):
     if request.method == 'GET':
-        careers = Careers.objects.all()
-        serializer = CareersSerializer(careers, many=True).data
-        data = json.dumps(dict({"careers": [x["name"] for x in serializer]}))
+        career_list = Careers.objects.all()
+        serializer = CareersSerializer(career_list, many=True).data
+        # data = json.dumps(dict({"careers": [x["name"] for x in serializer]}))
+        data = dict({"careers": [x["name"] for x in serializer]})
         return Response(data)
 
 
@@ -22,19 +24,24 @@ def uce_subjects(request):
     if request.method == 'GET':
         subjects = UceSubjects.objects.all()
         serializer = UceSerializer(subjects, many=True).data
-        subjects = json.dumps(dict({"uce_subjects": [dict({x["code"]: x["name"]}) for x in serializer ] }))
+        # subjects = json.dumps(dict({"uce_subjects": serializer}))
+        subjects = dict({"uce_subjects": serializer})
         return Response(subjects)
 
 
 @api_view(['GET'])
 def uace_subjects(request):
     if request.method == 'GET':
-        subjects = UaceSubjects.objects.all()
+        subjects = UaceSubjects.objects.all().exclude(category="Category")
         serializer = UaceSerializer(subjects, many=True).data
-        data = {"Science Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Science"],
-                "Art Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Art"],
-                "Subsidiary Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Subsidiary"]}
-        subjects = json.dumps(dict({"uace_subjects": data}))
+        # data = {"Science Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Science"],
+        #         "Art Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Art"],
+        #         "Subsidiary Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"]
+        #         == "Subsidiary"]}
+
+        # subjects = json.dumps(dict({"uace_subjects": serializer}))
+
+        subjects = dict({"uace_subjects": serializer})
         return Response(subjects)
 
 
