@@ -4,6 +4,11 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from career_track.settings import BASE_DIR
+import logging
+
+logger = logging.getLogger(__name__)
+
+os.environ.setdefault('SECRET_KEY', 'testing')
 
 
 class InfoTestCase(APITestCase):
@@ -14,7 +19,7 @@ class InfoTestCase(APITestCase):
     uce_url = reverse('uce')
 
     def test_careers(self):
-
+        logger.error(os.getenv("SECRET_KEY"))
         resp = self.client.get(self.careers_url)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
 
