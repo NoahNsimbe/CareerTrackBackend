@@ -1,12 +1,10 @@
-from django.http import JsonResponse
 from rest_framework import status, generics, filters
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .main_app_logic.Combination import get_combination
 from .main_app_logic.Course import without_results, with_results
 from .models import Careers, UceSubjects, UaceSubjects
-from .serializers import CareersSerializer, UceSerializer, UaceSerializer, UceViewSerializer, UaceViewSerializer
-import json
+from .serializers import CareersSerializer, UceViewSerializer, UaceViewSerializer
 
 
 class CareersList(generics.ListAPIView):
@@ -28,42 +26,6 @@ class UaceList(generics.ListAPIView):
     queryset = UaceSubjects.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'code']
-
-
-# @api_view(['GET'])
-# def careers(request):
-#     if request.method == 'GET':
-#         career_list = Careers.objects.all()
-#         serializer = CareersSerializer(career_list, many=True).data
-#         # data = json.dumps(dict({"careers": [x["name"] for x in serializer]}))
-#         data = dict({"careers": [x["name"] for x in serializer]})
-#         return Response(data)
-
-
-@api_view(['GET'])
-def uce_subjects(request):
-    if request.method == 'GET':
-        subjects = UceSubjects.objects.all()
-        serializer = UceSerializer(subjects, many=True).data
-        # subjects = json.dumps(dict({"uce_subjects": serializer}))
-        subjects = dict({"uce_subjects": serializer})
-        return Response(subjects)
-
-
-@api_view(['GET'])
-def uace_subjects(request):
-    if request.method == 'GET':
-        subjects = UaceSubjects.objects.all().exclude(category="Category")
-        serializer = UaceSerializer(subjects, many=True).data
-        # data = {"Science Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Science"],
-        #         "Art Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Art"],
-        #         "Subsidiary Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"]
-        #         == "Subsidiary"]}
-
-        # subjects = json.dumps(dict({"uace_subjects": serializer}))
-
-        subjects = dict({"uace_subjects": serializer})
-        return Response(subjects)
 
 
 @api_view(['POST'])
@@ -129,3 +91,41 @@ def course_recommendation(request):
     else:
         response = {'Message': errors}
         return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+# @api_view(['GET'])
+# def careers(request):
+#     if request.method == 'GET':
+#         career_list = Careers.objects.all()
+#         serializer = CareersSerializer(career_list, many=True).data
+#         # data = json.dumps(dict({"careers": [x["name"] for x in serializer]}))
+#         data = dict({"careers": [x["name"] for x in serializer]})
+#         return Response(data)
+
+
+# @api_view(['GET'])
+# def uce_subjects(request):
+#     if request.method == 'GET':
+#         subjects = UceSubjects.objects.all()
+#         serializer = UceSerializer(subjects, many=True).data
+#         # subjects = json.dumps(dict({"uce_subjects": serializer}))
+#         subjects = dict({"uce_subjects": serializer})
+#         return Response(subjects)
+#
+#
+# @api_view(['GET'])
+# def uace_subjects(request):
+#     if request.method == 'GET':
+#         subjects = UaceSubjects.objects.all().exclude(category="Category")
+#         serializer = UaceSerializer(subjects, many=True).data
+#         # data = {"Science Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Science"],
+#         #         "Art Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"] == "Art"],
+#         #         "Subsidiary Subjects": [dict({x["code"]: x["name"]}) for x in serializer if x["category"]
+#         #         == "Subsidiary"]}
+#
+#         # subjects = json.dumps(dict({"uace_subjects": serializer}))
+#
+#         subjects = dict({"uace_subjects": serializer})
+#         return Response(subjects)
