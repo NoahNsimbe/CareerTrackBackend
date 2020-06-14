@@ -1,4 +1,4 @@
-from app_logic.AppExceptions import AppError, DatabaseError
+from main_app.logic.AppExceptions import AppError, DatabaseError
 from .ConstraintCheck import check_o_level
 from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
 from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer,\
@@ -43,7 +43,8 @@ def get_combination(career, uce_results):
 
                 return False, None, errors
 
-        output = make_output(combinations)
+        output = dict({"combinations" : make_output(combinations) })
+
 
         return True, output, None
 
@@ -220,7 +221,7 @@ def generate_combination(course):
 
     except Exception as errors:
         error = """course '{}' has errors with either its essential, relevant or desirable subjects
-           Error Details : 
+           Error Details :
            Function => generate_combination in Combination.py
            {}""".format(course, errors)
 
@@ -269,7 +270,7 @@ def make_output(results):
     except Exception as errors:
 
         error = """Error occurred while making output for {}
-           Error Details : 
+           Error Details :
            Function => make_output in Combination.py
            {}""".format(results, errors)
 

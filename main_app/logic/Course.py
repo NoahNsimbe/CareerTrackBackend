@@ -1,10 +1,9 @@
-from app_logic.AppExceptions import AppError
+from main_app.logic.AppExceptions import AppError
 from .CleanUp import check_points, format_output
 from .ConstraintCheck import check_constraints
 from .SubjectCheck import check_subject
 from main_app.models import CareerCourses, Courses
 from main_app.serializers import CareerCoursesSerializer, CourseSerializer
-
 import logging
 logger = logging.getLogger(__name__)
 
@@ -32,8 +31,8 @@ def without_results(career):
 
             return False, None, errors
 
-        # return True, json.dumps(recommended_courses), None
         return True, recommended_courses, None
+        # return True, recommended_courses, None
 
     else:
 
@@ -91,8 +90,8 @@ def with_results(career, uace_results, uce_results, admission_type, gender):
         recommendations["Recommended courses"] = recommended_courses
         recommendations["Non Recommended courses"] = non_recommended_courses
 
-        # return True, json.dumps(recommendations), None
         return True, recommendations, None
+        # return True, recommendations, None
 
     else:
         errors = "Sorry, we haven't yet updated our system to cater for {}".format(career)

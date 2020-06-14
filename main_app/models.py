@@ -25,7 +25,7 @@ class Courses(models.Model):
     time = models.CharField(max_length=255, default="Day")
 
     def __str__(self):
-        return self.name
+        return str(self.name) + " (" + str(self.code) + ")"
 
     class Meta:
         verbose_name = verbose_name_plural = 'Courses and their details'
@@ -59,8 +59,17 @@ class UaceSubjects(models.Model):
 
 
 class UceSubjects(models.Model):
+    COMPULSORY = 'Compulsory'
+    ELECTIVE = 'Elective'
+
+    SUBJECT_CATEGORIES = [
+        (COMPULSORY, 'Compulsory Subject'),
+        (ELECTIVE, 'Elective Subject')
+    ]
+
     code = models.CharField(max_length=255, primary_key=True, default="Subject code begin with UCE_")
     name = models.CharField(max_length=255)
+    category = models.CharField(max_length=15, choices=SUBJECT_CATEGORIES, default=ELECTIVE)
 
     def __str__(self):
         return self.name

@@ -78,8 +78,8 @@ class UaceSubjectsAdmin(admin.ModelAdmin):
 
 @admin.register(UceSubjects)
 class UceSubjectsAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    ordering = ['name']
+    list_display = ('name','category')
+    ordering = ['category']
     search_fields = ['code', 'name']
 
 # models = [Courses, CareerCourses, CourseConstraints, CourseSubjects, ALevelConstraints, OLevelConstraints]

@@ -1,5 +1,5 @@
-from app_logic.AppExceptions import AppError, DatabaseError
-from main_app.main_app_logic.Combination import get_all
+from main_app.logic.AppExceptions import AppError, DatabaseError
+from main_app.logic.Combination import get_all
 from main_app.models import CourseSubjects, CourseConstraints
 from main_app.serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
 

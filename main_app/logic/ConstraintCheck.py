@@ -1,4 +1,4 @@
-from app_logic.AppExceptions import AppError
+from main_app.logic.AppExceptions import AppError
 from main_app.serializers import ALevelConstraintSerializer,  OLevelConstraintSerializer
 from main_app.models import ALevelConstraints, OLevelConstraints
 

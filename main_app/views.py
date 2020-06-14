@@ -1,42 +1,31 @@
-from django.http import JsonResponse
-from rest_framework import status
+from rest_framework import status, generics, filters
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .main_app_logic.Combination import get_combination
-from .main_app_logic.Course import without_results, with_results
+from .logic.Combination import get_combination
+from .logic.Course import without_results, with_results
 from .models import Careers, UceSubjects, UaceSubjects
-from .serializers import CareersSerializer, UceSerializer, UaceSerializer
+from .serializers import CareersSerializer, UceViewSerializer, UaceViewSerializer
 
 
-@api_view(['GET'])
-def get_careers(request):
-    if request.method == 'GET':
-        careers = Careers.objects.all()
-        serializer = CareersSerializer(careers, many=True).data
-        data = {"careersList": [x["name"] for x in serializer]}
-        return Response(data)
+class CareersList(generics.ListAPIView):
+    serializer_class = CareersSerializer
+    queryset = Careers.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'description']
 
 
-@api_view(['GET'])
-def uce_subjects(request):
-    if request.method == 'GET':
-        subjects = UceSubjects.objects.all()
-        # subjects = get_object_or_404(UceSubjects)
-        serializer = UceSerializer(subjects, many=True).data
-        data = {"subjects": [x["name"] for x in serializer]}
-        # return Response(serializer.data)
-        return JsonResponse(data, safe=False)
+class UceList(generics.ListAPIView):
+    serializer_class = UceViewSerializer
+    queryset = UceSubjects.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code']
 
 
-@api_view(['GET'])
-def uace_subjects(request):
-    if request.method == 'GET':
-        subjects = UaceSubjects.objects.all()
-        serializer = UaceSerializer(subjects, many=True).data
-        data = {"compulsory": [x["name"] for x in serializer if x["category"] == "compulsory"],
-                "subsidiaries": [x["name"] for x in serializer if x["category"] == "subsidiaries"],
-                "optionals": [x["name"] for x in serializer if x["category"] == "optionals"]}
-        return JsonResponse(data, safe=False)
+class UaceList(generics.ListAPIView):
+    serializer_class = UaceViewSerializer
+    queryset = UaceSubjects.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code']
 
 
 @api_view(['POST'])
@@ -52,6 +41,7 @@ def uace_combination(request):
         success, results, errors = get_combination(career, [])
 
     else:
+        career = str(career).strip()
         success, results, errors = get_combination(career, uce_results)
 
     if success:
