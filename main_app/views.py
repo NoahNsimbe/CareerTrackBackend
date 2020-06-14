@@ -30,14 +30,14 @@ class UaceList(generics.ListAPIView):
     search_fields = ['name', 'code']
 
 
-@api_view(['GET'])
-def careers(request):
-    if request.method == 'GET':
-        career_list = Careers.objects.all()
-        serializer = CareersSerializer(career_list, many=True).data
-        # data = json.dumps(dict({"careers": [x["name"] for x in serializer]}))
-        data = dict({"careers": [x["name"] for x in serializer]})
-        return Response(data)
+# @api_view(['GET'])
+# def careers(request):
+#     if request.method == 'GET':
+#         career_list = Careers.objects.all()
+#         serializer = CareersSerializer(career_list, many=True).data
+#         # data = json.dumps(dict({"careers": [x["name"] for x in serializer]}))
+#         data = dict({"careers": [x["name"] for x in serializer]})
+#         return Response(data)
 
 
 @api_view(['GET'])
