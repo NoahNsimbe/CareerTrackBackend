@@ -1,10 +1,9 @@
-from app_logic.AppExceptions import AppError
+from main_app.main_app_logic.AppExceptions import AppError
 from .CleanUp import check_points, format_output
 from .ConstraintCheck import check_constraints
 from .SubjectCheck import check_subject
 from main_app.models import CareerCourses, Courses
 from main_app.serializers import CareerCoursesSerializer, CourseSerializer
-import json
 import logging
 logger = logging.getLogger(__name__)
 
