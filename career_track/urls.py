@@ -16,18 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, re_path, include
+from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView
 )
 
+from main_app.views import CareersList
+
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
 admin.AdminSite.index_title = 'Course Recommendation'
 admin.AdminSite.site_title = 'Course Recommendation'
 
-
+# router = routers.SimpleRouter()
+# router.register(r'careers', CareersList.as_view(),  basename='careers')
+# path("stores/", StoreView.as_view(), name='stores'),
 urlpatterns = [
 
     path('admin/', admin.site.urls),
@@ -38,6 +43,7 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     re_path(r'^', include('main_app.urls')),
+    # path('', include(router.urls)),
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

@@ -1,12 +1,33 @@
 from django.http import JsonResponse
-from rest_framework import status
+from rest_framework import status, generics, filters
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .main_app_logic.Combination import get_combination
 from .main_app_logic.Course import without_results, with_results
 from .models import Careers, UceSubjects, UaceSubjects
-from .serializers import CareersSerializer, UceSerializer, UaceSerializer
+from .serializers import CareersSerializer, UceSerializer, UaceSerializer, UceViewSerializer, UaceViewSerializer
 import json
+
+
+class CareersList(generics.ListAPIView):
+    serializer_class = CareersSerializer
+    queryset = Careers.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'description']
+
+
+class UceList(generics.ListAPIView):
+    serializer_class = UceViewSerializer
+    queryset = UceSubjects.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code']
+
+
+class UaceList(generics.ListAPIView):
+    serializer_class = UaceViewSerializer
+    queryset = UaceSubjects.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code']
 
 
 @api_view(['GET'])
