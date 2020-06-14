@@ -1,5 +1,5 @@
 from datetime import datetime
-from main_app.main_app_logic.AppExceptions import DatabaseError, AppError
+from main_app.logic.AppExceptions import DatabaseError, AppError
 from main_app.serializers import CourseSerializer, CutOffPointsSerializer
 from main_app.models import Courses, CutOffPoints
 import logging

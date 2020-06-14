@@ -1,8 +1,8 @@
 from rest_framework import status, generics, filters
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .main_app_logic.Combination import get_combination
-from .main_app_logic.Course import without_results, with_results
+from .logic.Combination import get_combination
+from .logic.Course import without_results, with_results
 from .models import Careers, UceSubjects, UaceSubjects
 from .serializers import CareersSerializer, UceViewSerializer, UaceViewSerializer
 

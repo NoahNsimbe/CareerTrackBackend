@@ -1,4 +1,4 @@
-from main_app.main_app_logic.AppExceptions import AppError, DatabaseError
+from main_app.logic.AppExceptions import AppError, DatabaseError
 from .ConstraintCheck import check_o_level
 from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
 from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer,\
