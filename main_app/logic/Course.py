@@ -2,9 +2,9 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from main_app.logic.AppExceptions import AppError
-from .CleanUp import check_points, format_output
-from .ConstraintCheck import check_constraints
-from .SubjectCheck import check_subject
+from main_app.logic.CleanUp import check_points, format_output
+from main_app.logic.ConstraintCheck import check_constraints
+from main_app.logic.SubjectCheck import check_subject
 from main_app.models import CareerCourses, Courses
 from main_app.serializers import CareerCoursesSerializer, CourseSerializer
 

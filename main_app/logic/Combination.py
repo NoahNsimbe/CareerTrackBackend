@@ -2,12 +2,12 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from main_app.logic.AppExceptions import AppError, DatabaseError
-from .ConstraintCheck import check_o_level
+from main_app.logic.ConstraintCheck import check_o_level
 from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
 from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer,\
     UaceSerializer
 import itertools
-from .Combine import combine_subjects
+from main_app.logic.Combine import combine_subjects
 
 
 def get_combination(career, uce_results):
