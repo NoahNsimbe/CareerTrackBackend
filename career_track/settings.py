@@ -9,9 +9,9 @@ ENVIRONMENT = os.getenv("ENVIRONMENT", "DEVELOPMENT")
 
 DEBUG = True if ENVIRONMENT == "DEVELOPMENT" else False
 
-if not DEBUG:
-    env_path = os.path.join(os.path.dirname(__file__), '.env')
-    load_dotenv(env_path)
+# if not DEBUG:
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(env_path)
 
 SECRET_KEY = "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x" if DEBUG else os.getenv("SECRET_KEY")
 

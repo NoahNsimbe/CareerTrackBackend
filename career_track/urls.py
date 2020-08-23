@@ -1,14 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path, re_path, include
+from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView
 )
-from main_app.api import UaceViewSet, CareersViewSet, \
-    UceViewSet, uace_combination, course_recommendation
+from main_app.api import UaceViewSet, CareersViewSet, UceViewSet, UaceCombinationViewSet, CourseRecommendationViewSet
 
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
@@ -19,6 +18,8 @@ router = routers.DefaultRouter()
 router.register('uace_subjects', UaceViewSet)
 router.register('uce_subjects', UceViewSet)
 router.register('careers', CareersViewSet)
+router.register('get_combination', UaceCombinationViewSet, basename="get_combination")
+router.register('get_course', CourseRecommendationViewSet, basename="get_course")
 
 
 urlpatterns = [
@@ -34,8 +35,8 @@ urlpatterns = [
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
-    path("course/", course_recommendation, name="course recommendation"),
-    path("combination/", uace_combination, name="uace recommendation"),
-
     path('', include(router.urls)),
+
+    # path("course/", course_recommendation, name="course recommendation"),
+    # path("combination/", uace_combination, name="uace recommendation"),
 ]

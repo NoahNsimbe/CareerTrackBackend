@@ -1,6 +1,7 @@
 from rest_framework import viewsets, filters, mixins
 from main_app.models import Careers, UaceSubjects, UceSubjects
-from main_app.serializers import CareersSerializer, UaceViewSerializer, UceViewSerializer
+from main_app.serializers import CareersSerializer, UaceViewSerializer, UceViewSerializer, UaceCombinationSerializer, \
+    CourseRecommendationSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -8,7 +9,7 @@ from main_app.logic.Combination import get_combination
 from main_app.logic.Course import without_results, with_results
 
 
-@api_view(['POST'])
+# @api_view(['POST'])
 def uace_combination(request):
 
     career = request.data.get("career")
@@ -32,7 +33,7 @@ def uace_combination(request):
         return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@api_view(['POST'])
+# @api_view(['POST'])
 def course_recommendation(request):
     career = request.data.get("career")
     admission_type = request.data.get("admission_type")
@@ -71,6 +72,20 @@ def course_recommendation(request):
     else:
         response = {'Message': errors}
         return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class UaceCombinationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = UaceCombinationSerializer
+
+    def create(self, request, *args, **kwargs):
+        return uace_combination(request)
+
+
+class CourseRecommendationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = CourseRecommendationSerializer
+
+    def create(self, request, *args, **kwargs):
+        return course_recommendation(request)
 
 
 class CareersViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):

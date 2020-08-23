@@ -1,6 +1,22 @@
+from abc import ABC
+
 from rest_framework import serializers
 from .models import Courses, CourseConstraints, CareerCourses, Careers, CourseSubjects, ALevelConstraints, \
     OLevelConstraints, CutOffPoints, UaceSubjects, UceSubjects
+
+
+class UaceCombinationSerializer(serializers.Serializer):
+
+    career = serializers.CharField()
+    uce_results = serializers.DictField()
+
+
+class CourseRecommendationSerializer(serializers.Serializer):
+    career = serializers.CharField()
+    uce_results = serializers.DictField()
+    admission_type = serializers.CharField()
+    uace_results = serializers.DictField()
+    gender = serializers.CharField()
 
 
 class CourseSerializer(serializers.ModelSerializer):
