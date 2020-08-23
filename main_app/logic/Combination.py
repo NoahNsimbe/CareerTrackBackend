@@ -5,8 +5,6 @@ from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSeria
     UaceSerializer
 import itertools
 from .Combine import combine_subjects
-import logging
-logger = logging.getLogger(__name__)
 
 
 def get_combination(career, uce_results):
@@ -37,7 +35,7 @@ def get_combination(career, uce_results):
 
             except AppError as exception:
 
-                logger.error("Exception Has occurred : \n{} ".format(exception))
+                print("Exception Has occurred : \n{} ".format(exception))
 
                 errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
 
@@ -45,12 +43,11 @@ def get_combination(career, uce_results):
 
         output = dict({"combinations" : make_output(combinations) })
 
-
         return True, output, None
 
     else:
         errors = "Sorry, we haven't yet updated our system to cater for '{}'".format(career)
-        logger.error(errors)
+        print(errors)
 
         return False, None, errors
 
@@ -93,7 +90,7 @@ def get_subjects(essentials, relevant):
 
     elif essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL":
         subjects = UaceSerializer(
-            UaceSubjects.objects.filter(category="Arts"), many=True
+            UaceSubjects.objects.filter(category="Sciences"), many=True
         ).data
         essentials = [x["code"] for x in subjects]
 

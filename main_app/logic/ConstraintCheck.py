@@ -2,9 +2,6 @@ from main_app.logic.AppExceptions import AppError
 from main_app.serializers import ALevelConstraintSerializer,  OLevelConstraintSerializer
 from main_app.models import ALevelConstraints, OLevelConstraints
 
-import logging
-logger = logging.getLogger(__name__)
-
 
 def check_a_level(course, a_level_results, o_level_results, principals):
 

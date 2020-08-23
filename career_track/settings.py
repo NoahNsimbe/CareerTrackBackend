@@ -1,26 +1,42 @@
 import os
+import sys
+
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-app_name = os.path.basename(os.path.dirname(__file__))
 
-env_path = os.path.join(os.path.dirname(__file__), '.env')
-load_dotenv(env_path)
+ENVIRONMENT = os.getenv("ENVIRONMENT", "DEVELOPMENT")
 
-# SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = "testing"
+DEBUG = True if ENVIRONMENT == "DEVELOPMENT" else False
 
-DEBUG = True
-# ALLOWED_HOSTS = [os.getenv("HOST").split(':')[0]]
-ALLOWED_HOSTS = ['*']
+if not DEBUG:
+    env_path = os.path.join(os.path.dirname(__file__), '.env')
+    load_dotenv(env_path)
+
+SECRET_KEY = "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x" if DEBUG else os.getenv("SECRET_KEY")
+
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['*']
+
 ADMINS = [("noah", "nsimbenoah@gmail.com")]
-MANAGERS = [("noah", "nsimbenoah@gmail.com")]
+
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = True
+else:
+    CORS_ORIGIN_WHITELIST = [
+        'http://localhost:3000', 'http://127.0.0.1:3000', 'http://0.0.0.0:3000', 'http://localhost', 'http://127.0.0.1',
+        'http://0.0.0.0',
+    ]
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
-CORS_ORIGIN_ALLOW_ALL = True
-#CORS_ORIGIN_WHITELIST = (
-#    'http://localhost:8000',
-#)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,8 +71,7 @@ REST_FRAMEWORK = {
 }
 
 
-ROOT_URLCONF = app_name + '.urls'
-
+ROOT_URLCONF = 'career_track.urls'
 
 TEMPLATES = [
     {
@@ -75,7 +90,7 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = app_name + '.wsgi.application'
+WSGI_APPLICATION = 'career_track.wsgi.application'
 
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
 EMAIL_HOST = os.getenv("EMAIL_HOST")
@@ -84,21 +99,40 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv("DB_ENGINE"),
-        'NAME': os.getenv("DB_NAME"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv("DB_ENGINE"),
+            'NAME': os.getenv("DB_NAME"),
+            'HOST': os.getenv("DB_HOST"),
+            'PORT': os.getenv("DB_PORT"),
+            'USER': os.getenv("DB_USER"),
+            'PASSWORD': os.getenv("DB_PASSWORD"),
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'init_command': 'SET default_storage_engine=INNODB',
+                'sql_mode': 'STRICT_TRANS_TABLES',
+                'isolation_level': 'read committed'
+            },
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+            'HOST': os.getenv('DATABASE_HOST'),
+            'PORT': os.getenv('DATABASE_HOST_PORT'),
+        }
     }
 
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-}
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'test_db'
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -125,7 +159,3 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True

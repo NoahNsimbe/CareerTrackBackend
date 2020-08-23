@@ -3,9 +3,6 @@ from main_app.logic.Combination import get_all
 from main_app.models import CourseSubjects, CourseConstraints
 from main_app.serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
 
-import logging
-logger = logging.getLogger(__name__)
-
 
 def check_desirable(course, state, subjects, results):
 

@@ -4,8 +4,6 @@ from .ConstraintCheck import check_constraints
 from .SubjectCheck import check_subject
 from main_app.models import CareerCourses, Courses
 from main_app.serializers import CareerCoursesSerializer, CourseSerializer
-import logging
-logger = logging.getLogger(__name__)
 
 
 def without_results(career):
@@ -26,7 +24,7 @@ def without_results(career):
             recommended_courses['programs'] = recommended_courses_list
 
         except Exception as exception:
-            logger.error("Exception Has occurred : \n {}".format(exception))
+            print("Exception Has occurred : \n {}".format(exception))
             errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
 
             return False, None, errors
@@ -37,7 +35,7 @@ def without_results(career):
     else:
 
         errors = "Sorry, we haven't yet updated our system to cater for '{}'".format(career)
-        logger.error(errors)
+        print(errors)
 
         return False, None, errors
 
@@ -78,7 +76,7 @@ def with_results(career, uace_results, uce_results, admission_type, gender):
 
             except AppError as exception:
 
-                logger.error("Exception Has occurred: \n {}".format(exception))
+                print("Exception Has occurred: \n {}".format(exception))
 
                 errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
 
@@ -95,5 +93,5 @@ def with_results(career, uace_results, uce_results, admission_type, gender):
 
     else:
         errors = "Sorry, we haven't yet updated our system to cater for {}".format(career)
-        logger.error(errors)
+        print(errors)
         return False, None, errors

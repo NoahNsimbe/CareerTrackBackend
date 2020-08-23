@@ -1,7 +1,3 @@
-import logging
-logger = logging.getLogger(__name__)
-
-
 def append_relevant(relevant_subjects, no_relevant, init_list):
     results = []
     combination = init_list[:]
@@ -72,8 +68,8 @@ def combine_subjects(essentials, relevant_subjects, desirable, desirable_state, 
 
         if len(initial_es) != 1:
             # log error
-            logger.error(initial_es)
-            logger.error("an error in combine subjects => essentials = 3")
+            print(initial_es)
+            print("an error in combine subjects => essentials = 3")
 
         relevant_no = 2
         for y in essentials:

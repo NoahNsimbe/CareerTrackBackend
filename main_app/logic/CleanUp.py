@@ -2,8 +2,6 @@ from datetime import datetime
 from main_app.logic.AppExceptions import DatabaseError, AppError
 from main_app.serializers import CourseSerializer, CutOffPointsSerializer
 from main_app.models import Courses, CutOffPoints
-import logging
-logger = logging.getLogger(__name__)
 
 
 def check_points(course, uace_results, uce_results, subjects, admission_type, gender):
