@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 app_name = os.path.basename(os.path.dirname(__file__))
 
@@ -14,9 +13,9 @@ SECRET_KEY = "testing"
 DEBUG = True
 # ALLOWED_HOSTS = [os.getenv("HOST").split(':')[0]]
 ALLOWED_HOSTS = ['*']
-ADMINS = [("noah","nsimbenoah@gmail.com")]
-MANAGERS = [("noah","nsimbenoah@gmail.com")]
-# SITE_ID = os.getenv("SITE_ID")
+ADMINS = [("noah", "nsimbenoah@gmail.com")]
+MANAGERS = [("noah", "nsimbenoah@gmail.com")]
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 #CORS_ORIGIN_WHITELIST = (
@@ -29,11 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'corsheaders',
-
     'rest_framework',
-
     'main_app.apps.MainAppConfig'
 ]
 
@@ -49,37 +45,7 @@ MIDDLEWARE = [
     'django.middleware.common.BrokenLinkEmailsMiddleware'
 ]
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'simple': {
-#             'format': '{levelname} {message}',
-#             'style': '{',
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'INFO',
-#             'class': 'logging.FileHandler',
-#             'filename': os.path.join(BASE_DIR, 'debug.log'),
-#         },
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'class': 'django.utils.log.AdminEmailHandler',
-#         }
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file', 'mail_admins'],
-#             'propagate': True,
-#         },
-#     }
-# }
-
-
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
-
 
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',

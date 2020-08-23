@@ -54,7 +54,6 @@ class CourseSubjectsAdmin(admin.ModelAdmin):
     ordering = ['course', 'category']
     search_fields = ['course__code', 'course__name']
     autocomplete_fields = ['course', 'subject']
-    # list_filter = ('course__name')
 
 
 @admin.register(OLevelConstraints)
@@ -62,11 +61,6 @@ class OLevelConstraintsAdmin(admin.ModelAdmin):
     list_display = ('code', 'subject', 'maximum_grade')
     ordering = ['code']
     search_fields = ['code__code', 'code__name', 'subject__code']
-
-    # def active(self, obj):
-    #     return obj.is_active == 1
-    #
-    # active.boolean = True
 
 
 @admin.register(UaceSubjects)
@@ -82,5 +76,3 @@ class UceSubjectsAdmin(admin.ModelAdmin):
     ordering = ['category']
     search_fields = ['code', 'name']
 
-# models = [Courses, CareerCourses, CourseConstraints, CourseSubjects, ALevelConstraints, OLevelConstraints]
-# admin.site.register(models)
