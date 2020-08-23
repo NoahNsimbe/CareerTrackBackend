@@ -1,3 +1,6 @@
+from rest_framework import status
+from rest_framework.response import Response
+
 from main_app.logic.AppExceptions import AppError, DatabaseError
 from .ConstraintCheck import check_o_level
 from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
@@ -274,3 +277,23 @@ def make_output(results):
         raise AppError(error)
 
     return recommendation
+
+
+def uace_combination(data):
+
+    career = data.get("career")
+    uce_results = data.get("uce_results", None)
+
+    if uce_results is None:
+        success, results, errors = get_combination(career, [])
+
+    else:
+        career = str(career).strip()
+        success, results, errors = get_combination(career, uce_results)
+
+    if success:
+        return Response(results, status.HTTP_200_OK)
+
+    else:
+        response = {'Message': errors}
+        return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
