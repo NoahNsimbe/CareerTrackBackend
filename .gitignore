@@ -35,3 +35,8 @@ venv.bak/
 gs.json
 gae.json
 secrets.tar
+
+
+### dump
+db.json
+db.sql
