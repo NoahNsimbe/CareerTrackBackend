@@ -31,5 +31,7 @@ ENV/
 env.bak/
 venv.bak/
 
-# Settings
-career_track/settings.json
+### secret deployment files ###
+gs.json
+gae.json
+secrets.tar

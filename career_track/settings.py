@@ -114,12 +114,7 @@ if DEBUG:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'OPTIONS': {
-                'init_command': 'SET default_storage_engine=INNODB',
-                'sql_mode': 'STRICT_TRANS_TABLES',
-                'isolation_level': 'read committed'
-            },
+            'ENGINE': os.getenv('DATABASE_ENGINE'),
             'NAME': os.getenv('DATABASE_NAME'),
             'USER': os.getenv('DATABASE_USER'),
             'PASSWORD': os.getenv('DATABASE_PASSWORD'),
@@ -158,4 +153,5 @@ USE_L10N = True
 USE_TZ = True
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'

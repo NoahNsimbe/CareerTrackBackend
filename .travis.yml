@@ -1,21 +1,20 @@
 dist: bionic
 language: python
-
 python:
-  - '3.8'
-
+- '3.8'
 install:
-  - python -m pip install --upgrade pip
-  - pip install -r requirements.txt
-
+- python -m pip install --upgrade pip
+- pip install -r requirements.txt
 script:
-  - python manage.py test
-  - python manage.py collectstatic --no-input
-
+- python manage.py test
+- python manage.py collectstatic --no-input
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_497736379756_key -iv $encrypted_497736379756_iv
+  -in secrets.tar.enc -out secrets.tar -d
 deploy:
   provider: gae
   skip_cleanup: true
   key_file: gae.json
-  project: career-track
+  project: career-track-project
   on:
     branch: production

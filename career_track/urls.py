@@ -7,7 +7,7 @@ from rest_framework.schemas import get_schema_view
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
-    TokenVerifyView
+    # TokenVerifyView
 )
 from main_app.api import UaceViewSet, CareersViewSet, UceViewSet, UaceCombinationViewSet, CourseRecommendationViewSet
 
@@ -35,7 +35,7 @@ urlpatterns = [
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
     path('openapi/', get_schema_view(
         title="Professers landing api",
@@ -48,7 +48,4 @@ urlpatterns = [
     ), name='swagger-ui'),
 
     path('', include(router.urls)),
-
-    # path("course/", course_recommendation, name="course recommendation"),
-    # path("combination/", uace_combination, name="uace recommendation"),
 ]
