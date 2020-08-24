@@ -1,27 +1,27 @@
-import os
-from django.urls import reverse
-from rest_framework import status
-from rest_framework.test import APITestCase
-
-
-class InfoTestCase(APITestCase):
-
-    fixtures = ['dump.json']
-    careers_url = reverse('careers')
-    uace_url = reverse('uace')
-    uce_url = reverse('uce')
-
-    def test_careers(self):
-        resp = self.client.get(self.careers_url)
-        self.assertEqual(resp.status_code, status.HTTP_200_OK)
-
-    def test_subjects(self):
-
-        uce_resp = self.client.get(self.uce_url)
-        self.assertEqual(uce_resp.status_code, status.HTTP_200_OK)
-
-        uace_resp = self.client.get(self.uace_url)
-        self.assertEqual(uace_resp.status_code, status.HTTP_200_OK)
+# import os
+# from django.urls import reverse
+# from rest_framework import status
+# from rest_framework.test import APITestCase
+#
+#
+# class InfoTestCase(APITestCase):
+#
+#     fixtures = ['dump.json']
+#     careers_url = reverse('careers')
+#     uace_url = reverse('uace')
+#     uce_url = reverse('uce')
+#
+#     def test_careers(self):
+#         resp = self.client.get(self.careers_url)
+#         self.assertEqual(resp.status_code, status.HTTP_200_OK)
+#
+#     def test_subjects(self):
+#
+#         uce_resp = self.client.get(self.uce_url)
+#         self.assertEqual(uce_resp.status_code, status.HTTP_200_OK)
+#
+#         uace_resp = self.client.get(self.uace_url)
+#         self.assertEqual(uace_resp.status_code, status.HTTP_200_OK)
 
 # class CombinationTestCase(APITestCase):
 #
