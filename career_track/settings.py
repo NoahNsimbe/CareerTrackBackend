@@ -20,7 +20,7 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = ['*']
 
-ADMINS = [("noah", "nsimbenoah@gmail.com")]
+ADMINS = [("Noah Nsimbe", "nsimbenoah@gmail.com")]
 
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
@@ -76,7 +76,7 @@ ROOT_URLCONF = 'career_track.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
