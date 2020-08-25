@@ -4,14 +4,13 @@ from rest_framework.response import Response
 from main_app.logic.AppExceptions import AppError, DatabaseError
 from main_app.logic.ConstraintCheck import check_o_level
 from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
-from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer,\
+from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer, \
     UaceSerializer
 import itertools
 from main_app.logic.Combine import combine_subjects
 
 
 def get_combination(career, uce_results):
-
     career_courses = CareerCoursesSerializer(CareerCourses.objects.filter(career=str(career).strip()), many=True).data
 
     if career_courses:
@@ -44,7 +43,7 @@ def get_combination(career, uce_results):
 
                 return False, None, errors
 
-        output = dict({"combinations" : make_output(combinations) })
+        output = make_output(combinations)
 
         return True, output, None
 
@@ -56,7 +55,6 @@ def get_combination(career, uce_results):
 
 
 def get_subjects(essentials, relevant):
-
     if essentials[0] == "UACE_ALL_SCIENCES" and relevant[0] == "UACE_ALL_SCIENCES":
         subjects = UaceSerializer(
             UaceSubjects.objects.filter(category="Sciences"), many=True
@@ -127,7 +125,6 @@ def get_subjects(essentials, relevant):
 
 
 def get_all(category):
-
     check_all = category[:]
 
     for code in check_all:
@@ -163,7 +160,6 @@ def get_all(category):
 
 
 def generate_combination(course):
-
     try:
 
         course_subjects = CourseSubjectsSerializer(
@@ -234,11 +230,9 @@ def generate_combination(course):
 
 
 def make_output(results):
-
     # add error handling
 
-    recommendation = dict()
-
+    recommendation = []
     try:
 
         results.sort()
@@ -246,26 +240,27 @@ def make_output(results):
 
         for result in cleaned_results:
 
-            combination = []
-            abbreviate = str()
+            combination_subjects = []
+            abbreviation = str()
+            combination = dict()
 
             for sub in result:
                 subjects = UaceSerializer(UaceSubjects.objects.filter(code=sub), many=True).data[0]
 
                 if subjects["category"] == "Subsidiary":
-                    abbreviate = abbreviate + "/"
+                    abbreviation = abbreviation + "/"
 
-                abbreviate = abbreviate + str(subjects["abbr"])
+                abbreviation = abbreviation + str(subjects["abbr"])
 
-                combination.append(subjects["name"])
+                combination_subjects.append(subjects["name"])
 
-            subjects_abbr = abbreviate + " and General Paper"
+            combination_subjects.append("General Paper")
 
-            if subjects_abbr not in recommendation.keys():
-                recommendation[subjects_abbr] = combination
-            else:
-                subjects_abbr = abbreviate + " & General Paper"
-                recommendation[subjects_abbr] = combination[:]
+            subjects_abbr = abbreviation + " and General Paper"
+
+            combination["abbreviation"] = subjects_abbr
+            combination["subjects"] = combination_subjects
+            recommendation.append(combination)
 
     except Exception as errors:
 
@@ -275,12 +270,10 @@ def make_output(results):
            {}""".format(results, errors)
 
         raise AppError(error)
-
     return recommendation
 
 
 def uace_combination(data):
-
     career = data.get("career")
     uce_results = data.get("uce_results", None)
 

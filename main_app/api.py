@@ -1,13 +1,14 @@
-from rest_framework import viewsets, filters, mixins
+from rest_framework import viewsets, filters, mixins, generics
 from main_app.models import Careers, UaceSubjects, UceSubjects
-from main_app.serializers import CareersSerializer, UaceViewSerializer, UceViewSerializer, UaceCombinationSerializer, \
-    CourseRecommendationSerializer
+from main_app.serializers import CareersSerializer, UaceCombinationSerializer, \
+    CourseRecommendationSerializer, UaceSerializer, UceSerializer
 from main_app.logic.Combination import uace_combination
 from main_app.logic.Course import course_recommendation
 
 
-class UaceCombinationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+class CombinationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = UaceCombinationSerializer
+    queryset = UceSubjects.objects.all()
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -15,8 +16,9 @@ class UaceCombinationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
         return uace_combination(serializer.data)
 
 
-class CourseRecommendationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+class ProgramViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = CourseRecommendationSerializer
+    queryset = UaceSubjects.objects.all()
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -32,14 +34,14 @@ class CareersViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 
 class UaceViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    serializer_class = UaceViewSerializer
+    serializer_class = UaceSerializer
     queryset = UaceSubjects.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'code']
 
 
 class UceViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    serializer_class = UceViewSerializer
+    serializer_class = UceSerializer
     queryset = UceSubjects.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'code']

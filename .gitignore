@@ -40,3 +40,6 @@ secrets.tar
 ### dump
 db.json
 db.sql
+
+static/
+media/

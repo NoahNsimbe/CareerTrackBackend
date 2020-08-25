@@ -23,16 +23,13 @@ def without_results(career):
                 course_details = CourseSerializer(Courses.objects.filter(code=career_course["course"]), many=True).data
                 recommended_courses_list.append(course_details[0])
 
-            recommended_courses = dict()
-            recommended_courses['programs'] = recommended_courses_list
-
         except Exception as exception:
             print("Exception Has occurred : \n {}".format(exception))
             errors = "Sorry, there was an error while processing information for the career '{}'".format(career)
 
             return False, None, errors
 
-        return True, recommended_courses, None
+        return True, recommended_courses_list, None
         # return True, recommended_courses, None
 
     else:

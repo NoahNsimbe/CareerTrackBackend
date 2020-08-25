@@ -40,8 +40,9 @@ def check_o_level(course, results, from_a_level=False):
 
     pass_grade = 8
     count = 0
-
+    print(results)
     for grade in results.values():
+        print(grade)
         if grade <= pass_grade:
             count = count + 1
 

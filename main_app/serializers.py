@@ -80,15 +80,3 @@ class UceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UceSubjects
         fields = '__all__'
-
-
-class UaceViewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UaceSubjects
-        fields = ('code', 'name', )
-
-
-class UceViewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UceSubjects
-        fields = ('code', 'name', )

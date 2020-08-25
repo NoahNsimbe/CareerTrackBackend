@@ -9,7 +9,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     # TokenVerifyView
 )
-from main_app.api import UaceViewSet, CareersViewSet, UceViewSet, UaceCombinationViewSet, CourseRecommendationViewSet
+from main_app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet
 
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
@@ -20,8 +20,8 @@ router = routers.DefaultRouter()
 router.register('uace_subjects', UaceViewSet)
 router.register('uce_subjects', UceViewSet)
 router.register('careers', CareersViewSet)
-router.register('get_combination', UaceCombinationViewSet, basename="get_combination")
-router.register('get_course', CourseRecommendationViewSet, basename="get_course")
+router.register('get_combination', CombinationViewSet, basename="get_combination")
+router.register('get_course', ProgramViewSet, basename="get_course")
 
 
 urlpatterns = [
