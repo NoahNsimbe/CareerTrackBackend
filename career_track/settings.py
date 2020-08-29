@@ -21,14 +21,15 @@ else:
     ALLOWED_HOSTS = ['*']
 
 ADMINS = [("Noah Nsimbe", "nsimbenoah@gmail.com")]
+CORS_ORIGIN_ALLOW_ALL = True
 
-if DEBUG:
-    CORS_ORIGIN_ALLOW_ALL = True
-else:
-    CORS_ORIGIN_WHITELIST = [
-        'http://localhost:3000', 'http://127.0.0.1:3000', 'http://0.0.0.0:3000', 'http://localhost', 'http://127.0.0.1',
-        'http://0.0.0.0',
-    ]
+# if DEBUG:
+#     CORS_ORIGIN_ALLOW_ALL = True
+# else:
+#     CORS_ORIGIN_WHITELIST = [
+#         'http://localhost:3000', 'http://127.0.0.1:3000', 'http://0.0.0.0:3000', 'http://localhost', 'http://127.0.0.1',
+#         'http://0.0.0.0',
+#     ]
 
 if not DEBUG:
     CSRF_COOKIE_SECURE = True
@@ -103,12 +104,12 @@ EMAIL_USE_TLS = True
 if DEBUG:
     DATABASES = {
         'default': {
-            'ENGINE': os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
-            'NAME': os.getenv("DB_NAME", "career_track"),
-            'HOST': os.getenv("DB_HOST", "127.0.0.1"),
-            'PORT': os.getenv("DB_PORT", 5432),
-            'USER': os.getenv("DB_USER", "career_track"),
-            'PASSWORD': os.getenv("DB_PASSWORD", "9@55w0r6"),
+            'ENGINE': os.getenv("DATABASE_ENGINE", "django.db.backends.postgresql"),
+            'NAME': os.getenv("DATABASE_NAME", "career_track"),
+            'HOST': os.getenv("DATABASE_HOST", "127.0.0.1"),
+            'PORT': os.getenv("DATABASE_HOST_PORT", 5432),
+            'USER': os.getenv("DATABASE_USER", "career_track"),
+            'PASSWORD': os.getenv("DATABASE_PASSWORD", "9@55w0r6"),
         }
     }
 else:
