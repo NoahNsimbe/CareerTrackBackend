@@ -13,8 +13,6 @@ if not DEBUG:
     env_path = os.path.join(os.path.dirname(__file__), '.env')
     load_dotenv(env_path)
 
-SECRET_KEY = "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x" if DEBUG else os.getenv("SECRET_KEY")
-
 if DEBUG:
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x"
@@ -103,35 +101,35 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
 
-# if DEBUG:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': os.getenv("DATABASE_ENGINE", "django.db.backends.postgresql"),
-#             'NAME': os.getenv("DATABASE_NAME", "career_track"),
-#             'HOST': os.getenv("DATABASE_HOST", "127.0.0.1"),
-#             'PORT': os.getenv("DATABASE_HOST_PORT", 5432),
-#             'USER': os.getenv("DATABASE_USER", "career_track"),
-#             'PASSWORD': os.getenv("DATABASE_PASSWORD", "9@55w0r6"),
-#         }
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': os.getenv('DATABASE_ENGINE'),
-#             'NAME': os.getenv('DATABASE_NAME'),
-#             'USER': os.getenv('DATABASE_USER'),
-#             'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-#             'HOST': os.getenv('DATABASE_HOST'),
-#             'PORT': os.getenv('DATABASE_HOST_PORT'),
-#         }
-#     }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db'
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv("DATABASE_ENGINE", "django.db.backends.postgresql"),
+            'NAME': os.getenv("DATABASE_NAME", "career_track"),
+            'HOST': os.getenv("DATABASE_HOST", "127.0.0.1"),
+            'PORT': os.getenv("DATABASE_HOST_PORT", 5432),
+            'USER': os.getenv("DATABASE_USER", "career_track"),
+            'PASSWORD': os.getenv("DATABASE_PASSWORD", "9@55w0r6"),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DATABASE_ENGINE'),
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+            'HOST': os.getenv('DATABASE_HOST'),
+            'PORT': os.getenv('DATABASE_HOST_PORT'),
+        }
+    }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db'
+#     }
+# }
 
 if 'test' in sys.argv:
     DATABASES['default'] = {
