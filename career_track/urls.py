@@ -9,7 +9,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     # TokenVerifyView
 )
-from main_app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet
+from app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet
 
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'

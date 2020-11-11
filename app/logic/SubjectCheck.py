@@ -1,7 +1,7 @@
-from main_app.logic.AppExceptions import AppError, DatabaseError
-from main_app.logic.Combination import get_all
-from main_app.models import CourseSubjects, CourseConstraints
-from main_app.serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
+from app.logic.AppExceptions import AppError, DatabaseError
+from app.logic.Combination import get_all
+from app.models import CourseSubjects, CourseConstraints
+from app.serializers import CourseSubjectsSerializer, CourseConstraintsSerializer
 
 
 def check_desirable(course, state, subjects, results):

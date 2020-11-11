@@ -1,9 +1,9 @@
 from rest_framework import viewsets, filters, mixins, generics
-from main_app.models import Careers, UaceSubjects, UceSubjects
-from main_app.serializers import CareersSerializer, UaceCombinationSerializer, \
+from app.models import Careers, UaceSubjects, UceSubjects
+from app.serializers import CareersSerializer, UaceCombinationSerializer, \
     CourseRecommendationSerializer, UaceSerializer, UceSerializer
-from main_app.logic.Combination import uace_combination
-from main_app.logic.Course import course_recommendation
+from app.logic.Combination import uace_combination
+from app.logic.Course import course_recommendation
 
 
 class CombinationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):

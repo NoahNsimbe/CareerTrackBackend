@@ -1,12 +1,12 @@
 from rest_framework import status
 from rest_framework.response import Response
 
-from main_app.logic.AppExceptions import AppError
-from main_app.logic.CleanUp import check_points, format_output
-from main_app.logic.ConstraintCheck import check_constraints
-from main_app.logic.SubjectCheck import check_subject
-from main_app.models import CareerCourses, Courses
-from main_app.serializers import CareerCoursesSerializer, CourseSerializer
+from app.logic.AppExceptions import AppError
+from app.logic.CleanUp import check_points, format_output
+from app.logic.ConstraintCheck import check_constraints
+from app.logic.SubjectCheck import check_subject
+from app.models import CareerCourses, Courses
+from app.serializers import CareerCoursesSerializer, CourseSerializer
 
 
 def without_results(career):

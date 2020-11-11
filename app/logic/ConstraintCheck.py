@@ -1,6 +1,6 @@
-from main_app.logic.AppExceptions import AppError
-from main_app.serializers import ALevelConstraintSerializer,  OLevelConstraintSerializer
-from main_app.models import ALevelConstraints, OLevelConstraints
+from app.logic.AppExceptions import AppError
+from app.serializers import ALevelConstraintSerializer,  OLevelConstraintSerializer
+from app.models import ALevelConstraints, OLevelConstraints
 
 
 def check_a_level(course, a_level_results, o_level_results, principals):

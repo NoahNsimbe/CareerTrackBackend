@@ -1,13 +1,13 @@
 from rest_framework import status
 from rest_framework.response import Response
 
-from main_app.logic.AppExceptions import AppError, DatabaseError
-from main_app.logic.ConstraintCheck import check_o_level
-from main_app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
-from main_app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer, \
+from app.logic.AppExceptions import AppError, DatabaseError
+from app.logic.ConstraintCheck import check_o_level
+from app.models import CareerCourses, CourseConstraints, CourseSubjects, UaceSubjects
+from app.serializers import CareerCoursesSerializer, CourseConstraintsSerializer, CourseSubjectsSerializer, \
     UaceSerializer
 import itertools
-from main_app.logic.Combine import combine_subjects
+from app.logic.Combine import combine_subjects
 
 
 def get_combination(career, uce_results):
