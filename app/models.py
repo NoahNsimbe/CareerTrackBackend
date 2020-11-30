@@ -1,3 +1,4 @@
+import enum
 from datetime import datetime
 
 from django.db import models
@@ -196,3 +197,13 @@ class CutOffPoints(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = 'Cut-off points'
+
+
+class AppRequests(enum.Enum):
+
+    UceProgram = "UceProgram"
+    UceProgramResults = "UceProgramResults"
+
+    UaceProgram = "UaceProgram"
+    UaceProgramResults = "UaceProgramResults"
+    UceCombination = "UceCombination"

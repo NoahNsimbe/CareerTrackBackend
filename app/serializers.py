@@ -25,7 +25,8 @@ class CourseSerializer(serializers.ModelSerializer):
 class CourseConstraintsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseConstraints
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['id']
 
 
 class CareerCoursesSerializer(serializers.ModelSerializer):
@@ -49,7 +50,7 @@ class OLevelConstraintSerializer(serializers.ModelSerializer):
 class CourseSubjectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseSubjects
-        fields = '__all__'
+        exclude = ['id']
 
 
 class CutOffPointsSerializer(serializers.ModelSerializer):
@@ -66,7 +67,7 @@ class CareersSerializer(serializers.ModelSerializer):
 
 class CoursesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Careers
+        model = Courses
         fields = ['courses']
 
 
@@ -80,3 +81,17 @@ class UceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UceSubjects
         fields = '__all__'
+
+
+class ProgramDetailsSerializer(serializers.Serializer):
+    program = CourseSerializer(required=True)
+    cut_off_points = CutOffPointsSerializer(required=False)
+    program_constraints = CourseConstraintsSerializer(required=False)
+    program_subjects = CourseSubjectsSerializer(required=False)
+    a_level_constraints = ALevelConstraintSerializer(required=False)
+    o_level_constraints = OLevelConstraintSerializer(required=False)
+
+
+class UceRecommendationSerializer(serializers.ModelSerializer):
+    program = CoursesSerializer(required=False)
+    uce_results = serializers.DictField(required=False)
