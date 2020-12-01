@@ -2,9 +2,9 @@ from rest_framework.response import Response
 from rest_framework import viewsets, filters, mixins, generics, status
 from rest_framework.decorators import api_view
 from app.logic.Program import Program
-from app.models import Careers, UaceSubjects, UceSubjects, AppRequests
+from app.models import Careers, UaceSubjects, UceSubjects, AppRequests, Courses
 from app.serializers import CareersSerializer, UaceCombinationSerializer, \
-    CourseRecommendationSerializer, UaceSerializer, UceSerializer
+    CourseRecommendationSerializer, UaceSerializer, UceSerializer, CourseSerializer
 from app.logic.Combination import uace_combination
 from app.logic.Course import course_recommendation
 
@@ -54,6 +54,13 @@ def program_details(request):
     details = Program(program_code=program_code).get_details()
 
     return Response({"details": details}, status=status.HTTP_200_OK)
+
+
+class ProgramsViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    serializer_class = CourseSerializer
+    queryset = Courses.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code', 'description']
 
 
 class UceViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
