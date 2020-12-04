@@ -1,5 +1,6 @@
 import os
 import sys
+import django_heroku
 
 from dotenv import load_dotenv
 
@@ -17,7 +18,7 @@ if DEBUG:
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x"
 else:
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['ancient-waters-88205.herokuapp.com', '127.0.0.1']
     SECRET_KEY = os.getenv("SECRET_KEY")
 
 ADMINS = [("Noah Nsimbe", "nsimbenoah@gmail.com")]
@@ -165,3 +166,6 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
