@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = False
+DEBUG = True
 
 if not DEBUG:
     env_path = os.path.join(os.path.dirname(__file__), '.env')
