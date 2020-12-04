@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ENVIRONMENT = os.getenv("ENVIRONMENT", "DEVELOPMENT")
 
-DEBUG = True if ENVIRONMENT == "DEVELOPMENT" else False
+DEBUG = os.getenv("DEBUG")
 
 if not DEBUG:
     env_path = os.path.join(os.path.dirname(__file__), '.env')
