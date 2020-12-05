@@ -139,7 +139,7 @@ def recommend_combination(request):
 
     try:
         response = combination_recommendation(program_code=program_code)
-        return Response({"details": response}, status=status.HTTP_200_OK)
+        return Response({"combinations": response}, status=status.HTTP_200_OK)
 
     except Exception:
         return Response({"message": "Error occurred"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

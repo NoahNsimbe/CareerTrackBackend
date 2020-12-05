@@ -10,7 +10,7 @@ from rest_framework_simplejwt.views import (
     # TokenVerifyView
 )
 from app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet, program_details, \
-    ProgramsViewSet, program_eligibility
+    ProgramsViewSet, program_eligibility, recommend_combination
 
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
@@ -36,14 +36,15 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('program_details/', program_details),
     path('program_details/', program_eligibility),
+    path('recommend_combination/', recommend_combination),
 
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
     path('openapi/', get_schema_view(
-        title="Career Track api",
-        description="API for Career Track",
+        title="Study Recommendation System API",
+        description="API for Study Recommendation System",
         version="v1"
     ), name='openapi-schema'),
     path('api-doc/', TemplateView.as_view(
