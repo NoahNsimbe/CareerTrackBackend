@@ -8,9 +8,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = True
 
-if not DEBUG:
-    env_path = os.path.join(os.path.dirname(__file__), '.env')
-    load_dotenv(env_path)
+# if not DEBUG:
+#     env_path = os.path.join(os.path.dirname(__file__), '.env')
+#     load_dotenv(env_path)
 
 # if DEBUG:
 #     ALLOWED_HOSTS = ['*']
