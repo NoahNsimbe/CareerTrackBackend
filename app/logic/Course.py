@@ -137,3 +137,51 @@ def course_recommendation(data):
     else:
         response = {'Message': errors}
         return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+def check_program_eligibility(program_code, uce_results, uace_results, admission_type, gender):
+
+    program_code = str(program_code).strip().upper()
+    complements = dict()
+    recommended_program_codes = []
+
+    try:
+
+        # check whether user has all required program subjects
+        check, subjects = check_subject(program_code, uace_results)
+
+        if check:
+            # check whether user meets a and o level constraints on the course
+            if check_constraints(program_code, uace_results, uce_results, subjects):
+
+                if check_points(program_code, uace_results, uce_results, subjects, admission_type, gender):
+                    recommended_program_codes.append(program_code)
+
+                else:
+                    # complements.append({program_code: "Your computed points are less the the "
+                    #                                            "cut off points for the previous year, "
+                    #                                            "we therefore don't recommend the program"})
+                    complements[program_code] = "Your computed points are less the the cut off points for the" \
+                                                " previous year, we therefore don't recommend the program"
+            # else:
+            #     complements.append({program_code: "Some of your O or A level grades are below the "
+            #                                                "minimum grades for this program"})
+                complements[program_code] = "Some of your O or A level grades are below the " \
+                                            "minimum grades for this program"
+        else:
+            # complements.append({program_code: "You are missing an essential, relevant "
+            #                                            "or desirable subject required for this program"})
+            complements[program_code] = "You are missing an essential, relevant " \
+                                        "or desirable subject required for this program"
+    except Exception as ex:
+
+        print("Exception Has occurred: \n {}".format(ex))
+        raise Exception("Error occurred while processing a program eligibility for program code {}".format(program_code))
+
+    # recommended_courses, non_recommended_courses = format_output(recommended_codes, complements)
+
+    recommendations = dict()
+    recommendations["Recommended"] = recommended_program_codes
+    recommendations["complements"] = complements.values()
+
+    return recommendations

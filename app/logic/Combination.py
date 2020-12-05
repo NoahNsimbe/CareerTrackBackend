@@ -290,3 +290,24 @@ def uace_combination(data):
     else:
         response = {'Message': errors}
         return Response(response, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+def combination_recommendation(program_code):
+
+    combinations = []
+
+    try:
+        fn_output = generate_combination(program_code)
+        for x in fn_output:
+            combinations.append(x)
+
+    except Exception as exception:
+
+        print("Exception Has occurred : \n{} ".format(exception))
+
+        print("Exception Has occurred: \n {}".format(exception))
+        raise Exception("Error occurred while processing recommended combinations for program code {}".format(program_code))
+
+    output = make_output(combinations)
+
+    return output

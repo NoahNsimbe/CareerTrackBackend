@@ -10,7 +10,7 @@ from rest_framework_simplejwt.views import (
     # TokenVerifyView
 )
 from app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet, program_details, \
-    ProgramsViewSet
+    ProgramsViewSet, program_eligibility
 
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
@@ -35,6 +35,8 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('program_details/', program_details),
+    path('program_details/', program_eligibility),
+
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),

@@ -5,8 +5,8 @@ from app.logic.Program import Program
 from app.models import Careers, UaceSubjects, UceSubjects, AppRequests, Courses
 from app.serializers import CareersSerializer, UaceCombinationSerializer, \
     CourseRecommendationSerializer, UaceSerializer, UceSerializer, CourseSerializer
-from app.logic.Combination import uace_combination
-from app.logic.Course import course_recommendation
+from app.logic.Combination import uace_combination, combination_recommendation
+from app.logic.Course import course_recommendation, check_program_eligibility
 
 
 class CombinationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
@@ -42,18 +42,6 @@ class UaceViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     filter_backends = [filters.SearchFilter]
     filterset_fields = ['category']
     search_fields = ['name', 'code']
-
-
-@api_view(['POST'])
-def program_details(request):
-    try:
-        program_code = request.data["program_code"]
-    except KeyError:
-        return Response({"message": "provide a program_code"}, status=status.HTTP_400_BAD_REQUEST)
-
-    details = Program(program_code=program_code).get_details()
-
-    return Response({"details": details}, status=status.HTTP_200_OK)
 
 
 class ProgramsViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
@@ -106,3 +94,52 @@ class UceViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.Generi
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return course_recommendation(serializer.data)
+
+
+@api_view(['POST'])
+def program_details(request):
+    try:
+        program_code = request.data["program_code"]
+    except KeyError:
+        return Response({"message": "provide a program_code"}, status=status.HTTP_400_BAD_REQUEST)
+
+    details = Program(program_code=program_code).get_details()
+
+    return Response({"details": details}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def program_eligibility(request):
+    try:
+        program_code = request.data["program_code"]
+        uce_results = request.data["uce_results"]
+        uace_results = request.data["uace_results"]
+        gender = request.data["gender"]
+        admission_type = request.data["admission_type"]
+    except KeyError:
+        return Response({"message": "provide all required fields"}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        response = check_program_eligibility(program_code=program_code,
+                                             uace_results=uace_results,
+                                             uce_results=uce_results,
+                                             gender=gender, admission_type=admission_type)
+        return Response({"details": response}, status=status.HTTP_200_OK)
+
+    except Exception:
+        return Response({"message": "Error occurred"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['POST'])
+def recommend_combination(request):
+    try:
+        program_code = request.data["program_code"]
+    except KeyError:
+        return Response({"message": "provide all required fields"}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        response = combination_recommendation(program_code=program_code)
+        return Response({"details": response}, status=status.HTTP_200_OK)
+
+    except Exception:
+        return Response({"message": "Error occurred"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
