@@ -35,7 +35,7 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('program_details/', program_details),
-    path('program_details/', program_eligibility),
+    path('program_eligibility/', program_eligibility),
     path('recommend_combination/', recommend_combination),
 
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
