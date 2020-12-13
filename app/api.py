@@ -36,7 +36,7 @@ class CareersViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     search_fields = ['name', 'description']
 
 
-class UaceViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class UaceViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     serializer_class = UaceSerializer
     queryset = UaceSubjects.objects.all()
     filter_backends = [filters.SearchFilter]
@@ -51,49 +51,49 @@ class ProgramsViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets
     search_fields = ['name', 'code', 'description']
 
 
-class UceViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class UceViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     serializer_class = UceSerializer
     queryset = UceSubjects.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'code']
-
-    def create(self, request, *args, **kwargs):
-
-        program_details = Program(program_code='CSC').get_details()
-
-        print("\n\n")
-        print(program_details)
-
-        return Response({"message": "okay"}, status=status.HTTP_200_OK)
-
-        data = request.data
-
-        if 'requestType' not in data:
-            return Response(
-                {
-                    "message": "missing requestType : " + AppRequests.value
-                 }
-                , status=status.HTTP_400_BAD_REQUEST)
-
-        if data['requestType'] == AppRequests.UceProgram:
-            if 'program' not in data:
-                return Response({"message": "missing data"}, status=status.HTTP_400_BAD_REQUEST)
-
-            program = data['program']
-
-        elif data['requestType'] == AppRequests.UceProgramResults:
-            if 'program' not in data or 'uce_results' not in data:
-                return Response({"message": "missing data"}, status=status.HTTP_400_BAD_REQUEST)
-
-            program = data['program']
-            uce_results = data['uce_results']
-
-        else:
-            return Response({"message": "missing data"}, status=status.HTTP_400_BAD_REQUEST)
-
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        return course_recommendation(serializer.data)
+    #
+    # def create(self, request, *args, **kwargs):
+    #
+    #     program_details = Program(program_code='CSC').get_details()
+    #
+    #     print("\n\n")
+    #     print(program_details)
+    #
+    #     return Response({"message": "okay"}, status=status.HTTP_200_OK)
+    #
+    #     data = request.data
+    #
+    #     if 'requestType' not in data:
+    #         return Response(
+    #             {
+    #                 "message": "missing requestType : " + AppRequests.value
+    #              }
+    #             , status=status.HTTP_400_BAD_REQUEST)
+    #
+    #     if data['requestType'] == AppRequests.UceProgram:
+    #         if 'program' not in data:
+    #             return Response({"message": "missing data"}, status=status.HTTP_400_BAD_REQUEST)
+    #
+    #         program = data['program']
+    #
+    #     elif data['requestType'] == AppRequests.UceProgramResults:
+    #         if 'program' not in data or 'uce_results' not in data:
+    #             return Response({"message": "missing data"}, status=status.HTTP_400_BAD_REQUEST)
+    #
+    #         program = data['program']
+    #         uce_results = data['uce_results']
+    #
+    #     else:
+    #         return Response({"message": "missing data"}, status=status.HTTP_400_BAD_REQUEST)
+    #
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     return course_recommendation(serializer.data)
 
 
 @api_view(['POST'])
@@ -139,7 +139,7 @@ def recommend_combination(request):
 
     try:
         response = combination_recommendation(program_code=program_code)
-        return Response({"combinations": response}, status=status.HTTP_200_OK)
+        return Response(response, status=status.HTTP_200_OK)
 
     except Exception:
         return Response({"message": "Error occurred"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

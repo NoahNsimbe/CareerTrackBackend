@@ -34,9 +34,9 @@ urlpatterns = [
     path('admin/password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    path('program_details/', program_details),
-    path('program_eligibility/', program_eligibility),
-    path('recommend_combination/', recommend_combination),
+    # path('program_details/', program_details),
+    path('api/program_check/', program_eligibility),
+    path('api/recommend_combination/', recommend_combination),
 
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
@@ -52,5 +52,5 @@ urlpatterns = [
         extra_context={'schema_url': 'openapi-schema'}
     ), name='swagger-ui'),
 
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

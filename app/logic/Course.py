@@ -88,7 +88,7 @@ def with_results(career, uace_results, uce_results, admission_type, gender):
         recommendations["Recommended courses"] = recommended_courses
         recommendations["Non Recommended courses"] = non_recommended_courses
 
-        return True, recommendations, None
+        return True, recommendations["Recommended courses"], None
         # return True, recommendations, None
 
     else:
