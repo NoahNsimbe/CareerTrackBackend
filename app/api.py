@@ -124,7 +124,7 @@ def program_eligibility(request):
                                              uace_results=uace_results,
                                              uce_results=uce_results,
                                              gender=gender, admission_type=admission_type)
-        return Response({"details": response}, status=status.HTTP_200_OK)
+        return Response({"check": response}, status=status.HTTP_200_OK)
 
     except Exception:
         return Response({"message": "Error occurred"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

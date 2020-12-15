@@ -184,4 +184,7 @@ def check_program_eligibility(program_code, uce_results, uace_results, admission
     recommendations["Recommended"] = recommended_program_codes
     recommendations["complements"] = complements.values()
 
-    return recommendations
+    if not recommendations["Recommended"]:
+        return "FAILED"
+    else:
+        return "PASSED"
