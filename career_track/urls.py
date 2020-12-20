@@ -7,11 +7,13 @@ from rest_framework.schemas import get_schema_view
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
-    # TokenVerifyView
+    TokenVerifyView
 )
 from app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet, program_details, \
-    ProgramsViewSet, program_eligibility, recommend_combination
-from app.load_data import load_cut_toff_points
+    ProgramsViewSet, program_eligibility, recommend_combination, ProgramDetailsViewSet, ArticlesListViewSet, \
+    ArticlesCreateViewSet, UsersViewSet
+
+# from app.load_data import load_cut_toff_points
 
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
@@ -21,8 +23,12 @@ admin.AdminSite.site_title = 'Course Recommendation'
 router = routers.DefaultRouter()
 router.register('uace_subjects', UaceViewSet)
 router.register('programs', ProgramsViewSet)
+router.register('accounts', UsersViewSet)
 router.register('uce_subjects', UceViewSet)
 router.register('careers', CareersViewSet)
+router.register('articles', ArticlesListViewSet)
+router.register('create_article', ArticlesCreateViewSet)
+# router.register('programs', ProgramDetailsViewSet)
 router.register('get_combination', CombinationViewSet, basename="get_combination")
 router.register('get_course', ProgramViewSet, basename="get_course")
 
@@ -38,9 +44,9 @@ urlpatterns = [
     path('api/program_check/', program_eligibility),
     path('api/recommend_combination/', recommend_combination),
 
-    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
     path('openapi/', get_schema_view(
         title="Study Recommendation System API",

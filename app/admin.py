@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Careers, Courses, CareerCourses, CourseConstraints, ALevelConstraints, CourseSubjects, \
-    OLevelConstraints, CutOffPoints, UaceSubjects, UceSubjects
+    OLevelConstraints, CutOffPoints, UaceSubjects, UceSubjects, Articles
 
 
 @admin.register(Careers)
@@ -8,6 +8,14 @@ class CareersAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     ordering = ['name']
     search_fields = ('name', 'description')
+
+
+@admin.register(Articles)
+class ArticlesAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'created_on', 'updated_on', 'claps')
+    ordering = ('-created_on',)
+    group_by = ('author_name',)
+    readonly_fields = ('claps', 'created_on', 'updated_on',)
 
 
 @admin.register(CutOffPoints)

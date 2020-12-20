@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", True)
 
 # if not DEBUG:
 #     env_path = os.path.join(os.path.dirname(__file__), '.env')
@@ -18,7 +18,7 @@ DEBUG = True
 # else:
 
 ALLOWED_HOSTS = ['ancient-waters-88205.herokuapp.com', '127.0.0.1']
-SECRET_KEY = os.getenv("SECRET_KEY", "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x")
+SECRET_KEY = os.environ.get("SECRET_KEY", "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x")
 
 ADMINS = [("Noah Nsimbe", "nsimbenoah@gmail.com")]
 CORS_ORIGIN_ALLOW_ALL = True
@@ -31,11 +31,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 #         'http://0.0.0.0',
 #     ]
 
-# if not DEBUG:
-#     CSRF_COOKIE_SECURE = True
-#     SESSION_COOKIE_SECURE = True
-#     SECURE_SSL_REDIRECT = True
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 INSTALLED_APPS = [
@@ -105,12 +105,12 @@ EMAIL_USE_TLS = True
 # if DEBUG:
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv("DATABASE_ENGINE", "django.db.backends.postgresql"),
-        'NAME': os.getenv("DATABASE_NAME", "career_track"),
-        'HOST': os.getenv("DATABASE_HOST", "127.0.0.1"),
-        'PORT': os.getenv("DATABASE_HOST_PORT", 5432),
-        'USER': os.getenv("DATABASE_USER", "career_track"),
-        'PASSWORD': os.getenv("DATABASE_PASSWORD", "9@55w0r6"),
+        'ENGINE': os.environ.get("DATABASE_ENGINE", "django.db.backends.postgresql"),
+        'NAME': os.environ.get("DATABASE_NAME", "career_track"),
+        'HOST': os.environ.get("DATABASE_HOST", "127.0.0.1"),
+        'PORT': os.environ.get("DATABASE_HOST_PORT", 5432),
+        'USER': os.environ.get("DATABASE_USER", "career_track"),
+        'PASSWORD': os.environ.get("DATABASE_PASSWORD", "9@55w0r6"),
     }
 }
 # else:

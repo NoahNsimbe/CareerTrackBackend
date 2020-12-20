@@ -1,8 +1,12 @@
 import enum
 from datetime import datetime
-
+from ckeditor.fields import RichTextField
 from django.db import models
-# from subjects.models import UceSubjects, UaceSubjects
+
+
+def article_images_folder(instance, filename):
+    folder = str(instance.title).replace(" ", "_")
+    return 'articles/{0}/images/{1}'.format(folder, filename)
 
 
 class Careers(models.Model):
@@ -14,6 +18,34 @@ class Careers(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = 'Careers and their description'
+
+
+class Articles(models.Model):
+
+    author = models.CharField(max_length=50, default="Anonymous")
+    author_image = models.ImageField(upload_to=article_images_folder, null=True, blank=True)
+    author_image_alt = models.CharField(max_length=255, null=True, blank=True)
+
+    title = models.CharField(max_length=255, null=True, blank=True)
+    article_image = models.ImageField(upload_to=article_images_folder, null=True, blank=True)
+    article_image_alt = models.CharField(max_length=255, null=True, blank=True)
+    read_time = models.DurationField(help_text="<b><em>In seconds e.g. enter 60 for 1 minute</em></b>")
+    bait = models.TextField(null=True, blank=True)
+    body = RichTextField(null=True, blank=True)
+
+    tags = models.CharField(max_length=50, null=True, blank=True)
+
+    claps = models.PositiveIntegerField(default=0)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Article'
+        verbose_name_plural = 'Articles'
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return str(self.title)
 
 
 class Courses(models.Model):

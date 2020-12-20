@@ -1,12 +1,85 @@
+from urllib import request
+
+from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import viewsets, filters, mixins, generics, status
 from rest_framework.decorators import api_view
 from app.logic.Program import Program
-from app.models import Careers, UaceSubjects, UceSubjects, AppRequests, Courses
+from app.models import Careers, UaceSubjects, UceSubjects, Courses, Articles
 from app.serializers import CareersSerializer, UaceCombinationSerializer, \
-    CourseRecommendationSerializer, UaceSerializer, UceSerializer, CourseSerializer
+    CourseRecommendationSerializer, UaceSerializer, UceSerializer, CourseSerializer, ProgramSerializer, \
+    ArticlesSerializer, UserSerializer
 from app.logic.Combination import uace_combination, combination_recommendation
 from app.logic.Course import course_recommendation, check_program_eligibility
+from django.core.cache import cache
+
+
+class ArticlesListViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin,
+                          mixins.ListModelMixin, viewsets.GenericViewSet):
+
+    queryset = Articles.objects.all()
+    serializer_class = ArticlesSerializer
+    filter_backends = [filters.SearchFilter]
+    filterset_fields = ['author', 'topic', 'featured']
+    search_fields = ['author', 'author_image', 'title',
+                     'article_image', 'read_time', 'bait', 'topic',
+                     'body', 'claps', 'created_on', 'updated_on']
+
+    def partial_update(self, request, *args, **kwargs):
+
+        instance = self.get_object()
+
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = str(x_forwarded_for.split(',')[0])
+        else:
+            ip = str(request.META.get('REMOTE_ADDR'))
+
+        cached_data = cache.get(ip)
+
+        if cached_data == str(instance.id):
+            return Response({"message": "Already made a clap",
+                             "article": instance.id,
+                             "claps": instance.claps},
+                            status=status.HTTP_400_BAD_REQUEST)
+        else:
+            cache.set(ip, str(instance.id), 86400)
+
+        serializer = ArticlesSerializer(instance,
+                                        data={"claps": instance.claps + 1},
+                                        partial=True,
+                                        context={'request': request})
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({"article": instance.id,
+                         "claps": serializer.data["claps"]},
+                        status=status.HTTP_200_OK)
+
+    def update(self, request, *args, **kwargs):
+        return self.partial_update(request)
+
+
+class ArticlesCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    # permission_classes = [IsAuthenticated]
+    queryset = Articles.objects.all()
+    serializer_class = ArticlesSerializer
+
+
+class UsersViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    queryset = User.objects.all().filter(is_staff=False, is_superuser=False)
+    serializer_class = UserSerializer
+
+    def get_permissions(self):
+
+        if request == 'create':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
 
 
 class CombinationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
@@ -27,6 +100,13 @@ class ProgramViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return course_recommendation(serializer.data)
+
+
+class ProgramDetailsViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    serializer_class = ProgramSerializer
+    queryset = Courses.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code', 'description']
 
 
 class CareersViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
