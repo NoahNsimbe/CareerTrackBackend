@@ -188,12 +188,19 @@ class CutOffPoints(models.Model):
     PRIVATE = "PRIVATE"
     GOVT = "PUBLIC"
 
+    MALE = "MALE"
+    FEMALE = "FEMALE"
+    BOTH = "BOTH"
+
     ADMISSION_TYPE = [(PRIVATE, "Private"), (GOVT, "Public")]
+
+    GENDER = [(MALE, "Male"), (FEMALE, "Female"), (BOTH, "Both")]
 
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
     year = models.PositiveSmallIntegerField(default=datetime.now().year - 1)
     points = models.FloatField(default=0.0)
-    type = models.CharField(max_length=15, choices=ADMISSION_TYPE, default=PRIVATE)
+    type = models.CharField(max_length=15, choices=ADMISSION_TYPE, default=GOVT)
+    gender = models.CharField(max_length=15, choices=GENDER, default=BOTH)
 
     class Meta:
         verbose_name = verbose_name_plural = 'Cut-off points'

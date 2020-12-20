@@ -40,6 +40,7 @@ secrets.tar
 ### dump
 # db.json
 db.sql
+.~lock.*
 
 static/
 media/

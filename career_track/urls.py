@@ -11,6 +11,7 @@ from rest_framework_simplejwt.views import (
 )
 from app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet, program_details, \
     ProgramsViewSet, program_eligibility, recommend_combination
+from app.load_data import load_cut_toff_points
 
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
@@ -24,7 +25,6 @@ router.register('uce_subjects', UceViewSet)
 router.register('careers', CareersViewSet)
 router.register('get_combination', CombinationViewSet, basename="get_combination")
 router.register('get_course', ProgramViewSet, basename="get_course")
-
 
 urlpatterns = [
 

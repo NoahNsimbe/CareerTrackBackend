@@ -12,7 +12,7 @@ class CareersAdmin(admin.ModelAdmin):
 
 @admin.register(CutOffPoints)
 class CutOffPointsAdmin(admin.ModelAdmin):
-    list_display = ('course', 'year', 'type', 'points')
+    list_display = ('course', 'year', 'type', 'points', 'gender')
     ordering = ['year']
     search_fields = ('course', 'year')
     autocomplete_fields = ['course']
