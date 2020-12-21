@@ -185,7 +185,7 @@ def program_details(request):
 
     details = Program(program_code=program_code).get_details()
 
-    return Response({"details": details}, status=status.HTTP_200_OK)
+    return Response(details, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])

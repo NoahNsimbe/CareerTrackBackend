@@ -12,13 +12,12 @@ DEBUG = False
 #     env_path = os.path.join(os.path.dirname(__file__), '.env')
 #     load_dotenv(env_path)
 
-# if DEBUG:
-#     ALLOWED_HOSTS = ['*']
-#     SECRET_KEY = "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x"
-# else:
-
-ALLOWED_HOSTS = ['ancient-waters-88205.herokuapp.com', '127.0.0.1']
-SECRET_KEY = os.environ.get("SECRET_KEY", "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x")
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+    SECRET_KEY = "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x"
+else:
+    ALLOWED_HOSTS = ['ancient-waters-88205.herokuapp.com', '127.0.0.1']
+    SECRET_KEY = os.environ.get("SECRET_KEY", "9-s1-+vyfm5b9y=cupm#pq)c8z8+*squ4qd0bsyl!61jis&e^x")
 
 ADMINS = [("Noah Nsimbe", "nsimbenoah@gmail.com")]
 CORS_ORIGIN_ALLOW_ALL = True
