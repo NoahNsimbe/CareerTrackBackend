@@ -1,0 +1,369 @@
+Accountant,"ADJ,ADM,ACC"
+Financial Advisor,"ADJ,ADM,ACC"
+ Sales Manager,"ADJ,ADM,ACC"
+Business Manager,"ADJ,ADM,ACC"
+Agricultural and Food Science Technician,AGE
+Agricultural and Food Scientist,AGE
+Conservation Scientist,AGE
+Environmental Engineer,AGE
+Agricultural Operators Specialist,AGM
+Agronomy Salesperson,AGM
+Business Manager,AGM
+Claims Processor,AGM
+Compliance Analyst,AGM
+Building Architect,"ARC, ARA"
+Landscape Architect,"ARC, ARA"
+Naval Architect,"ARC, ARA"
+Fine Artist,ARS
+Illustrator,ARS
+Photographer,ARS
+Animator,ARS
+Graphic Designer,ARS
+Print Maker,ARS
+Interior Designer,ARS
+Art Agent,ARS
+Public Accountant,ASA
+Forensic Accountant,ASA
+Corporate Accountant,ASA
+Internal Auditor,ASA
+Tax Examiner,ASA
+Ged Instructor,BAC
+Human Resource Manager,BAC
+Corporate Trainer,BAC
+Literacy Specialist,BAC
+Atmospheric Scientist,BPG
+Mining And Geological Engineer,BPG
+Petroleum Engineer,BPG
+Geophysicist,BPG
+Geochemist,BPG
+Hydrogeologist,BPG
+Geotechnician,BPG
+Minerals Surveyor,BPG
+Environmental Engineer,BPG
+Drilling Engineer,BPG
+Arbitrator,"HML, HNM, HSJ, HSO"
+Human Resource Manager,"HML, HNM, HSJ, HSO"
+Office Manager,"HML, HNM, HSJ, HSO"
+Occupational Psychologist,"HML, HNM, HSJ, HSO"
+Training Development Officer,"HML, HNM, HSJ, HSO"
+Careers Advisor,"HML, HNM, HSJ, HSO"
+Recruitment Consultant,"HML, HNM, HSJ, HSO"
+Sales Executive,"HML, HNM, HSJ, HSO"
+Business Advisor,"HML, HNM, HSJ, HSO"
+Labor Relations Manager,"HML, HNM, HSJ, HSO"
+Animal Nutrionist,HUN
+Food Technologist,HUN
+Nutrional Therapist,HUN
+Naturopath,HUN
+Health Promotion Specialist,HUN
+Clinical Dietitian,HUN
+Food Safety Auditor,HUN
+Oncology Nutritionist,HUN
+Pediatric Nutritionist,HUN
+Development Officer,JDA
+Economic Policy Analyst,JDA
+Foreign Service Officer,JDA
+International Aid Worker,JDA
+Project Coordinator,JDA
+Banking Officer,JEA
+Financial Planner,JEA
+Statistical Analyst,JEA
+Research Analyst,JEA
+Marketing Specialist,JEA
+Business Manager,JEA
+Finacial Analyst,JEA
+Accountant,JEA
+Econommist,JEA
+Lawyer,"LAE, LAW"
+Paralegal,"LAE, LAW"
+Legal Secretary,"LAE, LAW"
+Management Consultant,"LAE, LAW"
+Compliance Officer,"LAE, LAW"
+Law Librarian,"LAE, LAW"
+Lobbyist,"LAE, LAW"
+Policy Analyst,"LAE, LAW"
+Solicitor,"LAE, LAW"
+Detective,"LAE, LAW"
+Clinical Nurse,NUR
+Telemedicine Nurse,NUR
+Physician Associate,NUR
+Paramedic,NUR
+Mental Health Nurse,NUR
+Midwife,NUR
+Therapist,NUR
+Children's Nurse,NUR
+Pharmacologist,PAM
+Medical Science Liaison,PAM
+Medical Sales Representative,PAM
+Clinical Research Associate,PAM
+Insurance Actuarial Analyst,SAS
+Actuarial Consultant,SAS
+Business Analyst,SAS
+Risk Analyst,SAS
+Investment Analyst,SAS
+Actuary,SAS
+Data Analyst,SAS
+Child Welfare Social Worker,SOC
+Direct-Service Social Worker,SOC
+Gerontology Social Worker,SOC
+Medical/Public Health Social Worker,SOC
+Mental Health Social Worker,SOC
+Management Consultant,SOC
+Actuary,STA
+Data Scientist,STA
+Financial Quantitative Analyst,STA
+Accountant,STA
+Operations Research Analyst,STA
+Business Analyst,STA
+Statistician ,STA
+Market Research Analyst,STA
+Stock Trader,STA
+Data Analyst,STA
+Investment Analyst,STA
+Acturial Analyst,STA
+Telecommunications Engineer,"STE, STM"
+Digital Telecom Engineer,"STE, STM"
+IT Manager,"STE, STM"
+Telecommunications Analyst,"STE, STM"
+Systems Engineer,"STE, STM"
+Computer Engineer,"STE, STM"
+Computer Networker,"STE, STM"
+Analyst,TLM
+Freight Forwarder,TLM
+LogisticsAnd Distribution Manager,TLM
+Transport Planner,TLM
+Inventory Manager,TLM
+Purchasing Manager,TLM
+Supply Chain Manager,TLM
+Warehouse Operations Manager,TLM
+Logistics Engineer,TLM
+Customer Service Manager,TLM
+Logistic Service Manager,TLM
+Animal Nutritionist,VET
+Animal Physiotherapist,VET
+Veterinary Surgeon,VET
+Veterinary Nurse,VET
+Ecologist,VET
+Animal Technician,VET
+Nature Conservation Officer,VET
+Research Scientist,VET
+Environmental Consultant,VET
+Biometrics Developer,BBI
+Manufacturing Engineer,BBI
+Doctor,BBI
+Researcher,BBI
+Rehabilitation Engineer,BBI
+Medical Imaging Officer,BBI
+Orthopedic Bioengineer,BBI
+Biomedical Engineer,BBT
+Biochemist,BBT
+Medical Scientist,BBT
+Clinical Technologist,BBT
+Biomedical Manufacturing Specialist,BBT
+MicroBiologist,BBT
+Clinical Psychologist,BOP
+Educational Psychologist,BOP
+Occupational Psychologist,BOP
+Health Psychologist,BOP
+Sports And Exercise Psychologist,BOP
+Orthodentist,BDS
+Dentist,BDS
+Priodentist,BDS
+Dental Hygienist,BDS
+Oral Surgeon,BDS
+Dental Assistant,BDS
+Senior Chemist,BIC
+QA Technologist,BIC
+Development Chemist,BIC
+Dvelopment Technician,BIC
+Organic Synthentic Chemist,BIC
+Application Development Chemist,BIC
+Formulation Chemist,BIC
+Stability Chemist,BIC
+Journalist,"BJC, BJE"
+Content Marketer,"BJC, BJE"
+Copy Writer,"BJC, BJE"
+Corporate Communication Specialist,"BJC, BJE"
+Editor,"BJC, BJE"
+Grant Writer,"BJC, BJE"
+Public Relations Specialist,"BJC, BJE"
+Reporter,"BJC, BJE"
+Social Media Specialist,"BJC, BJE"
+Technical Writer,"BJC, BJE"
+Software Developer,BBE
+Application Programmer,BBE
+Systems Programmer,BBE
+Multimedia Programmer,BBE
+Systems Analyst,BBE
+Database Administrator,BBE
+IT Technical Support Officer,BBE
+Aerospace Engineering and Operations Technician,"ELA, ELE"
+Aerospace Engineer,"ELA, ELE"
+Agricultural Engineer,AGE
+Architect,"ARA,ARC"
+Architectural and Civil Drafter,"ARA,ARC, CIV, CIA"
+Architectural Drafters,"ARA,ARC"
+Automotive Engineering Technicians,"ELE,ELA,MEA,MEC"
+Automotive Engineers,"MEA,MEC"
+Biochemical Engineers,BBT
+Biomedical Engineers,"BBI,BSB"
+Cartographers and Photogrammetrists,"SQA,SQS,LSE,LSG"
+Chemical Engineers,BIC
+Civil Drafters,"CIV,CIA"
+Civil Engineering Technicians,"CIV,CIA"
+Civil Engineers,"CIV,CIA"
+Computer Hardware Engineers,CMP
+Electrical and Electronic Engineering Technicians,"ELE, ELA"
+Electrical and Electronics Drafters,"ELE, ELA"
+Electrical Drafters,"ELE, ELA"
+Electrical Engineering Technicians,"ELE, ELA"
+Energy Engineers,"MEA,MEC"
+Fuel Cell Engineers,"MEA,MEC"
+Geodetic Surveyors,"CIV, CIA"
+Human Factors Engineers and Ergonomists,BOP
+Landscape Architects,"ARC, ARA"
+Journalist,"BJC, BJE"
+Content Marketer,"BJC, BJE"
+Copy Writer,"BJC, BJE"
+Corporate Communication Specialist,"BJC, BJE"
+Editor,"BJC, BJE"
+Grant Writer,"BJC, BJE"
+Public Relations Specialist,"BJC, BJE"
+Reporter,"BJC, BJE"
+Social Media Specialist,"BJC, BJE"
+Technical Writer,"BJC, BJE"
+Mechanical Engineering Technicians,"MEA,MEC"
+Mechanical Engineering Technologists,"MEA,MEC"
+Mechanical Engineers,"MEA,MEC"
+Mechatronics Engineers,"MEA,MEC,ELE,ELA"
+Robotics Engineers,"MEA,MEC,ELE,ELA"
+"Mining and Geological Engineers, Including Mining Safety Engineers",BPG
+Petroleum Engineers,BPG
+Senior Chemist,BIC
+QA Technologist,BIC
+Development Chemist,BIC
+Dvelopment Technician,BIC
+Organic Synthentic Chemist,BIC
+Application Development Chemist,BIC
+Formulation Chemist,BIC
+Stability Chemist,BIC
+Robotics Technicians,"MEA,MEC,ELE,ELA"
+Solar Energy Systems Engineers,"ELE,ELA"
+Surveying and Mapping Technicians,"SQA,SQS,LSE,LSG"
+Surveying Technicians,"SQA,SQS,LSE,LSG"
+Surveyors,"SQA,SQS,LSE,LSG"
+Validation Engineers,"ELE,ELA,MEC,MEA"
+Water/Wastewater Engineers,"MEC,MEA,CIV"
+Wind Energy Engineers,"MEC,MEA"
+"Administrative Law Judges, Adjudicators, and Hearing Officers","LAE,LAW"
+"Judges, Magistrate Judges, and Magistrates","LAE,LAW"
+Judicial Law Clerks,"LAE,LAW"
+Lawyers,"LAE,LAW"
+Actuaries,SAS
+Biostatisticians,"STA,BPS"
+Business Intelligence Analysts,"STA, CSC,CSE,BUS,ECE,ECJ,ECO,BJB,BBJ"
+Computer and Information Research Scientists,"CSC,BSI,BSJ"
+Computer Network Architects,"CSC, BSW"
+Computer Network Support Specialists,"CSC, BSW"
+Computer Programmers,"CSC,BSW,CME"
+Computer Systems Analysts,"CSC,BSW,BSI,BSJ"
+Computer Systems Engineers/Architects,"CSC,BSW,BSI,BSJ"
+Data Warehousing Specialists,"CSC,BSW,BSI,BSJ"
+Database Administrators,"CSC,BSW,BSI,BSJ"
+Database Architects,"CSC,BSW,BSI,BSJ"
+Information Security Analysts,"BSI,BSJ,CSC,BSW"
+Information Technology Project Managers,"BSJ,BSI"
+Mathematicians,CSC
+Network and Computer Systems Administrators,"CSC,BSW"
+Software Developers,"CSC,BSW"
+Software Quality Assurance Engineers and Testers,"CSC,BSW"
+Statisticians,"STA,BBS,BUS"
+Telecommunications Engineering Specialists,"STE,STM"
+Web Administrators,"CSC,BSW,BSI,BSJ"
+Web Developers,"CSC,BSW,BSI,BSJ"
+Dental Assistants,"BDS,BDT"
+Endoscopy Technicians,CLI
+"Healthcare Support Workers, All Other",CLI
+Home Health Aides,CLI
+Massage Therapists,CLI
+Medical Assistants,"CLI,MAM"
+Medical Equipment Preparers,CLI
+Medical Transcriptionists,CLI
+Nursing Assistants,NUR
+Pharmacy Aides,PAM
+Doctors,MAM
+Psychiatric Aides,MAM
+Speech-Language Pathology Assistants,BSL
+Veterinary Assistants and Laboratory Animal Caretakers,"VET,WHM"
+Accountant,"COE,COM,ASA,CEO"
+Financial Advisor,"ADJ,ADM,ACC,BSF"
+ Sales Manager,"ADJ,ADM,ACC,CEO"
+Business Manager,"ADJ,ADM,ACC"
+Appraisers and Assessors of Real Estate,"CSC,BSA,BQE,BMM,BML,BMA,BEC"
+Assessors,"BSA,BQE,BMM,BML,BMA,BEC"
+Auditors,"ASA,COM,COE"
+Budget Analysts,"BEC,BQE,BSF,DEC,DEE,DEJ,ECJ,ECO,ECE"
+Business Continuity Planners,"ADJ,ADM,ACC,CEO"
+Business Operations Specialists,"ADJ,ADM,ACC,CEO"
+Buyers and Purchasing Agent,"BEC,ECJ,ECO,ECE,ADJ,ADM,ACC,CEO,PML,PMM,PSC,PSM"
+"Claims Adjusters, Examiners, and Investigators","ADJ,ADM,ACC,CEO"
+"Claims Examiners, Property and Casualty Insurance","ADJ,ADM,ACC,CEO"
+"Compensation, Benefits, and Job Analysis Specialists","BEC,BQE,BSF,DEC,DEE,DEJ,ECJ,ECO,ECE"
+Coroners,"MAM,BYT"
+Cost Estimators,"STA,SCA,SCM,SQA"
+Credit Analysts,"ADJ,ADM,ACC,BSF"
+Credit Counselors,"ADJ,ADM,ACC,BSF"
+Customs Brokers,"ADJ,ADM,ACC,BSF"
+Arbitrator,"HML, HNM, LAW"
+Human Resource Manager,"HML, HNM, HSJ, HSO"
+Office Manager,"HML, HNM, HSJ, HSO"
+Occupational Psychologist,"HML, HNM, HSJ, HSO"
+Training Development Officer,"HML, HNM, HSJ, HSO"
+Careers Advisor,"HML, HNM, HSJ, HSO"
+Recruitment Consultant,"HML, HNM, HSJ, HSO"
+Sales Executive,"HML, HNM, HSJ, HSO"
+Business Advisor,"HML, HNM, HSJ, HSO"
+Labor Relations Manager,"HML, HNM, HSJ, HSO"
+Clinical Psychologist,"BOP,BEP"
+Educational Psychologist,"BOP,BEP"
+Occupational Psychologist,"BOP,BEP"
+Health Psychologist,"BOP,BEP"
+Sports And Exercise Psychologist,"BOP,BEP"
+Adapted Physical Education Specialists,"EDP,SCP"
+"Agricultural Sciences Teachers, Postsecondary","BAR,AGR"
+"Anthropology and Archeology Teachers, Postsecondary","BED,"
+Audio-Visual and Multimedia Collections Specialists,"FIN,DPA,"
+"Biological Science Teachers, Postsecondary","EDM,EDB"
+"Business Teachers, Postsecondary","EEC,SEC"
+"Chemistry Teachers, Postsecondary",EDB
+"Computer Science Teachers, Postsecondary","CSC,CSE"
+"Criminal Justice and Law Enforcement Teachers, Postsecondary",LAW
+Curators,EDA
+Economics Teachers,"EEC,SEC"
+"Education, Training, and Library Workers",LIS
+English Language and Literature Teachers,BED
+Environmental Science Teachers,BVS
+Farm and Home Management Advisors,AGM
+Foreign Language and Literature Teachers,BED
+Forestry and Conservation Science Teachers,"BVS,BOF"
+Geography Teachers,BGS
+History Teachers,EDA
+Home Economics Teachers,"EDA,BTH"
+Law Teachers,LAW
+Librarians,BLE
+"Library Science Teachers, Postsecondary",BLE
+Library Technicians,BLE
+"Mathematical Science Teachers, Postsecondary","SCP,EDP"
+Museum Technicians and Conservators,BRA
+Nursing Instructors and Teachers,EDB
+Philosophy and Religion Teachers,EDA
+"Physics Teachers, Postsecondary",EDP
+"Political Science Teachers, Postsecondary",EDA
+"Psychology Teachers, Postsecondary",BEP
+"Recreation and Fitness Studies Teachers, Postsecondary",BSP
+Orthodentist,BDS
+Dentist,BDS
+Priodentist,BDS
+Dental Hygienist,BDS
+Oral Surgeon,BDS
+Dental Assistant,BDS

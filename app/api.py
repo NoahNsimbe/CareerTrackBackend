@@ -6,10 +6,10 @@ from rest_framework.response import Response
 from rest_framework import viewsets, filters, mixins, generics, status
 from rest_framework.decorators import api_view
 from app.logic.Program import Program
-from app.models import Careers, UaceSubjects, UceSubjects, Courses, Articles
+from app.models import Careers, UaceSubjects, UceSubjects, Courses, Articles, CareerCourses
 from app.serializers import CareersSerializer, UaceCombinationSerializer, \
     CourseRecommendationSerializer, UaceSerializer, UceSerializer, CourseSerializer, ProgramSerializer, \
-    ArticlesSerializer, UserSerializer
+    ArticlesSerializer, UserSerializer, CareerCoursesSerializer
 from app.logic.Combination import uace_combination, combination_recommendation
 from app.logic.Course import course_recommendation, check_program_eligibility
 from django.core.cache import cache
@@ -107,6 +107,11 @@ class ProgramDetailsViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, vi
     queryset = Courses.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'code', 'description']
+
+
+class CareerCoursesViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    serializer_class = CareerCoursesSerializer
+    queryset = CareerCourses.objects.all()
 
 
 class CareersViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):

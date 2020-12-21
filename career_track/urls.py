@@ -11,10 +11,11 @@ from rest_framework_simplejwt.views import (
 )
 from app.api import UaceViewSet, CareersViewSet, UceViewSet, CombinationViewSet, ProgramViewSet, program_details, \
     ProgramsViewSet, program_eligibility, recommend_combination, ProgramDetailsViewSet, ArticlesListViewSet, \
-    ArticlesCreateViewSet, UsersViewSet
+    ArticlesCreateViewSet, UsersViewSet, CareerCoursesViewSet
 
 # from app.load_data import load_cut_toff_points
-
+# from app.load_data import load_careers
+# from app.load_data import load_mappings
 admin.AdminSite.name = 'Course Recommendation'
 admin.AdminSite.site_header = 'Course Recommendation'
 admin.AdminSite.index_title = 'Course Recommendation'
@@ -22,6 +23,7 @@ admin.AdminSite.site_title = 'Course Recommendation'
 
 router = routers.DefaultRouter()
 router.register('uace_subjects', UaceViewSet)
+router.register('career_courses', CareerCoursesViewSet)
 router.register('programs', ProgramsViewSet)
 router.register('accounts', UsersViewSet)
 router.register('uce_subjects', UceViewSet)
